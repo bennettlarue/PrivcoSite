@@ -34,6 +34,8 @@ const plans = [
       "Event Funnels": true,
       Heatmaps: true,
       "Dev Tools": true,
+      "Co-browsing": true,
+      "Frustration Signals": true,
     },
   },
   {
@@ -41,6 +43,10 @@ const plans = [
     features: {
       "User Trends": true,
       "Event Funnels": true,
+      Heatmaps: true,
+      "Dev Tools": true,
+      "Co-browsing": true,
+      "Frustration Signals": true,
     },
   },
 ];
