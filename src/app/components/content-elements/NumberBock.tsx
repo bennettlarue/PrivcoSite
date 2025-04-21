@@ -8,9 +8,19 @@ interface NumberBlockProps {
 
 const NumberBlock: React.FC<NumberBlockProps> = ({ number, text }) => {
   return (
-    <div className="border border-black w-full p-6">
-      <h4 className="text-5xl font-[700] leading-[130%]">{number}</h4>
-      <p className="text-[24px] font-[700] leading-[140%]">{text}</p>
+    <div
+      className="border w-full p-6 flex items-center"
+      style={{
+        border: "1px solid var(--privco-blue)",
+        color: "var(--privco-blue)",
+      }}
+    >
+      <div>
+        <h4 className="text-3xl lg:text-4xl xl:text-5xl font-[700] leading-[130%]">
+          {number}
+        </h4>
+        <p className="lg:text-2xl text-xl font-[700] leading-[140%]">{text}</p>
+      </div>
     </div>
   );
 };

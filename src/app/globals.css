@@ -5,5 +5,13 @@
 @tailwind utilities;
 
 * {
+  --privco-blue: #043873;
+  --privco-lightblue: #80c7fb;
+  --privco-white: #fff;
+  --privco-black: #000;
+  --privco-gray: #ebedf0;
+  --privco-yellow: #fff6a3;
+  --privco-green: #34c759;
+  --privco-lightgreen: #e7fff0;
   font-family: "Roboto", sans-serif;
 }

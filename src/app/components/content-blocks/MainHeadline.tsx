@@ -7,12 +7,14 @@ interface MainHeadlineProps {
   overline?: string; // Optional overline
   paragraph?: string; // Optional paragraph text
   children?: React.ReactNode; // Optional children
+  fontSize?: string;
 }
 
 const MainHeadline: React.FC<MainHeadlineProps> = ({
   headline,
   overline,
-  children, // Destructure children
+  children,
+  fontSize, // Destructure children
 }) => {
   // If children is an array, we map over it to add the fade-in effect with dynamic delays.
   const renderChildren = React.Children.map(children, (child, index) => {
@@ -21,10 +23,15 @@ const MainHeadline: React.FC<MainHeadlineProps> = ({
   });
 
   return (
-    <div className="flex flex-col gap-4">
-      {overline && <div>{overline}</div>}
+    <div className="flex flex-col gap-6 max-w-[1300px] mx-auto">
+      {overline && <div className="text-2xl font-semibold">{overline}</div>}
       <FadeIn delay={0.5}>
-        <h1 className="text-[40px] font-[700] leading-[120%]">{headline}</h1>
+        <h1
+          className="md:text-5xl text-3xl font-[700] leading-[120%] text-balance"
+          style={{ fontSize: fontSize ? fontSize : "auto" }}
+        >
+          {headline}
+        </h1>
       </FadeIn>
 
       <div className="text-[16px] font-[400] leading-[150%] flex flex-col gap-4">

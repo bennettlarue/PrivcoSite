@@ -4,30 +4,158 @@ import SectionColor from "./components/content-blocks/SectionColor";
 import RoundButton from "./components/content-elements/RoundButton";
 import FlexRow from "./components/content-containers/Flexrow";
 import SixToEight from "./components/content-containers/side-by-side/SixToEight";
-import FourToNine from "./components/content-containers/side-by-side/FourToNine";
 import SecondaryHeadline from "./components/content-blocks/SecondaryHeadline";
 import NumberBlock from "./components/content-elements/NumberBock";
 import RowPadding from "./components/content-containers/RowPadding";
-import CubeSVG from "./components/svgs/Cube";
 import SmallHeadline from "./components/content-blocks/SmallHeadline";
-import Testimonial from "./components/content-blocks/Testimonial";
-import ArticleCard from "./components/content-blocks/ArticleCard";
-import MdOnly from "./components/content-containers/conditional/MdOnly";
-import TestimonialLarge from "./components/content-blocks/TestimonialLarge";
+import ClientLogos from "./components/content-blocks/ClientLogos";
+import BoxText from "./components/content-blocks/BoxText";
+import Figure from "./components/content-blocks/Figure";
+import BigButton from "./components/content-blocks/BigButton";
 
 export default function Home() {
   return (
     <div>
-      <SectionColor textColor="#FFFFFF" backgroundColor="#043873">
+      <SectionColor
+        textColor="var(--privco-white)"
+        backgroundColor="var(--privco-blue)"
+      >
         <SixToEight
           leftChild={
             <RowPadding>
-              <MainHeadline headline="The most powerful search engine for private company data">
+              <MainHeadline headline="Uncover Opportunities Others Can’t See">
+                <p className="font-semibold md:text-2xl text-xl">
+                  Get the edge and identify hidden but high-potential private
+                  companies before your competitors do.
+                </p>
+                <FlexRow>
+                  <RoundButton
+                    textColor="var(--privco-white)"
+                    backgroundColor="var(--privco-green)"
+                    border={true}
+                  >
+                    Start Free
+                  </RoundButton>
+                  <RoundButton
+                    textColor="var(--privco-white)"
+                    backgroundColor="var(--privco-blue)"
+                    border={true}
+                  >
+                    Learn More
+                  </RoundButton>
+                </FlexRow>
+                <p>
+                  Start your seven-day free trial with full and immediate access
+                </p>
+              </MainHeadline>
+            </RowPadding>
+          }
+          rightChild={
+            <img
+              className="w-full h-full object-cover"
+              src="images/header-image.png"
+            />
+          }
+        />
+      </SectionColor>
+
+      <SectionColor
+        textColor="var(--privco-black)"
+        backgroundColor="var(--privco-white)"
+      >
+        <RowPadding>
+          <ClientLogos
+            images={[
+              "/images/client-logos/amex.png",
+              "/images/client-logos/stephens.png",
+              "/images/client-logos/deloitte.png",
+              "/images/client-logos/wharton.png",
+              "/images/client-logos/microsoft.png",
+            ]}
+          />
+        </RowPadding>
+      </SectionColor>
+
+      <SectionColor
+        textColor="var(--privco-black)"
+        backgroundColor="var(--privco-lightgreen)"
+      >
+        <RowPadding>
+          <div>
+            <SecondaryHeadline
+              headline="PrivCo's private market intelligence database takes the guesswork out of your private company search."
+              color="var(--privco-blue)"
+            ></SecondaryHeadline>
+            <div className="mt-4 grid xl:grid-cols-9 grid-cols-1 md:gap-16 md:space-y-0 space-y-10">
+              <div className="space-y-6 text-lg col-span-4">
+                <p>
+                  Unlike the public markets, where data providers can readily
+                  access financial information from a company's earnings
+                  reports, private company data is much harder to track down.
+                  PrivCo specializes in “bootstrapped” companies above $1MM that
+                  are not covered by other data sources because they haven’t
+                  raised private equity or venture capital.{" "}
+                </p>
+                <p>
+                  PrivCo helps investors, private equity, analysts, and
+                  institutions make better strategic decisions and gain a
+                  competitive edge with our precision, quality, and breadth of
+                  data.
+                </p>
+              </div>
+              <div className="grid md:grid-cols-3 gap-4 col-span-5 grid-cols-2">
+                <BoxText
+                  text="Competitive Intelligence"
+                  color="var(--privco-blue)"
+                />
+                <BoxText text="Market Research" color="var(--privco-blue)" />
+                <BoxText text="Business Dev" color="var(--privco-blue)" />
+                <BoxText text="Due Diligence" color="var(--privco-blue)" />
+                <BoxText
+                  text="Sourcing / Origination"
+                  color="var(--privco-blue)"
+                />
+                <BoxText text="Deal Comps" color="var(--privco-blue)" />
+              </div>
+            </div>
+          </div>
+        </RowPadding>
+      </SectionColor>
+
+      <SectionColor
+        textColor="var(--privco-white)"
+        backgroundColor="var(--privco-blue)"
+      >
+        <RowPadding>
+          <div className="text-center mx-auto">
+            <SecondaryHeadline
+              headline="”I came across PrivCo when I was benchmarking services that could help me 
+automate and expedite this process, and they beat all other options both
+ in terms of quality and price.”"
+            >
+              — Associate at GP Investments
+            </SecondaryHeadline>
+          </div>
+        </RowPadding>
+      </SectionColor>
+
+      <SectionColor
+        textColor="var(--privco-black)"
+        backgroundColor="var(--privco-lightblue)"
+      >
+        <RowPadding>
+          <div className="grid lg:grid-cols-5 grid-cols-1 gap-8">
+            <div className="col-span-2">
+              <SecondaryHeadline
+                overline="Join over 90,000 PrivCo users . . ."
+                headline="Complete financial data on U.S. private companies"
+              >
                 <p>
                   {" "}
-                  Discover essential data on private companies effortlessly.
-                  Start with our free account and explore valuable insights
-                  before upgrading.
+                  Start your journey with our free plan, designed to give you
+                  essential insights into private companies. Experience basic
+                  firmographics and limited profile access to discover what you
+                  need before upgrading.
                 </p>
                 <FlexRow>
                   <RoundButton textColor="#FFFFFF" backgroundColor="#34C759">
@@ -37,236 +165,218 @@ export default function Home() {
                     Learn More
                   </RoundButton>
                 </FlexRow>
-                <p className="font-semibold">No Credit Card Required</p>
-              </MainHeadline>
-            </RowPadding>
-          }
-          rightChild={
-            <img
-              className="w-full h-full object-cover"
-              src="https://s3-alpha-sig.figma.com/img/ac95/3a74/a62bab4a0502a32a33226a5a0124052a?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=Jmdp3ahvyvvuFFIYkGIaavFeqNTTfIOMhXbWq-xr6LF2GydIoVvudFdYMBjS2pFu2XOoGAuIBEnm4WKexTA0c5jE9AnP7VMZ-NTlHfUs20DImGRqkxMi39cR3QvaqO5LnN1ElYzcKGiQ0FlYWJgPSPdjDPZ1Iz2300Ge3U-G7hiQgaW3bS26n4tP636u-P2yA5XiOBwJMcu00kUnp3Pi4QSZ179S656nBnr1EG7lwDjTlyyBlJo7ceqgi6Ho0OWt--L3MTgSAtz0UYzxfVqU0eAl-L3rFC4zcQXb8affffKY1makLggzgp4g-2Cx6j5VnM7A5s10k6FeRh0XOiawrQ__"
-            />
-          }
-        />
-      </SectionColor>
-
-      <SectionColor textColor="#000000" backgroundColor="#4F9CF980">
-        <RowPadding>
-          <FourToNine
-            leftChild={
-              <div>
-                <SecondaryHeadline
-                  overline="Join over 90,000 PrivCo users . . ."
-                  headline="Complete financial data on U.S. private companies"
-                >
-                  <p>
-                    {" "}
-                    Start your journey with our free plan, designed to give you
-                    essential insights into private companies. Experience basic
-                    firmographics and limited profile access to discover what
-                    you need before upgrading.
-                  </p>
-                  <FlexRow>
-                    <RoundButton textColor="#FFFFFF" backgroundColor="#34C759">
-                      Start Free
-                    </RoundButton>
-                    <RoundButton textColor="#FFFFFF" backgroundColor="#043873">
-                      Learn More
-                    </RoundButton>
-                  </FlexRow>
-                </SecondaryHeadline>
-              </div>
-            }
-            rightChild={
-              <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
-                <NumberBlock number="893K+" text="U.S. Private Companies" />
-                <NumberBlock number="146M+" text="Data Points" />
-                <NumberBlock number="1,000+" text="Industry Verticals " />
-                <NumberBlock number="70M+" text="Contact Records" />
-              </div>
-            }
-          />
-        </RowPadding>
-      </SectionColor>
-
-      <SectionColor textColor="#000000" backgroundColor="#FFFFFF">
-        <RowPadding>
-          <div className="grid grid-cols-1 xl:grid-cols-3 md:grid-cols-2 mx-auto gap-10">
-            <Testimonial
-              image="/images/person1.jpeg"
-              alt="person1"
-              review="PrivCo transformed our approach to market research!"
-              name="Alice Johnson"
-              position="CEO, Tech Innovators"
-            />
-            <Testimonial
-              image="/images/person2.jpeg"
-              alt="person2"
-              review="PrivCo transformed our approach to market research!"
-              name="Alice Johnson"
-              position="CEO, Tech Innovators"
-            />
-            <Testimonial
-              image="/images/person3.jpeg"
-              alt="person3"
-              review="PrivCo transformed our approach to market research!"
-              name="Alice Johnson"
-              position="CEO, Tech Innovators"
-            />
-            <MdOnly>
-              <Testimonial
-                image="/images/person1.jpeg"
-                alt="person1"
-                review="PrivCo transformed our approach to market research!"
-                name="Alice Johnson"
-                position="CEO, Tech Innovators"
-              />
-            </MdOnly>
+              </SecondaryHeadline>
+            </div>
+            <div className="col-span-3 grid md:grid-cols-2 grid-cols-1 gap-4">
+              <NumberBlock number="893K+" text="U.S. Private Companies" />
+              <NumberBlock number="146M+" text="Data Points" />
+              <NumberBlock number="1,000+" text="Industry Verticals " />
+              <NumberBlock number="70M+" text="Contact Records" />
+            </div>
           </div>
         </RowPadding>
       </SectionColor>
 
-      <SectionColor textColor="#000000" backgroundColor="#effff5">
+      <SectionColor
+        textColor="var(--privco-white)"
+        backgroundColor="var(--privco-blue)"
+      >
         <RowPadding>
           <div>
-            <SecondaryHeadline headline="Actionable insights for informed business decisions.">
-              <p>
-                {" "}
-                Our free account provides essential firmographics and limited
-                profile access, allowing you to discover valuable insights.
-                Start your journey today and see what we offer before deciding
-                to upgrade.
-              </p>
-            </SecondaryHeadline>
+            <SecondaryHeadline headline="Get Granular-Level Advanced Search using Revenue, EBITDA,Valuation, Funding, Growth Rates, Location & Ownership"></SecondaryHeadline>
+            <div className="md:space-y-0 space-y-10 grid grid-cols-1 md:grid-cols-3 gap-6 md:mx-0 mx-auto mt-3">
+              <Figure
+                image="/images/figure-1.png"
+                header="Analyze Data at Scale"
+                subtext="With proprietary algorithms and industry-leading keyword tagging. "
+                alt="first image"
+              />
+              <Figure
+                image="/images/figure-2.png"
+                header="Uncover Financial Insights"
+                subtext="Created through proprietary machine-learning financial modeling and expert data analysts."
+                alt="first image"
+              />
+              <Figure
+                image="/images/figure-3.png"
+                header="Quickly Search & Compare"
+                subtext="Quickly filter and compare multiple industries, companies, and players in the private market."
+                alt="first image"
+              />
+            </div>
           </div>
-          <div className="grid xl:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 md:gap-[64px] gap-[48px]">
-            <SmallHeadline headline="Investment Banking" overline={<CubeSVG />}>
+        </RowPadding>
+      </SectionColor>
+
+      <SectionColor
+        textColor="var(--privco-black)"
+        backgroundColor="var(--privco-white)"
+      >
+        <RowPadding>
+          <div>
+            <div className="mx-auto text-center w-fit">
+              <SecondaryHeadline headline="Featured In" />
+            </div>
+            <ClientLogos
+              images={[
+                "/images/client-logos/forbes.png",
+                "/images/client-logos/bloomberg.png",
+                "/images/client-logos/cnbc.png",
+                "/images/client-logos/crunchbase.png",
+                "/images/client-logos/inc.png",
+              ]}
+            />
+          </div>
+        </RowPadding>
+      </SectionColor>
+
+      <SectionColor
+        textColor="var(--privco-blue)"
+        backgroundColor="var(--privco-lightgreen)"
+      >
+        <RowPadding>
+          <div className="w-fit mx-auto">
+            <SecondaryHeadline headline="Insights for Deal Makers"></SecondaryHeadline>
+          </div>
+          <div className="grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 md:gap-x-20 gap-x-10 gap-y-16">
+            <SmallHeadline
+              headline="Private Equity"
+              overline={
+                <div className="h-[30px] flex items-center">
+                  <Image
+                    src={"/images/svgs/star.svg"}
+                    className=""
+                    alt={"dd"}
+                    width={40}
+                    height={40}
+                  />
+                </div>
+              }
+            >
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse varius enim in eros elementum tristique.
+                Find independently owned private companies with historical
+                revenue in your target demographic.
               </p>
             </SmallHeadline>
-            <SmallHeadline headline="Investment Banking" overline={<CubeSVG />}>
+            <SmallHeadline
+              headline="Venture Capital"
+              overline={
+                <div className="h-[30px] flex items-center">
+                  <Image
+                    src={"/images/svgs/money.svg"}
+                    className=""
+                    alt={"dd"}
+                    width={40}
+                    height={40}
+                  />
+                </div>
+              }
+            >
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse varius enim in eros elementum tristique.
+                Discover the Next Big Thing with actionable insights from
+                pre-revenue and late-stage companies alike.
               </p>
             </SmallHeadline>
-            <SmallHeadline headline="Investment Banking" overline={<CubeSVG />}>
+            <SmallHeadline
+              headline="Investment Banking"
+              overline={
+                <div className="h-[30px] flex items-center">
+                  <Image
+                    src={"/images/svgs/bank.svg"}
+                    className=""
+                    alt={"dd"}
+                    width={40}
+                    height={40}
+                  />
+                </div>
+              }
+            >
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse varius enim in eros elementum tristique.
+                Get accurate industry and private company financials. Gain
+                actionable insights related to VC, M&A, debt, EBITDA, and equity
+                financing.
               </p>
             </SmallHeadline>
-            <SmallHeadline headline="Investment Banking" overline={<CubeSVG />}>
+            <SmallHeadline
+              headline="Academics"
+              overline={
+                <div className="h-[30px] flex items-center">
+                  <Image
+                    src={"/images/svgs/heart.svg"}
+                    className=""
+                    alt={"dd"}
+                    width={40}
+                    height={40}
+                  />
+                </div>
+              }
+            >
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse varius enim in eros elementum tristique.
+                Provide faculty and students with comprehensive financial
+                intelligence.
+              </p>
+            </SmallHeadline>
+            <SmallHeadline
+              headline="Executive Search"
+              overline={
+                <div className="h-[30px] flex items-center">
+                  <Image
+                    src={"/images/svgs/cube.svg"}
+                    className=""
+                    alt={"dd"}
+                    width={40}
+                    height={40}
+                  />
+                </div>
+              }
+            >
+              <p>
+                Uncover hard-to-find private companies in need of top talent.
+              </p>
+            </SmallHeadline>
+            <SmallHeadline
+              headline="Sales Teams"
+              overline={
+                <div className="h-[30px] flex items-center">
+                  <Image
+                    src={"/images/svgs/graph.svg"}
+                    className=""
+                    alt={"dd"}
+                    width={40}
+                    height={40}
+                  />
+                </div>
+              }
+            >
+              <p>
+                Find and connect with the right prospects quickly and
+                efficiently.
               </p>
             </SmallHeadline>
           </div>
         </RowPadding>
       </SectionColor>
-      <SectionColor backgroundColor="#043873" textColor="#FFFFFF">
+      <SectionColor
+        backgroundColor="var(--privco-lightblue)"
+        textColor="var(--privco-black)"
+      >
         <RowPadding>
-          <SecondaryHeadline headline="Unlock Your Trial Account Today">
-            <p>
-              Start with our trial plan and access essential data to fuel your
-              business growth.
-            </p>
-            <FlexRow>
-              <RoundButton textColor="#FFFFFF" backgroundColor="#34C759">
-                Start Free
-              </RoundButton>
-              <RoundButton textColor="#FFFFFF" backgroundColor="#043873">
-                Learn More
-              </RoundButton>
-            </FlexRow>
-          </SecondaryHeadline>
-        </RowPadding>
-      </SectionColor>
-      <SectionColor backgroundColor="#FFFFFF" textColor="#000000">
-        <RowPadding>
-          <SecondaryHeadline headline="Comprehensive. Current. Clear Results." />
-          <div className="grid grid-cols-1 xl:grid-cols-3 md:grid-cols-2 mx-auto gap-10">
-            <ArticleCard
-              headline="Explore Comprehensive Data to Drive Your Business Decisions"
-              cta="Learn More"
-              ctaLink="#"
-              image="https://picsum.photos/800/1100"
-              alt="image"
-            >
-              PrivCo offers unparalleled access to private company insights,
-              empowering you to make informed decisions.
-            </ArticleCard>
-            <ArticleCard
-              headline="Explore Comprehensive Data to Drive Your Business Decisions"
-              cta="Learn More"
-              ctaLink="#"
-              image="https://picsum.photos/1300/800"
-              alt="image"
-            >
-              PrivCo offers unparalleled access to private company insights,
-              empowering you to make informed decisions.
-            </ArticleCard>
-            <ArticleCard
-              headline="Stay Ahead with Real-Time Financial Insights and Trends"
-              cta="Explore"
-              ctaLink="#"
-              image="https://picsum.photos/1000/800"
-              alt="image"
-            >
-              Access updated financials and market trends to keep your
-              strategies relevant and effective.
-            </ArticleCard>
-            <MdOnly>
-              <ArticleCard
-                headline="Gain Competitive Edge with Advanced Search Capabilities"
-                cta="Learn More"
-                ctaLink="#"
-                image="https://picsum.photos/1010/900"
-                alt="image"
-              >
-                Utilize our powerful search tools to find the data that matters
-                most to you.
-              </ArticleCard>
-            </MdOnly>
-          </div>
-        </RowPadding>
-        <RowPadding>
-          <TestimonialLarge
-            image="/images/person2.jpeg"
-            review="PrivCo's insights have transformed how we approach our investment strategies. The depth of data available is unmatched!"
-            name="John Doe"
-            position="Investor, Tech Ventures"
-            logo="/images/test/webflow-logo.png"
-            alt="/images/person1.jpeg"
-          />
-        </RowPadding>
-      </SectionColor>
-      <SectionColor textColor="#000000" backgroundColor="#effff5">
-        <RowPadding>
-          <div className="flex justify-center text-center">
-            <SecondaryHeadline
-              overline="Empower"
-              headline="Unlock Insights with PrivCo's Data Solutions"
-            >
-              <p>
+          <div className="w-fit text-center mx-auto">
+            <SecondaryHeadline headline="Uncover the Bootstrappers.">
+              <p className="text-xl max-w-[600px]">
                 At PrivCo, we are dedicated to providing unparalleled access to
-                private company data. Our mission is to empower businesses with
-                the insights they need to make informed decisions.
+                private company data not found in other sources.
               </p>
-              <div className="flex justify-center">
-                <FlexRow>
-                  <RoundButton textColor="#FFFFFF" backgroundColor="#34C759">
-                    Start Free
-                  </RoundButton>
-                  <RoundButton textColor="#FFFFFF" backgroundColor="#043873">
-                    Learn More
-                  </RoundButton>
-                </FlexRow>
-              </div>
             </SecondaryHeadline>
+          </div>
+          <div className="mx-auto">
+            <BigButton
+              textColor="var(--privco-blue)"
+              backgroundColor="var(--privco-green)"
+              border={true}
+            >
+              Start Your 7-Day, Full-Access Free Trial
+            </BigButton>
           </div>
         </RowPadding>
       </SectionColor>

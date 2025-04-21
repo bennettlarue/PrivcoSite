@@ -1,13 +1,13 @@
 import React from "react";
 
-interface RoundButtonProps {
+interface BigButtonProps {
   backgroundColor: string;
   textColor: string;
   border?: boolean;
   children?: React.ReactNode; // Optional children
 }
 
-const RoundButton: React.FC<RoundButtonProps> = ({
+const BigButton: React.FC<BigButtonProps> = ({
   backgroundColor,
   textColor,
   border,
@@ -20,11 +20,11 @@ const RoundButton: React.FC<RoundButtonProps> = ({
         backgroundColor: backgroundColor,
         border: border ? `1px solid ${textColor}` : "none",
       }}
-      className="rounded px-[24px] py-[12px] text-xl leading-[150%] font-bold shadow"
+      className="rounded px-[24px] py-[12px] md:text-2xl text-lg text-center leading-[150%] font-bold shadow w-fit"
     >
       {children}
     </div>
   );
 };
 
-export default RoundButton;
+export default BigButton;

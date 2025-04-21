@@ -14,14 +14,16 @@ const SmallHeadline: React.FC<SmallHeadlineProps> = ({
   children, // Destructure children
 }) => {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 ">
       {/* Render the overline if provided */}
       {overline && <div className="font-[700]">{overline}</div>}
 
       {/* Render the headline */}
-      <h2 className="text-[20px] font-[700] leading-[140%]">{headline}</h2>
+      <h2 className="lg:text-3xl text-2xl font-[700] leading-[140%]">
+        {headline}
+      </h2>
 
-      <div className="text-[16px] font-[400] leading-[150%] flex flex-col gap-4">
+      <div className="text-lg font-[400] leading-[150%] flex flex-col gap-4">
         {children}
       </div>
     </div>
