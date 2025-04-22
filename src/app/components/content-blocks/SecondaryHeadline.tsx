@@ -26,7 +26,7 @@ const SecondaryHeadline: React.FC<SecondaryHeadlineProps> = ({
   const computedStyles = "";
 
   return (
-    <div className="flex flex-col gap-5 max-w-[1126px] text-lg">
+    <div className="flex flex-col gap-5 max-w-[1200px] text-lg">
       {overline && <FadeIn delay={0.1}>{overline}</FadeIn>}
       <FadeIn delay={0.1}>
         <h2
@@ -37,11 +37,9 @@ const SecondaryHeadline: React.FC<SecondaryHeadlineProps> = ({
         </h2>
       </FadeIn>
 
-      {children && (
-        <div className="text-2xl font-[400] leading-[150%] flex flex-col gap-4">
-          {renderChildren}
-        </div>
-      )}
+      <div className="text-xl font-[400] leading-[150%] flex flex-col gap-4">
+        {renderChildren}
+      </div>
     </div>
   );
 };
