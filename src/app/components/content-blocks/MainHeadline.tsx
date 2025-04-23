@@ -19,7 +19,13 @@ const MainHeadline: React.FC<MainHeadlineProps> = ({
   // If children is an array, we map over it to add the fade-in effect with dynamic delays.
   const renderChildren = React.Children.map(children, (child, index) => {
     const delay = 0.7 + index * 0.1; // Starting delay of 0.7, increase by 0.1 for each subsequent child.
-    return <FadeIn delay={delay}>{child}</FadeIn>;
+    return (
+      <FadeIn delay={delay} key={index}>
+        {" "}
+        {/* Add key prop */}
+        {child}
+      </FadeIn>
+    );
   });
 
   return (
@@ -27,14 +33,14 @@ const MainHeadline: React.FC<MainHeadlineProps> = ({
       {overline && <div className="text-2xl font-semibold">{overline}</div>}
       <FadeIn delay={0.5}>
         <h1
-          className="md:text-5xl text-3xl font-[700] leading-[120%] text-balance"
-          style={{ fontSize: fontSize ? fontSize : "auto" }}
+          className="md:text-6xl text-4xl font-bold text-balance"
+          style={{ fontSize: fontSize ? fontSize : "auto", lineHeight: "1.1" }}
         >
           {headline}
         </h1>
       </FadeIn>
 
-      <div className="text-[16px] font-[400] leading-[150%] flex flex-col gap-4">
+      <div className="text-[16px] font-[400] leading-[150%] flex flex-col gap-6">
         {renderChildren}
       </div>
     </div>

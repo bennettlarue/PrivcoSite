@@ -15,7 +15,7 @@ const FadeIn: React.FC<FadeInProps> = ({
   const ref = useRef(null);
   const inView = useInView(ref, {
     once: true,
-    margin: "0px 0px -50px 0px",
+    margin: "0px 0px -130px 0px",
   });
 
   return (

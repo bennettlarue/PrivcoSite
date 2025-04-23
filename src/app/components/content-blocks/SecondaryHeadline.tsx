@@ -27,7 +27,11 @@ const SecondaryHeadline: React.FC<SecondaryHeadlineProps> = ({
 
   return (
     <div className="flex flex-col gap-5 max-w-[1200px] text-lg">
-      {overline && <FadeIn delay={0.1}>{overline}</FadeIn>}
+      {overline && (
+        <FadeIn delay={0.1}>
+          <p className="md:text-2xl text-xl font-medium">{overline}</p>
+        </FadeIn>
+      )}
       <FadeIn delay={0.1}>
         <h2
           className="md:text-4xl text-3xl font-bold"

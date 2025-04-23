@@ -8,7 +8,9 @@ const RowPadding: React.FC<RowPaddingProps> = ({
   children, // Destructure children
 }) => {
   return (
-    <div className="py-16 md:px-16 px-5 flex flex-col gap-12">{children}</div>
+    <div className="md:py-32 py-16 md:px-16 px-5 flex flex-col gap-12">
+      {children}
+    </div>
   );
 };
 

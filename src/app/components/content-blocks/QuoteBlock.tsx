@@ -1,20 +1,35 @@
 import React from "react";
+import StarsSVG from "../svgs/Stars";
 
 // Props for the QuoteBlock component
 interface QuoteBlockProps {
   text: string;
   name: string;
   color?: string;
+  secondaryColor?: string;
 }
 
-const QuoteBlock: React.FC<QuoteBlockProps> = ({ text, name, color }) => {
+const QuoteBlock: React.FC<QuoteBlockProps> = ({
+  text,
+  name,
+  color = "black",
+  secondaryColor = "blue",
+}) => {
   return (
-    <div
-      className="max-w-[1100px] mx-auto text-xl lg:text-3xl"
-      style={{ color: color ? color : "auto", border: `1px solid ${color}` }}
-    >
-      <p className="w-fit mx-auto text-center font-semibold">"{text}"</p>
-      <p className="w-fit mx-auto text-center mt-5">-{name}</p>
+    <div className="text-center mx-auto space-y-4" style={{ color }}>
+      <div className="border border-white p-5 py-8 border-b-2 border-l-2 rounded-lg shadow-lg space-y-5">
+        <h3 className="md:text-4xl text-2xl font-semibold">
+          <span className="lg:text-7xl text-2xl" style={{ color: color }}>
+            ”
+          </span>
+          I came across PrivCo {text}
+          <span style={{ color: color }}>”</span>
+        </h3>
+        <div className="max-w-[200px] mx-auto">
+          <StarsSVG />
+        </div>
+      </div>
+      <p className="italic text-xl font-medium">{name}</p>
     </div>
   );
 };

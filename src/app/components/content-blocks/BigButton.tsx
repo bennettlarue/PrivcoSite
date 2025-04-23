@@ -18,9 +18,9 @@ const BigButton: React.FC<BigButtonProps> = ({
       style={{
         color: textColor,
         backgroundColor: backgroundColor,
-        border: border ? `1px solid ${textColor}` : "none",
+        textShadow: "1px 1px var(--privco-lightblue)",
       }}
-      className="rounded px-[24px] py-[12px] md:text-2xl text-lg text-center leading-[150%] font-bold shadow w-fit"
+      className="rounded px-[24px] py-[12px] md:text-3xl text-lg text-center leading-[150%] font-bold shadow w-fit"
     >
       {children}
     </div>
