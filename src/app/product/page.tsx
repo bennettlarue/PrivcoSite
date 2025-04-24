@@ -445,16 +445,13 @@ of the hardest-to-find information, financial data, and contacts for the private
       >
         <RowPadding>
           <div>
-            <div className="mx-auto text-center w-fit">
-              <SecondaryHeadline headline="Featured In" />
-            </div>
             <ClientLogos
               images={[
-                "/images/client-logos/forbes.png",
-                "/images/client-logos/bloomberg.png",
+                "/images/svgs/logos/deloitte.svg",
+                "/images/svgs/logos/bloomberg.svg",
                 "/images/client-logos/cnbc.png",
-                "/images/client-logos/crunchbase.png",
-                "/images/client-logos/inc.png",
+                "/images/svgs/logos/inc.svg",
+                "/images/svgs/logos/forbes.svg",
               ]}
             />
           </div>
@@ -477,37 +474,31 @@ of the hardest-to-find information, financial data, and contacts for the private
                 headline="Private Equity"
                 svg={<Sparkles />}
                 description="Find independently owned private companies with historical revenue in your target demographic."
-                delay={0.1} // Add delay for sequential animation
               />
               <SmallHeadlineSection
                 headline="Venture Capital"
                 svg={<BadgeDollarSign />}
                 description="Discover the Next Big Thing with actionable insights from pre-revenue and late-stage companies alike."
-                delay={0.2} // Add delay for sequential animation
               />
               <SmallHeadlineSection
                 headline="Investment Banking"
                 svg={<Landmark />}
                 description="Get accurate industry and private company financials. Gain actionable insights related to VC, M&A, debt, EBITDA, and equity financing."
-                delay={0.3} // Add delay for sequential animation
               />
               <SmallHeadlineSection
                 headline="Academics"
                 svg={<GraduationCap />}
                 description="Provide faculty and students with comprehensive financial intelligence."
-                delay={0.4} // Add delay for sequential animation
               />
               <SmallHeadlineSection
                 headline="Executive Search"
                 svg={<ScanSearch />}
                 description="Uncover hard-to-find private companies in need of top talent."
-                delay={0.5} // Add delay for sequential animation
               />
               <SmallHeadlineSection
                 headline="Sales Teams"
                 svg={<ChartNoAxesCombined />}
                 description="Find and connect with the right prospects quickly and efficiently."
-                delay={0.6} // Add delay for sequential animation
               />
             </div>
           </div>

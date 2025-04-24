@@ -11,8 +11,8 @@ const ClientLogos: React.FC<ClientLogosProps> = ({ images }) => {
   return (
     <div className="grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 md:gap-16 gap-12 items-center w-fit mx-auto md:px-0 px-5">
       {images.map((item, index) => (
-        <div className={` ${index === 4 ? "hidden xl:block" : ""}`}>
-          <FadeIn key={index} delay={index * 0.2}>
+        <div key={index} className={` ${index === 4 ? "hidden xl:block" : ""}`}>
+          <FadeIn delay={index * 0.2}>
             <div>
               <Image
                 src={item}

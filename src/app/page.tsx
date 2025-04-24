@@ -16,6 +16,14 @@ import StarsSVG from "./components/svgs/Stars";
 import QuoteBlock from "./components/content-blocks/QuoteBlock"; // Import QuoteBlock
 import SectionColorLines from "./components/content-blocks/SectionColorLines";
 import SmallHeadlineSection from "./components/content-blocks/SmallHeadlineSection"; // Import SmallHeadlineSection
+import {
+  BadgeDollarSign,
+  ChartNoAxesCombined,
+  GraduationCap,
+  Landmark,
+  ScanSearch,
+  Sparkles,
+} from "lucide-react";
 
 // Define a reusable component for the SmallHeadline section
 
@@ -224,7 +232,7 @@ export default function Home() {
                 "/images/svgs/logos/deloitte.svg",
                 "/images/svgs/logos/bloomberg.svg",
                 "/images/client-logos/cnbc.png",
-                "/images/svgs/logos/stephens.svg",
+                "/images/svgs/logos/inc.svg",
                 "/images/svgs/logos/forbes.svg",
               ]}
             />
@@ -244,42 +252,36 @@ export default function Home() {
                 headline="Insights for Deal Makers"
               />
             </div>
-            <div className="grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 md:gap-x-10 gap-x-10 lg:gap-y-16 gap-y-8">
+            <div className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 md:gap-x-10 gap-x-10 lg:gap-y-16 gap-y-8">
               <SmallHeadlineSection
                 headline="Private Equity"
-                overlineImage="/images/svgs/star.svg"
+                svg={<Sparkles />}
                 description="Find independently owned private companies with historical revenue in your target demographic."
-                delay={0.1} // Add delay for sequential animation
               />
               <SmallHeadlineSection
                 headline="Venture Capital"
-                overlineImage="/images/svgs/money.svg"
+                svg={<BadgeDollarSign />}
                 description="Discover the Next Big Thing with actionable insights from pre-revenue and late-stage companies alike."
-                delay={0.2} // Add delay for sequential animation
               />
               <SmallHeadlineSection
                 headline="Investment Banking"
-                overlineImage="/images/svgs/bank.svg"
+                svg={<Landmark />}
                 description="Get accurate industry and private company financials. Gain actionable insights related to VC, M&A, debt, EBITDA, and equity financing."
-                delay={0.3} // Add delay for sequential animation
               />
               <SmallHeadlineSection
                 headline="Academics"
-                overlineImage="/images/svgs/heart.svg"
+                svg={<GraduationCap />}
                 description="Provide faculty and students with comprehensive financial intelligence."
-                delay={0.4} // Add delay for sequential animation
               />
               <SmallHeadlineSection
                 headline="Executive Search"
-                overlineImage="/images/svgs/cube.svg"
+                svg={<ScanSearch />}
                 description="Uncover hard-to-find private companies in need of top talent."
-                delay={0.5} // Add delay for sequential animation
               />
               <SmallHeadlineSection
                 headline="Sales Teams"
-                overlineImage="/images/svgs/graph.svg"
+                svg={<ChartNoAxesCombined />}
                 description="Find and connect with the right prospects quickly and efficiently."
-                delay={0.6} // Add delay for sequential animation
               />
             </div>
           </div>
