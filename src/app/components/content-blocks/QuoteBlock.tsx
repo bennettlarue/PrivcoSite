@@ -17,7 +17,7 @@ const QuoteBlock: React.FC<QuoteBlockProps> = ({
 }) => {
   return (
     <div className="text-center mx-auto space-y-4" style={{ color }}>
-      <div className="border border-white p-5 py-8 border-b-2 border-l-2 rounded-lg shadow-lg space-y-5">
+      <div className="border border-white p-5 py-8 border-b-2 shadow-lg space-y-5">
         <h3 className="md:text-4xl text-2xl font-semibold">
           <span className="md:text-7xl text-2xl" style={{ color: color }}>
             ”

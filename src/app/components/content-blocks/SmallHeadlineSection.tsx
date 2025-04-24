@@ -13,7 +13,7 @@ const SmallHeadlineSection: React.FC<SmallHeadlineSectionProps> = ({
   description,
 }) => {
   return (
-    <div className="p-6 py-8 shadow h-full border-[var(--privco-green)] border border-l-2 border-b-2 rounded">
+    <div className="p-6 py-8 shadow h-full border-[var(--privco-green)] border-b ">
       <SmallHeadline
         headline={headline}
         overline={

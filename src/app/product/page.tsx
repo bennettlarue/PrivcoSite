@@ -39,21 +39,19 @@ interface ImageCaptionProps {
 
 const ImageCaption: React.FC<ImageCaptionProps> = ({ image, text }) => {
   return (
-    <div className="max-w-[405px] mx-auto border border-b-2 border-r-2 border-[var(--privco-blue)] rounded shadow">
+    <div className="max-w-[405px] mx-auto border border-b-2 border-[var(--privco-blue)] shadow">
       <div className="max-w-[405px] max-h-[230px] overflow-hidden flex items-center justify-center">
         <Image
           src={image}
-          className="object-cover rounded-t"
+          className="object-cover"
           alt={"dd"}
           width={405}
           height={405}
         />
       </div>
-      <div className="relative">
-        <p className="text-lg lg:text-xl font-medium mx-auto p-6 w-full">
-          {text}
-        </p>
-        <Search className="absolute bottom-0 right-0 size-6 m-3 drop-shadow-sm text-[var(--privco-blue)]" />
+      <div className="text-lg lg:text-xl font-medium mx-auto p-6 w-full">
+        <Search className="text-[var(--privco-blue)] inline-block size-5 mr-1" />
+        {text}
       </div>
     </div>
   );
@@ -88,12 +86,11 @@ const ParagraphBlock: React.FC<ParagraphBlockProps> = ({
 }) => {
   return (
     <div
-      className="relative w-fit border border-[var(--privco-blue)] border-r-2 border-b-2 rounded shadow p-8 space-y-3 mx-auto"
+      className="relative w-fit border border-[var(--privco-blue)] border-b-2 shadow p-8 space-y-3 mx-auto"
       style={{ backgroundColor: color || "transparent" }}
     >
-      {svg && <div className="absolute right-6 top-6">{svg}</div>}{" "}
-      <div className=" items-center gap-4">
-        {" "}
+      <div className="flex items-center gap-3">
+        {svg && <div>{svg}</div>}
         <h4 className="font-bold text-2xl">{header}</h4>
       </div>
       <div className="space-y-4">{children}</div>
@@ -158,7 +155,7 @@ const TextBlurb: React.FC<TextBlurbProps> = ({
   svg,
 }) => {
   return (
-    <div className="border border-l-2 border-b-2 md:p-7 p-5 rounded border-[var(--privco-green)] shadow space-y-2">
+    <div className="border-b md:p-7 p-5 border-[var(--privco-green)] shadow space-y-2">
       {svg && <div className=" ">{svg}</div>}
       <SmallHeadline headline={headline}>{description}</SmallHeadline>
     </div>
@@ -275,39 +272,40 @@ of the hardest-to-find information, financial data, and contacts for the private
             <SecondaryHeadline
               headline="PrivCo's private market intelligence database takes the guesswork out of your private company search."
               color="var(--privco-blue)"
-            ></SecondaryHeadline>
-            <div className="mt-4 grid xl:grid-cols-9 grid-cols-1 md:gap-16 md:space-y-0 space-y-10">
-              <div className="space-y-6 text-lg col-span-4">
-                <p>
-                  Unlike the public markets, where data providers can readily
-                  access financial information from a company's earnings
-                  reports, private company data is much harder to track down.
-                  PrivCo specializes in “bootstrapped” companies above $1MM that
-                  are not covered by other data sources because they haven’t
-                  raised private equity or venture capital.{" "}
-                </p>
-                <p>
-                  PrivCo helps investors, private equity, analysts, and
-                  institutions make better strategic decisions and gain a
-                  competitive edge with our precision, quality, and breadth of
-                  data.
-                </p>
+            >
+              <div className="mt-4 grid xl:grid-cols-9 grid-cols-1 md:gap-16 md:space-y-0 space-y-10">
+                <div className="space-y-6 text-lg col-span-4">
+                  <p>
+                    Unlike the public markets, where data providers can readily
+                    access financial information from a company's earnings
+                    reports, private company data is much harder to track down.
+                    PrivCo specializes in “bootstrapped” companies above $1MM
+                    that are not covered by other data sources because they
+                    haven’t raised private equity or venture capital.{" "}
+                  </p>
+                  <p>
+                    PrivCo helps investors, private equity, analysts, and
+                    institutions make better strategic decisions and gain a
+                    competitive edge with our precision, quality, and breadth of
+                    data.
+                  </p>
+                </div>
+                <div className="grid md:grid-cols-3 gap-4 col-span-5 grid-cols-2">
+                  <BoxText
+                    text="Competitive Intelligence"
+                    color="var(--privco-blue)"
+                  />
+                  <BoxText text="Market Research" color="var(--privco-blue)" />
+                  <BoxText text="Business Dev" color="var(--privco-blue)" />
+                  <BoxText text="Due Diligence" color="var(--privco-blue)" />
+                  <BoxText
+                    text="Sourcing / Origination"
+                    color="var(--privco-blue)"
+                  />
+                  <BoxText text="Deal Comps" color="var(--privco-blue)" />
+                </div>
               </div>
-              <div className="grid md:grid-cols-3 gap-4 col-span-5 grid-cols-2">
-                <BoxText
-                  text="Competitive Intelligence"
-                  color="var(--privco-blue)"
-                />
-                <BoxText text="Market Research" color="var(--privco-blue)" />
-                <BoxText text="Business Dev" color="var(--privco-blue)" />
-                <BoxText text="Due Diligence" color="var(--privco-blue)" />
-                <BoxText
-                  text="Sourcing / Origination"
-                  color="var(--privco-blue)"
-                />
-                <BoxText text="Deal Comps" color="var(--privco-blue)" />
-              </div>
-            </div>
+            </SecondaryHeadline>
           </div>
         </RowPadding>
       </SectionColor>
@@ -316,58 +314,65 @@ of the hardest-to-find information, financial data, and contacts for the private
         textColor="var(--privco-black)"
       >
         <RowPadding>
-          <div className="text-center lg:text-left">
+          <div className="">
             <SecondaryHeadline
               headline="Why PrivCo's Stands Out
 "
-            />
-          </div>
-          <div className="grid lg:grid-cols-3 grid-cols-1 ld:gap-10 gap-5">
-            <ParagraphBlock svg={<TextSearch />} header="Unmatched Data">
-              <Paragraph
-                header="Comprehensive Coverage"
-                body="Profiles on 893,000+ U.S. private companies, capturing 80% of the market competitors overlook."
-              />
-              <Paragraph
-                header="Accurate Financials"
-                body="Detailed revenue, EBITDA, valuations, and growth metrics—beyond just PE/VC-backed firms."
-              />
-              <Paragraph
-                header="Mid-Market Mastery"
-                body="Specialized focus on companies with $1M–$100M in revenue."
-              />
-            </ParagraphBlock>
-            <ParagraphBlock
-              svg={<DraftingCompass />}
-              header="Precision Tools for Action"
             >
-              <Paragraph
-                header="Advanced Search"
-                body="Filter by revenue, location, ownership, industry, and more to find your exact targets."
-              />
-              <Paragraph
-                header="Build Targeted Lists"
-                body="Use dynamic filters and proprietary classifications to pinpoint prospects instantly."
-              />
-              <Paragraph
-                header="Actionable Insights"
-                body="Monitor trends, track companies with watchlists, and access data directly via our Chrome extension."
-              />
-            </ParagraphBlock>
-            <ParagraphBlock svg={<FileUser />} header="Exclusive Intelligence">
-              <Paragraph
-                header="Decision-Maker Contacts"
-                body="65M+ verified executive records with emails, mobile numbers, and LinkedIn URLs."
-              />
-              <Paragraph
-                header="Wealth Signals"
-                body="Identify owners nearing liquidity events or showing wealth accumulation."
-              />
-              <Paragraph
-                header="Retirement Plan Analytics"
-                body="Spot firms with significant 401(k) assetsripe for financial advisory services."
-              />
-            </ParagraphBlock>
+              <div className="grid lg:grid-cols-3 grid-cols-1 ld:gap-10 gap-5">
+                <ParagraphBlock
+                  svg={<TextSearch className="size-8" />}
+                  header="Unmatched Data"
+                >
+                  <Paragraph
+                    header="Comprehensive Coverage"
+                    body="Profiles on 893,000+ U.S. private companies, capturing 80% of the market competitors overlook."
+                  />
+                  <Paragraph
+                    header="Accurate Financials"
+                    body="Detailed revenue, EBITDA, valuations, and growth metrics—beyond just PE/VC-backed firms."
+                  />
+                  <Paragraph
+                    header="Mid-Market Mastery"
+                    body="Specialized focus on companies with $1M–$100M in revenue."
+                  />
+                </ParagraphBlock>
+                <ParagraphBlock
+                  svg={<DraftingCompass className="size-8" />}
+                  header="Precision Tools for Action"
+                >
+                  <Paragraph
+                    header="Advanced Search"
+                    body="Filter by revenue, location, ownership, industry, and more to find your exact targets."
+                  />
+                  <Paragraph
+                    header="Build Targeted Lists"
+                    body="Use dynamic filters and proprietary classifications to pinpoint prospects instantly."
+                  />
+                  <Paragraph
+                    header="Actionable Insights"
+                    body="Monitor trends, track companies with watchlists, and access data directly via our Chrome extension."
+                  />
+                </ParagraphBlock>
+                <ParagraphBlock
+                  svg={<FileUser className="size-8" />}
+                  header="Exclusive Intelligence"
+                >
+                  <Paragraph
+                    header="Decision-Maker Contacts"
+                    body="65M+ verified executive records with emails, mobile numbers, and LinkedIn URLs."
+                  />
+                  <Paragraph
+                    header="Wealth Signals"
+                    body="Identify owners nearing liquidity events or showing wealth accumulation."
+                  />
+                  <Paragraph
+                    header="Retirement Plan Analytics"
+                    body="Spot firms with significant 401(k) assetsripe for financial advisory services."
+                  />
+                </ParagraphBlock>
+              </div>
+            </SecondaryHeadline>
           </div>
         </RowPadding>
       </SectionColor>
@@ -463,44 +468,43 @@ of the hardest-to-find information, financial data, and contacts for the private
       >
         <RowPadding>
           <div>
-            <div className="w-fit mx-auto mb-8">
-              <SecondaryHeadline
-                color="var(--privco-black)"
-                headline="Insights for Deal Makers"
-              />
-            </div>
-            <div className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 md:gap-x-10 gap-x-10 lg:gap-y-16 gap-y-8">
-              <SmallHeadlineSection
-                headline="Private Equity"
-                svg={<Sparkles />}
-                description="Find independently owned private companies with historical revenue in your target demographic."
-              />
-              <SmallHeadlineSection
-                headline="Venture Capital"
-                svg={<BadgeDollarSign />}
-                description="Discover the Next Big Thing with actionable insights from pre-revenue and late-stage companies alike."
-              />
-              <SmallHeadlineSection
-                headline="Investment Banking"
-                svg={<Landmark />}
-                description="Get accurate industry and private company financials. Gain actionable insights related to VC, M&A, debt, EBITDA, and equity financing."
-              />
-              <SmallHeadlineSection
-                headline="Academics"
-                svg={<GraduationCap />}
-                description="Provide faculty and students with comprehensive financial intelligence."
-              />
-              <SmallHeadlineSection
-                headline="Executive Search"
-                svg={<ScanSearch />}
-                description="Uncover hard-to-find private companies in need of top talent."
-              />
-              <SmallHeadlineSection
-                headline="Sales Teams"
-                svg={<ChartNoAxesCombined />}
-                description="Find and connect with the right prospects quickly and efficiently."
-              />
-            </div>
+            <SecondaryHeadline
+              color="var(--privco-black)"
+              headline="Insights for Deal Makers"
+            >
+              <div className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 md:gap-x-10 gap-x-10 lg:gap-y-16 gap-y-8">
+                <SmallHeadlineSection
+                  headline="Private Equity"
+                  svg={<Sparkles />}
+                  description="Find independently owned private companies with historical revenue in your target demographic."
+                />
+                <SmallHeadlineSection
+                  headline="Venture Capital"
+                  svg={<BadgeDollarSign />}
+                  description="Discover the Next Big Thing with actionable insights from pre-revenue and late-stage companies alike."
+                />
+                <SmallHeadlineSection
+                  headline="Investment Banking"
+                  svg={<Landmark />}
+                  description="Get accurate industry and private company financials. Gain actionable insights related to VC, M&A, debt, EBITDA, and equity financing."
+                />
+                <SmallHeadlineSection
+                  headline="Academics"
+                  svg={<GraduationCap />}
+                  description="Provide faculty and students with comprehensive financial intelligence."
+                />
+                <SmallHeadlineSection
+                  headline="Executive Search"
+                  svg={<ScanSearch />}
+                  description="Uncover hard-to-find private companies in need of top talent."
+                />
+                <SmallHeadlineSection
+                  headline="Sales Teams"
+                  svg={<ChartNoAxesCombined />}
+                  description="Find and connect with the right prospects quickly and efficiently."
+                />
+              </div>
+            </SecondaryHeadline>
           </div>
         </RowPadding>
       </SectionColor>

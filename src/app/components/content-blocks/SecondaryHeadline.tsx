@@ -34,7 +34,7 @@ const SecondaryHeadline: React.FC<SecondaryHeadlineProps> = ({
       )}
       <FadeIn delay={0.1}>
         <h2
-          className="md:text-4xl text-3xl font-bold"
+          className="md:text-4xl text-3xl font-bold mb-2"
           style={{ color: color ? color : "auto" }}
         >
           {headline}
