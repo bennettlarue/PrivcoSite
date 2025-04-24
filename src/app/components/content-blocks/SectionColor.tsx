@@ -14,7 +14,7 @@ const SectionColor: React.FC<SectionColorProps> = ({
 }) => {
   return (
     <div style={{ color: textColor, backgroundColor: backgroundColor }}>
-      <div className="max-w-[1350px] mx-auto">{children}</div>
+      <div className="md:max-w-[1350px] max-w-[450px] mx-auto">{children}</div>
     </div>
   );
 };

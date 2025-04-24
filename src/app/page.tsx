@@ -15,45 +15,9 @@ import FadeIn from "./components/transition-wrappers/FadeIn"; // Import FadeIn
 import StarsSVG from "./components/svgs/Stars";
 import QuoteBlock from "./components/content-blocks/QuoteBlock"; // Import QuoteBlock
 import SectionColorLines from "./components/content-blocks/SectionColorLines";
+import SmallHeadlineSection from "./components/content-blocks/SmallHeadlineSection"; // Import SmallHeadlineSection
 
 // Define a reusable component for the SmallHeadline section
-interface SmallHeadlineSectionProps {
-  headline: string;
-  overlineImage: string;
-  description: string;
-  delay: number; // Add delay prop for sequential animations
-}
-
-const SmallHeadlineSection: React.FC<SmallHeadlineSectionProps> = ({
-  headline,
-  overlineImage,
-  description,
-  delay,
-}) => {
-  return (
-    <FadeIn delay={delay}>
-      <div className=" p-6 py-8 border-l border-b shadow h-full border-[var(--privco-green)]">
-        {" "}
-        {/* Wrap in FadeIn with delay */}
-        <SmallHeadline
-          headline={headline}
-          overline={
-            <div className="h-[30px] flex items-center">
-              <Image
-                src={overlineImage}
-                alt="Overline Icon"
-                width={40}
-                height={40}
-              />
-            </div>
-          }
-        >
-          <p>{description}</p>
-        </SmallHeadline>
-      </div>
-    </FadeIn>
-  );
-};
 
 export default function Home() {
   return (
@@ -173,7 +137,7 @@ export default function Home() {
         <RowPadding>
           <QuoteBlock
             text="when I was benchmarking services that could help me automate and expedite this process, and they beat all other options both in terms of quality and price."
-            name="— Associate at GP Investments"
+            name="Associate at GP Investments"
             color="white"
             secondaryColor="rgb(147, 197, 253)" // Light blue
           />

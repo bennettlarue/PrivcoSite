@@ -75,21 +75,28 @@ export default function Pricing() {
 
       <SectionColor
         textColor="var(--privco-black)"
-        backgroundColor="var(--privco-white)"
+        backgroundColor="var(--privco-lightgreen)"
       >
         <RowPadding>
           <div className="mb-2">
             <ClientLogos
               images={[
-                "/images/client-logos/amex.png",
-                "/images/client-logos/stephens.png",
-                "/images/client-logos/deloitte.png",
-                "/images/client-logos/wharton.png",
-                "/images/client-logos/microsoft.png",
+                "/images/svgs/logos/deloitte.svg",
+                "/images/svgs/logos/amex.svg",
+                "/images/svgs/logos/microsoft.svg",
+                "/images/svgs/logos/stephens.svg",
+                "/images/svgs/logos/wharton.svg",
               ]}
             />
           </div>
+        </RowPadding>
+      </SectionColor>
 
+      <SectionColor
+        textColor="var(--privco-black)"
+        backgroundColor="var(--privco-white)"
+      >
+        <RowPadding>
           <div className="grid lg:grid-cols-2 grid-cols-1 md:gap-8 gap-6">
             <div className="space-y-3 border-2 rounded-xl py-5 px-7 border-[var(--privco-blue)]">
               <div className="space-y-3">

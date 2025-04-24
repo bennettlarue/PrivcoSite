@@ -19,17 +19,17 @@ const QuoteBlock: React.FC<QuoteBlockProps> = ({
     <div className="text-center mx-auto space-y-4" style={{ color }}>
       <div className="border border-white p-5 py-8 border-b-2 border-l-2 rounded-lg shadow-lg space-y-5">
         <h3 className="md:text-4xl text-2xl font-semibold">
-          <span className="lg:text-7xl text-2xl" style={{ color: color }}>
+          <span className="md:text-7xl text-2xl" style={{ color: color }}>
             ”
           </span>
-          I came across PrivCo {text}
+          {text}
           <span style={{ color: color }}>”</span>
         </h3>
         <div className="max-w-[200px] mx-auto">
           <StarsSVG />
         </div>
       </div>
-      <p className="italic text-xl font-medium">{name}</p>
+      <p className="italic text-xl font-medium">- {name}</p>
     </div>
   );
 };

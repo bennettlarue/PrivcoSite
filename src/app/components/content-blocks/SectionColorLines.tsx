@@ -19,7 +19,7 @@ const SectionColorLines: React.FC<SectionColorLinesProps> = ({
       style={{ color: textColor, backgroundColor: backgroundColor }}
       className="relative overflow-hidden"
     >
-      <div className="max-w-[1350px] mx-auto lg:py-0 py-8 relative z-10 ">
+      <div className="md:max-w-[1350px] max-w-[450px] mx-auto lg:py-0 py-8 relative z-10 ">
         {children}
       </div>
 
