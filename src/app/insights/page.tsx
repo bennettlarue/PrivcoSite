@@ -2,6 +2,12 @@
 import Link from "next/link";
 import { contentfulClient } from "@/lib/contentful";
 import { format } from "date-fns";
+import SectionColor from "../components/content-blocks/SectionColor";
+import RowPadding from "../components/content-containers/RowPadding";
+import MainHeadline from "../components/content-blocks/MainHeadline";
+import SectionColorLines from "../components/content-blocks/SectionColorLines";
+import SecondaryHeadline from "../components/content-blocks/SecondaryHeadline";
+import BigButton from "../components/content-blocks/BigButton";
 
 // Define TypeScript interfaces for your Contentful data
 interface Author {
@@ -37,7 +43,14 @@ interface ContentfulResponse {
   items: BlogPost[];
 }
 
-export default async function Page() {
+// Define the PageProps interface
+interface PageProps {
+  params: {
+    slug: string;
+  };
+}
+
+export default async function Page({ params }: PageProps) {
   const entries = (await contentfulClient.getEntries({
     content_type: "blogPost",
     order: ["-fields.publishDate"], // Sort by publish date (newest first)
@@ -48,27 +61,73 @@ export default async function Page() {
   const regularPosts = entries.items.filter((post) => !post.fields.featured);
 
   return (
-    <div className="max-w-7xl mx-auto py-8 px-4">
-      {/* Featured Posts */}
-      {featuredPosts.length > 0 && (
-        <div className="mb-12">
-          <h2 className="text-sm font-semibold text-green-600 uppercase tracking-wider mb-6">
-            Featured
-          </h2>
-          <div className="space-y-6">
-            {featuredPosts.map((post) => (
-              <FeaturedPost key={post.sys.id} post={post} />
+    <div>
+      <SectionColor
+        backgroundColor="var(--privco-blue)"
+        textColor="var(--privco-white)"
+      >
+        <RowPadding>
+          <div>
+            {" "}
+            <MainHeadline headline="Insights">
+              <p className="text-2xl font-medium">
+                Exclusive insights into private industry trends derived from
+                millions of data points.
+              </p>
+            </MainHeadline>
+          </div>
+        </RowPadding>
+      </SectionColor>
+
+      <SectionColor
+        backgroundColor="var(--privco-white)"
+        textColor="var(--privco-black)"
+      >
+        <RowPadding>
+          {/* Featured Posts */}
+          {featuredPosts.length > 0 && (
+            <div className="mb-12">
+              <h2 className="text-sm font-semibold text-green-600 uppercase tracking-wider mb-6">
+                Featured
+              </h2>
+              <div className="space-y-6">
+                {featuredPosts.map((post) => (
+                  <FeaturedPost key={post.sys.id} post={post} />
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Regular Posts Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {regularPosts.map((post) => (
+              <RegularPost key={post.sys.id} post={post} />
             ))}
           </div>
-        </div>
-      )}
+        </RowPadding>
+      </SectionColor>
 
-      {/* Regular Posts Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {regularPosts.map((post) => (
-          <RegularPost key={post.sys.id} post={post} />
-        ))}
-      </div>
+      <SectionColorLines
+        secondaryColor="var(--privco-white)"
+        backgroundColor="var(--privco-blue)"
+        textColor="var(--privco-white)"
+      >
+        <RowPadding>
+          <div className="w-fit text-center mx-auto">
+            <SecondaryHeadline headline="Like what you see?">
+              <div className="mx-auto">
+                <BigButton
+                  textColor="var(--privco-white)"
+                  backgroundColor="var(--privco-green)"
+                  border={true}
+                >
+                  Start Your 7-Day, Full-Access Free Trial
+                </BigButton>
+              </div>
+            </SecondaryHeadline>
+          </div>
+        </RowPadding>
+      </SectionColorLines>
     </div>
   );
 }
@@ -79,19 +138,19 @@ function FeaturedPost({ post }: { post: BlogPost }) {
     : null;
 
   return (
-    <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+    <div className="border-b border-[var(--privco-blue)] hover:border-[var(--privco-lightblue)] overflow-hidden shadow-sm hover:shadow-md transition-all h-full flex flex-col">
       <Link
         href={`/insights/${post.fields.slug}`}
-        className="flex flex-col md:flex-row"
+        className="flex flex-col md:flex-row group"
       >
         {/* Image container - fixed aspect ratio */}
         <div className="w-full md:w-2/5">
-          <div className="aspect-w-16 aspect-h-9 h-full">
+          <div className="aspect-w-16 aspect-h-9 h-full overflow-hidden">
             {post.fields.image ? (
               <img
                 src={`https:${post.fields.image.fields.file.url}`}
                 alt={post.fields.image.fields.title || post.fields.title}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform duration-300 md:group-hover:scale-105"
               />
             ) : (
               <div className="w-full h-full bg-gray-200 flex items-center justify-center">
@@ -156,19 +215,19 @@ function RegularPost({ post }: { post: BlogPost }) {
     : "NEWS";
 
   return (
-    <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
+    <div className="border-b border-[var(--privco-blue)] hover:border-[var(--privco-lightblue)] overflow-hidden shadow-sm hover:shadow-md transition-all h-full flex flex-col">
       <Link
         href={`/insights/${post.fields.slug}`}
-        className="flex flex-col h-full"
+        className="flex flex-col h-full group"
       >
         {/* Image container - fixed aspect ratio */}
         <div className="w-full">
-          <div className="aspect-w-16 aspect-h-9">
+          <div className="aspect-w-16 aspect-h-9 overflow-hidden">
             {post.fields.image ? (
               <img
                 src={`https:${post.fields.image.fields.file.url}`}
                 alt={post.fields.image.fields.title || post.fields.title}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform duration-300 md:group-hover:scale-105"
               />
             ) : (
               <div className="w-full h-full bg-gray-200 flex items-center justify-center">
@@ -188,12 +247,12 @@ function RegularPost({ post }: { post: BlogPost }) {
             {publishDate && <span>{publishDate}</span>}
           </div>
 
-          <h3 className="text-lg font-semibold mb-2 hover:text-blue-600 transition-colors">
+          <h3 className="text-lg font-semibold mb-2 transition-colors group-hover:underline">
             {post.fields.title}
           </h3>
 
           {post.fields.description && (
-            <p className="text-sm text-gray-700 mb-4 line-clamp-3 flex-grow">
+            <p className="text-sm text-gray-700 mb-4 line-clamp-3 flex-grow decoration-transparent">
               {post.fields.description}
             </p>
           )}
