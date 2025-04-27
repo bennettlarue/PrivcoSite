@@ -95,11 +95,11 @@ const markdownParser = configureMarkdown();
 export default async function BlogPostPage({
   params,
 }: {
-  params: { slug: Promise<string> };
+  params: { slug: string };
 }) {
   try {
     // Access slug directly from params
-    const slug = await params.slug;
+    const { slug } = params;
 
     // Fetch the specific blog post by slug
     const entries = (await contentfulClient.getEntries({
