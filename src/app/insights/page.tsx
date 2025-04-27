@@ -43,14 +43,7 @@ interface ContentfulResponse {
   items: BlogPost[];
 }
 
-// Define the PageProps interface
-interface PageProps {
-  params: {
-    slug: string;
-  };
-}
-
-export default async function Page({ params }: PageProps) {
+export default async function Page() {
   const entries = (await contentfulClient.getEntries({
     content_type: "blogPost",
     order: ["-fields.publishDate"], // Sort by publish date (newest first)
