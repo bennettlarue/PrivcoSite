@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { format } from "date-fns";
 import Link from "next/link";
 import { marked } from "marked";
+import { Metadata } from "next";
 
 // Define your TypeScript interfaces here
 interface Author {
@@ -94,11 +95,11 @@ const markdownParser = configureMarkdown();
 export default async function BlogPostPage({
   params,
 }: {
-  params: { slug: string };
+  params: { slug: Promise<string> };
 }) {
   try {
     // Access slug directly from params
-    const { slug } = params;
+    const slug = await params.slug;
 
     // Fetch the specific blog post by slug
     const entries = (await contentfulClient.getEntries({
