@@ -45,7 +45,7 @@ interface BlogPost {
   };
   fields: {
     title: string;
-    slug: string;
+    slug: Promise<string>;
     description: string;
     publishDate: string;
     author?: Author;
