@@ -45,7 +45,7 @@ interface BlogPost {
   };
   fields: {
     title: string;
-    slug: Promise<string>;
+    slug: string;
     description: string;
     publishDate: string;
     author?: Author;
@@ -65,7 +65,7 @@ interface ContentfulResponse {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: { slug: Promise<string> };
 }): Promise<Metadata> {
   try {
     // Access slug directly from params
@@ -73,7 +73,7 @@ export async function generateMetadata({
 
     const entries = (await contentfulClient.getEntries({
       content_type: "blogPost",
-      "fields.slug": slug,
+      "fields.slug": await slug,
       limit: 1,
     })) as unknown as ContentfulResponse;
 
