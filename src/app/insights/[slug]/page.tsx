@@ -68,8 +68,8 @@ export async function generateMetadata({
   params: { slug: string };
 }): Promise<Metadata> {
   try {
-    // Await the params object to get the slug
-    const { slug } = await params;
+    // Remove the await from params
+    const { slug } = params;
 
     const entries = (await contentfulClient.getEntries({
       content_type: "blogPost",
@@ -161,8 +161,8 @@ export default async function BlogPostPage({
   params: { slug: string };
 }) {
   try {
-    // Await the params object to get the slug
-    const { slug } = await params;
+    // Remove the await from params
+    const { slug } = params;
 
     // Fetch the specific blog post by slug
     const entries = (await contentfulClient.getEntries({
