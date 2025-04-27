@@ -61,68 +61,6 @@ interface ContentfulResponse {
   items: BlogPost[];
 }
 
-// Generate metadata for the page
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }> | { slug: string };
-}): Promise<Metadata> {
-  try {
-    const { slug } = await Promise.resolve(params);
-
-    const entries = (await contentfulClient.getEntries({
-      content_type: "blogPost",
-      "fields.slug": slug,
-      limit: 1,
-    })) as unknown as ContentfulResponse;
-
-    if (!entries.items.length) {
-      return {
-        title: "Post Not Found",
-      };
-    }
-
-    const post = entries.items[0];
-
-    return {
-      title: post.fields.title,
-      description: post.fields.description,
-      openGraph: {
-        title: post.fields.title,
-        description: post.fields.description,
-        type: "article",
-        publishedTime: post.fields.publishDate,
-        authors: post.fields.author
-          ? [post.fields.author.fields.name]
-          : undefined,
-        tags: post.fields.tags,
-        images: post.fields.image
-          ? [
-              {
-                url: `https:${post.fields.image.fields.file.url}`,
-                alt: post.fields.image.fields.title || post.fields.title,
-              },
-            ]
-          : [],
-      },
-      twitter: {
-        card: "summary_large_image",
-        title: post.fields.title,
-        description: post.fields.description,
-        images: post.fields.image
-          ? [`https:${post.fields.image.fields.file.url}`]
-          : [],
-      },
-    };
-  } catch (error) {
-    console.error("Error generating metadata:", error);
-    return {
-      title: "Blog Post",
-      description: "Unable to load blog post details",
-    };
-  }
-}
-
 // Generate static params for all blog posts at build time
 export async function generateStaticParams() {
   try {
@@ -153,14 +91,11 @@ const configureMarkdown = () => {
 
 const markdownParser = configureMarkdown();
 
+type Params = Promise<{ slug: string[] }>;
 // The main page component
-export default async function BlogPostPage({
-  params,
-}: {
-  params: Promise<{ slug: string }> | { slug: string };
-}) {
+export default async function BlogPostPage({ params }: { params: Params }) {
   try {
-    const { slug } = await Promise.resolve(params);
+    const { slug } = await params;
 
     // Fetch the specific blog post by slug
     const entries = (await contentfulClient.getEntries({
