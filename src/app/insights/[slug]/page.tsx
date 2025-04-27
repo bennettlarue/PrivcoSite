@@ -65,11 +65,10 @@ interface ContentfulResponse {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }> | { slug: string };
 }): Promise<Metadata> {
   try {
-    // Remove the await from params
-    const { slug } = params;
+    const { slug } = await Promise.resolve(params);
 
     const entries = (await contentfulClient.getEntries({
       content_type: "blogPost",
@@ -158,11 +157,10 @@ const markdownParser = configureMarkdown();
 export default async function BlogPostPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }> | { slug: string };
 }) {
   try {
-    // Remove the await from params
-    const { slug } = params;
+    const { slug } = await Promise.resolve(params);
 
     // Fetch the specific blog post by slug
     const entries = (await contentfulClient.getEntries({
