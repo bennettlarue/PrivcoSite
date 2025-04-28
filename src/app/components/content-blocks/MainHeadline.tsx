@@ -29,7 +29,7 @@ const MainHeadline: React.FC<MainHeadlineProps> = ({
   });
 
   return (
-    <div className="flex flex-col gap-6 max-w-[1300px] mx-auto">
+    <div className="flex flex-col gap-6 max-w-[1300px] mx-auto w-full">
       {overline && <div className="text-2xl font-semibold">{overline}</div>}
       <FadeIn delay={0.5}>
         <h1

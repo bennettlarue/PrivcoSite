@@ -9,10 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@contentful/rich-text-react-renderer": "^16.0.1",
+    "@contentful/rich-text-types": "^17.0.0",
     "@svgr/webpack": "^8.1.0",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/typography": "^0.5.16",
-    "contentful": "^11.5.15",
+    "contentful": "^11.5.17",
     "date-fns": "^4.1.0",
     "framer-motion": "^12.5.0",
     "lucide-react": "^0.476.0",
