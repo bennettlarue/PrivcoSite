@@ -365,7 +365,7 @@ const Nav: React.FC = () => {
               animate="visible"
               exit="exit"
               variants={sidebarVariants}
-              className="fixed inset-y-0 right-0 w-1/3 bg-white z-50 shadow-xl overflow-y-auto"
+              className="fixed inset-y-0 right-0 bg-white z-50 shadow-xl overflow-y-auto md:w-[60%] w-[80%]"
             >
               <div className="p-4 px-6 border-b border-gray-200">
                 <div className="flex items-center justify-between">
@@ -430,7 +430,7 @@ const Nav: React.FC = () => {
                               {item.dropdown.map((dropdownItem) => (
                                 <a
                                   key={dropdownItem.title}
-                                  href="#"
+                                  href={dropdownItem.href}
                                   className="block px-3 py-2 rounded-md hover:bg-gray-100 font-medium text-gray-700"
                                 >
                                   <div className="flex items-center">
