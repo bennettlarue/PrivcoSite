@@ -82,18 +82,22 @@ export default async function KnowledgeBank() {
           </div>
 
           {/* Entries grouped by letter */}
-          <div className="px-8 w-fit mx-auto">
+          <div className="px-8 grid grid-cols-1 md:grid-cols-2 gap-8 w-fit mx-auto">
             {alphabetList.map(
               (letter) =>
                 entriesByLetter[letter]?.length > 0 && (
-                  <div key={letter} id={letter} className="mb-10">
-                    <h2 className="text-3xl font-bold mb-4">{letter}</h2>
+                  <div
+                    key={letter}
+                    id={letter}
+                    className="mb-10 bg-gray-50 p-4 rounded-lg"
+                  >
+                    <h2 className="text-4xl font-bold mb-4">{letter}</h2>
                     <div className="space-y-4 border-l border-gray-300 pl-4">
                       {entriesByLetter[letter].map((entry) => (
                         <div key={entry.slug} className="">
                           <Link
                             href={`/knowledge-bank/${entry.slug}`}
-                            className="text-gray-800 hover:text-blue-600"
+                            className="text-gray-800 hover:text-blue-600 text-xl"
                           >
                             {entry.entryName}
                           </Link>

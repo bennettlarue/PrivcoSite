@@ -1,0 +1,80 @@
+[
+  {
+    "id": "membership",
+    "title": "Membership",
+    "questions": [
+      {
+        "id": "free-trial",
+        "question": "Do you offer a free trial?",
+        "answer": "No, we do not offer a free trial. Instead, you can sign up for our completely free Basic membership which never expires. With our free Basic membership, you can test drive our database and sample a limited view of private company financials. To upgrade for more access, you can choose from our Select and Enterprise offerings. For our Enterprise customers, we provide live demos with a member of our sales team so you can preview the full extent of our database before purchase. Not sure which membership tier is right for you? Speak with someone from our sales team."
+      },
+      {
+        "id": "basic-membership",
+        "question": "What do I get from the Basic membership?",
+        "answer": "The Basic membership tier allows you access to the PrivCo platform, basic search features, and limited sampling of private company financials. This membership tier does not include our advanced search features which allow you to search by time period, industry, vertical, deal size, and more. You are able to create a watchlist of up to 25 companies to easily access your favorite companies.\n\nFor access to full company financials including revenue, employee count, EBITDA, funding rounds, mergers, and acquisitions, please upgrade to one of our paid membership tiers, Select or Enterprise. For more information on what you can expect from each membership tier, please visit our pricing page."
+      },
+      {
+        "id": "tier-differences",
+        "question": "What is the difference between each tier (Select/Plus/Enterprise)?",
+        "answer": "Select offers you easy access to the company's latest year of financials including revenues, EBITDA, employee counts, as well as historical fundings, and deals.\n\nWealth offers you everything in Select plan plus historical company financials and employee benefit plans information all searchable within the PrivCo platform.\n\nEnterprise offers unlimited search results and profile views, and export capabilities for all of your private company research needs.\n\nFor a more in-depth comparison, please visit our pricing page or reach out to our sales team (group licenses, industry data list, or API licensing information)."
+      }
+    ]
+  },
+  {
+    "id": "data",
+    "title": "Data",
+    "questions": [
+      {
+        "id": "data-source",
+        "question": "How do you get your data?",
+        "answer": "With over a decade of private financial data collection and modeling, our multi-step approach provides you with the most accurate and in-depth intelligence.\n\nOur process begins with our curated list of reputable sources of business journals, trade publications, and credible news sources.\n\nWe use these sources to educate, inform, and model our AI and machine-learning algorithms to uncover revenues, employee counts, valuations, growth signals, deals, and more.\n\nLastly, our highly trained team of data scientists and engineers then verify and update thousands of individual profiles on a rolling basis, ensuring accurate, up-to-date information."
+      },
+      {
+        "id": "valuations",
+        "question": "Are your valuations pre-money or post-money?",
+        "answer": "Our valuations are always post-money unless otherwise stated."
+      },
+      {
+        "id": "data-mismatch",
+        "question": "Why doesn't the data on PrivCo match other known sources?",
+        "answer": "Due to the hidden and complex characteristics of the US private market, most public sources about U.S. private company financials are not trustworthy. PrivCo provides the clearest lens into the landscape of US private company financials. Our database is not simply built by data aggregation but by combining verified public references, expert research analysts, and artificial intelligence-powered financial modeling."
+      },
+      {
+        "id": "data-correction",
+        "question": "What if I notice a data point that doesn't look right?",
+        "answer": "You are able to request an update from any company or investor profile by clicking the three dots button next to the company name and selecting request update.\n\nPlease specify the data point and conflicting data source if you have one. Our team of data researchers will look into the profile more carefully."
+      },
+      {
+        "id": "companies-coverage",
+        "question": "What private companies do you cover?",
+        "answer": "Our main focus is U.S.-based private companies with over $1 million in annual revenue. Over 85% of our coverage is bootstrapped or family-owned companies that have not raised any outside funding from venture capital or private equity.\n\nFeel free to use our chrome extension while you are browsing to find which companies we cover on our platform.\n\nDon't find a company that we covered? Contact us and we will be able to assist you to build a list or add a company to our overall universes of companies."
+      },
+      {
+        "id": "international-coverage",
+        "question": "Do you cover international private companies?",
+        "answer": "We focus on U.S. private companies but do list international companies who have raised funding rounds over $50M."
+      }
+    ]
+  },
+  {
+    "id": "technical-support",
+    "title": "Technical Support",
+    "questions": [
+      {
+        "id": "getting-started",
+        "question": "How do I get started?",
+        "answer": "Before you login to your Basic/Select account, take a glance at our getting started guide. signed up for the Basic or Select membership.\n\nEnterprise customers, please contact your account manager via email for a demo."
+      },
+      {
+        "id": "view-usage",
+        "question": "How do I view my usage?",
+        "answer": "From the account details dropdown on the upper right corner of your dashboard, under Account & Basic Info, view your profile views, data exports, and PDF exports for the month. Those numbers will automatically restart at the beginning of a new month."
+      },
+      {
+        "id": "cancellation-policy",
+        "question": "What is your cancellation policy?",
+        "answer": "For our Select customers, you can cancel from your Account dropdown on the dashboard prior to the renewal date. This will cancel all future autorenewals on your account. You will retain access to the platform for the remainder of the paid billing cycle. We do not offer refunds for paid Select plans. For more information, please refer here.\n\nFor our Enterprise customers, please contact your account manager directly via email to cancel your account with PrivCo. You will retain access to the platform for the remainder of the billing cycle."
+      }
+    ]
+  }
+]

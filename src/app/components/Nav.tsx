@@ -116,7 +116,7 @@ const Nav: React.FC = () => {
 
         {
           title: "FAQ",
-          href: "/faq",
+          href: "/help-center",
           icon: (
             <div className="text-green-500 bg-green-100 p-1 rounded">
               <CircleHelp />
@@ -128,7 +128,7 @@ const Nav: React.FC = () => {
           title: "PrivCo Dictionary",
           href: "/knowledge-bank",
           icon: (
-            <div className="text-green-500 bg-green-100 p-1 rounded">
+            <div className="text-pink-500 bg-pink-100 p-1 rounded">
               <BookOpenText />
             </div>
           ),
