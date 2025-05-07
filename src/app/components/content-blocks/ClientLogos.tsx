@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import FadeIn from "../transition-wrappers/FadeIn"; // Import FadeIn component
+import FadeIn from "../transition-wrappers/FadeIn"; // Use your existing FadeIn component
 
 // Props for the ClientLogos component
 interface ClientLogosProps {
@@ -9,10 +9,13 @@ interface ClientLogosProps {
 
 const ClientLogos: React.FC<ClientLogosProps> = ({ images }) => {
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 md:gap-16 gap-12 items-center w-fit mx-auto md:px-0 px-5">
-      {images.map((item, index) => (
-        <div key={index} className={` ${index === 4 ? "hidden xl:block" : ""}`}>
-          <FadeIn delay={index * 0.2}>
+    <FadeIn>
+      <div className="grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 md:gap-16 gap-12 items-center w-fit mx-auto md:px-0 px-5">
+        {images.map((item, index) => (
+          <div
+            key={index}
+            className={`${index === 4 ? "hidden xl:block" : ""}`}
+          >
             <div>
               <Image
                 src={item}
@@ -22,10 +25,10 @@ const ClientLogos: React.FC<ClientLogosProps> = ({ images }) => {
                 height={200} // Uniform height
               />
             </div>
-          </FadeIn>
-        </div>
-      ))}
-    </div>
+          </div>
+        ))}
+      </div>
+    </FadeIn>
   );
 };
 
