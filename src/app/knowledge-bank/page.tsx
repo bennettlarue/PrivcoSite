@@ -4,6 +4,7 @@ import { getKnowledgeBankEntries } from "@/lib/contentful";
 import MainHeadline from "../components/content-blocks/MainHeadline";
 import RowPadding from "../components/content-containers/RowPadding";
 import SectionColor from "../components/content-blocks/SectionColor";
+import HeroHeader from "../components/content-blocks/HeroHeader";
 
 export const revalidate = 60; // Revalidate the page every 60 seconds
 
@@ -41,19 +42,19 @@ export default async function KnowledgeBank() {
 
   return (
     <div>
-      <SectionColor
-        backgroundColor="var(--privco-blue)"
-        textColor="var(--privco-white)"
-      >
-        <RowPadding>
-          <MainHeadline headline="PrivCo Dictionary">
-            <p className="text-2xl font-medium">
-              Comprehensive financial terms dictionary with over 398 finance and
-              investment definitions.
-            </p>
-          </MainHeadline>
-        </RowPadding>
-      </SectionColor>
+      <div>
+        <HeroHeader
+          imageUrl="/images/dictionary/dictionary-header.png"
+          title="PrivCo Dictionary
+"
+          subtitle="Comprehensive financial terms dictionary with over 398 finance and investment definitions.
+
+"
+          ctaText="7-Day Full-Access Free Trial"
+          ctaHref="/api"
+          altText="Hero background image"
+        />
+      </div>
       <SectionColor backgroundColor="white">
         <div className="container mx-auto px-4 py-8">
           {/* Alphabet navigation */}

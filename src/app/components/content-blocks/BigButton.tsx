@@ -14,14 +14,7 @@ const BigButton: React.FC<BigButtonProps> = ({
   children, // Destructure children
 }) => {
   return (
-    <div
-      style={{
-        color: textColor,
-        backgroundColor: backgroundColor,
-        textShadow: "1px 1px var(--privco-lightblue)",
-      }}
-      className="rounded px-[24px] py-[12px] md:text-3xl text-lg text-center leading-[150%] font-bold shadow w-fit"
-    >
+    <div className="rounded px-[24px] py-[12px] md:text-2xl mx-auto text-lg text-center leading-[150%] font-bold shadow w-fit text-white bg-green-600 border border-white hover:bg-green-800 hover:border-green-400 transition-colors duration-200">
       {children}
     </div>
   );

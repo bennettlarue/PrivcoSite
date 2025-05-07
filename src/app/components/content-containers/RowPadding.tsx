@@ -7,11 +7,7 @@ interface RowPaddingProps {
 const RowPadding: React.FC<RowPaddingProps> = ({
   children, // Destructure children
 }) => {
-  return (
-    <div className="md:py-32 py-16 md:px-16 px-5 flex flex-col gap-12">
-      {children}
-    </div>
-  );
+  return <div className="md:py-32 py-16 md:px-16 px-5 gap-12">{children}</div>;
 };
 
 export default RowPadding;

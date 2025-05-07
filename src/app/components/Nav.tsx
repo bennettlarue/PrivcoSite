@@ -136,7 +136,7 @@ const Nav: React.FC = () => {
 
         {
           title: "Chrome Extension",
-          href: "/chrome-extension",
+          href: "https://chromewebstore.google.com/detail/privco/djpngaeogfjbijiniddohkomeiebjeek?hl=en",
           icon: (
             <div className=" text-purple-500 bg-purple-100 p-1 rounded">
               <svg
@@ -186,12 +186,12 @@ const Nav: React.FC = () => {
         {/* Logo */}
         <div className="flex-shrink-0">
           <a href="/" className="flex items-center">
-            <div className="max-w-[160px] w-full h-auto">
+            <div className="max-w-[160px] w-full h-fit">
               <Image
                 src={"/images/logo.svg"}
                 alt={"privco logo"}
-                width={1000}
-                height={1000}
+                width={160}
+                height={44}
                 className="object-cover"
               />
             </div>

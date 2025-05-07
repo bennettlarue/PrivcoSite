@@ -24,55 +24,27 @@ import {
   ScanSearch,
   Sparkles,
 } from "lucide-react";
+import HeroHeader from "./components/content-blocks/HeroHeader";
 
 // Define a reusable component for the SmallHeadline section
 
 export default function Home() {
   return (
     <div>
-      <SectionColor
-        textColor="var(--privco-white)"
-        backgroundColor="var(--privco-blue)"
-      >
-        <div className="grid lg:grid-cols-2 grid-cols-1 gap-8">
-          <div className="max-w-[485px] mx-auto pt-24 pb-16">
-            <MainHeadline headline="Uncover Opportunities Others Can’t See">
-              <p className="font-medium md:text-3xl text-xl">
-                Get the edge and identify hidden but high-potential private
-                companies before your competitors do.
-              </p>
-              <FlexRow>
-                <RoundButton
-                  textColor="var(--privco-white)"
-                  backgroundColor="var(--privco-green)"
-                  border={true}
-                >
-                  Start Free
-                </RoundButton>
-                <RoundButton
-                  textColor="var(--privco-white)"
-                  backgroundColor="var(--privco-blue)"
-                  border={true}
-                >
-                  Learn More
-                </RoundButton>
-              </FlexRow>
-              <p className="text-xl">
-                Start your seven-day free trial with full and immediate access
-              </p>
-            </MainHeadline>
-          </div>
-          <div>
-            <Image
-              src="/images/header-image.png"
-              alt="Header Image"
-              className="my-auto h-full object-cover"
-              width={800}
-              height={400}
-            />
-          </div>
-        </div>
-      </SectionColor>
+      <div>
+        <HeroHeader
+          imageUrl="/images/header-image.png"
+          title="Uncover Opportunities 
+Others Can’t See"
+          subtitle="PrivCo is the leading provider of private company financial data, 
+          specializing in bootstrapped companies with revenues above $1MM."
+          ctaText="Start Free"
+          ctaHref="/api"
+          cta2Text="Learn More"
+          cta2Href="/api"
+          altText="Hero background image"
+        />
+      </div>
 
       <SectionColor
         textColor="var(--privco-black)"
@@ -199,19 +171,43 @@ export default function Home() {
             <SecondaryHeadline headline="Get Granular-Level Advanced Search using Revenue, EBITDA,Valuation, Funding, Growth Rates, Location & Ownership"></SecondaryHeadline>
             <div className="md:space-y-0 space-y-3 grid grid-cols-1 lg:grid-cols-3 gap-6 md:mx-0 mx-auto mt-3">
               <Figure
-                image="/images/figure-1.png"
+                image={
+                  <Image
+                    src="/images/figure-1.png"
+                    alt="first image"
+                    width={425}
+                    height={375}
+                    className="rounded-t-lg border-b"
+                  />
+                }
                 header="Analyze Data at Scale"
                 subtext="With proprietary algorithms and industry-leading keyword tagging. "
                 alt="first image"
               />
               <Figure
-                image="/images/figure-2.png"
+                image={
+                  <Image
+                    src="/images/figure-2.png"
+                    alt="first image"
+                    width={425}
+                    height={375}
+                    className="rounded-t-lg border-b"
+                  />
+                }
                 header="Uncover Financial Insights"
                 subtext="Created through proprietary machine-learning financial modeling and expert data analysts."
                 alt="first image"
               />
               <Figure
-                image="/images/figure-3.png"
+                image={
+                  <Image
+                    src="/images/figure-3.png"
+                    alt="first image"
+                    width={425}
+                    height={375}
+                    className="rounded-t-lg border-b"
+                  />
+                }
                 header="Quickly Search & Compare"
                 subtext="Quickly filter and compare multiple industries, companies, and players in the private market."
                 alt="first image"

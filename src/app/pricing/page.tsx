@@ -7,6 +7,7 @@ import BigButton from "../components/content-blocks/BigButton";
 import PricingTable from "../components/content-blocks/PricingTable";
 import Accordion from "../components/content-blocks/Accordion";
 import RoundButton from "../components/content-elements/RoundButton";
+import HeroHeader from "../components/content-blocks/HeroHeader";
 
 export default function Pricing() {
   const accordionItems = [
@@ -55,23 +56,18 @@ export default function Pricing() {
 
   return (
     <div>
-      <SectionColor
-        textColor="var(--privco-white)"
-        backgroundColor="var(--privco-blue)"
-      >
-        <RowPadding>
-          <div className="text-center">
-            <MainHeadline headline="More Data. More Deals.">
-              <p className="text-2xl font-semibold">
-                146 million data points and 893K+ companies
-              </p>
-              <p className="bg-[var(--privco-yellow)] w-fit px-5 py-3 font-bold md:text-2xl text-xl text-[var(--privco-black)] mx-auto">
-                7-Day Full-Access Free Trial
-              </p>
-            </MainHeadline>
-          </div>
-        </RowPadding>
-      </SectionColor>
+      <div>
+        <HeroHeader
+          imageUrl="/images/pricing/pricing-header.png"
+          title="More data. More Deals."
+          subtitle="146 million data points and 893K+ companies"
+          ctaText="7-Day Full-Access Free Trial"
+          ctaHref="/api"
+          cta2Text="Learn More"
+          cta2Href="/api"
+          altText="Hero background image"
+        />
+      </div>
 
       <SectionColor
         textColor="var(--privco-black)"
@@ -190,7 +186,7 @@ export default function Pricing() {
               </div>
             </div>
           </div>
-          <div>
+          <div className="mt-20">
             <div className="text-center">
               {" "}
               <SecondaryHeadline headline="Compare Plans" />
@@ -204,13 +200,15 @@ export default function Pricing() {
         textColor="var(--privco-black)"
       >
         <RowPadding>
-          <SecondaryHeadline headline="FAQs">
-            Find answers to your questions about our pricing plans and sign-up
-            process.
-          </SecondaryHeadline>
+          <div className="mb-2">
+            <SecondaryHeadline headline="FAQs">
+              Find answers to your questions about our pricing plans and sign-up
+              process.
+            </SecondaryHeadline>
+          </div>
           <Accordion items={accordionItems} />
           <div className="space-y-5">
-            <h3 className="font-bold md:text-2xl text-xl">
+            <h3 className="font-bold md:text-2xl text-xl mt-5">
               Still have questions? Get expert help now!
             </h3>
             <div className="w-fit font-bold md:text-3xl text-xl">

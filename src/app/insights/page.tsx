@@ -8,6 +8,7 @@ import MainHeadline from "../components/content-blocks/MainHeadline";
 import SectionColorLines from "../components/content-blocks/SectionColorLines";
 import SecondaryHeadline from "../components/content-blocks/SecondaryHeadline";
 import BigButton from "../components/content-blocks/BigButton";
+import HeroHeader from "../components/content-blocks/HeroHeader";
 
 // Define TypeScript interfaces for your Contentful data
 interface Author {
@@ -55,22 +56,16 @@ export default async function Page() {
 
   return (
     <div>
-      <SectionColor
-        backgroundColor="var(--privco-blue)"
-        textColor="var(--privco-white)"
-      >
-        <RowPadding>
-          <div>
-            {" "}
-            <MainHeadline headline="Insights">
-              <p className="text-2xl font-medium">
-                Exclusive insights into private industry trends derived from
-                millions of data points.
-              </p>
-            </MainHeadline>
-          </div>
-        </RowPadding>
-      </SectionColor>
+      <div>
+        <HeroHeader
+          imageUrl="/images/insights/insights-header.png"
+          title="Insights"
+          subtitle="Exclusive insights into private industry trends derived from millions of data points."
+          ctaText="7-Day Full-Access Free Trial"
+          ctaHref="/api"
+          altText="Hero background image"
+        />
+      </div>
 
       <SectionColor
         backgroundColor="var(--privco-white)"

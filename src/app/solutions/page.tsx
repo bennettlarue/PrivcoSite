@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import QuoteBlock from "../components/content-blocks/QuoteBlock";
 import SectionColorLines from "../components/content-blocks/SectionColorLines";
+import HeroHeader from "../components/content-blocks/HeroHeader";
 
 interface ParagraphBlockProps {
   header: string;
@@ -93,7 +94,7 @@ const SolutionSection: React.FC<SolutionSectionProps> = ({
               </div>
             </div>
           </div>
-          <div className="flex gap-5 mx-auto">
+          <div className="flex gap-5 mx-auto mt-8">
             {paragraphs.map((paragraph, index) => (
               <ParagraphBlock
                 key={index}
@@ -128,29 +129,20 @@ const SolutionSection: React.FC<SolutionSectionProps> = ({
 const SolutionsPage: React.FC = () => {
   return (
     <div>
-      <SectionColor
-        backgroundColor="var(--privco-blue)"
-        textColor="var(--privco-white)"
-      >
-        <RowPadding>
-          <div className="max-w-5xl">
-            <MainHeadline
-              overline="Solutions"
-              headline="Dominate competitors with
+      <div>
+        <HeroHeader
+          imageUrl="/images/solutions/solutions-header.png"
+          overline="Solutions"
+          title="Dominate competitors with
 unmatched private market insights"
-            >
-              <p className="text-xl font-semibold">
-                PrivCo equips professionals across industries with the deepest
-                private company data—900,000+ profiles, 146 million data points,
-                and 65 million+ contacts—unlocking insights on 80% of the market
-                others miss. From deal sourcing to research, PrivCo’s actionable
-                intelligence helps you uncover opportunities, make informed
-                decisions, and stay ahead.
-              </p>
-            </MainHeadline>
-          </div>
-        </RowPadding>
-      </SectionColor>
+          subtitle="From deal sourcing to research, PrivCo’s actionable intelligence helps you uncover opportunities, make informed decisions, and stay ahead."
+          ctaText="Start Free"
+          ctaHref="/api"
+          cta2Text="Learn More"
+          cta2Href="/api"
+          altText="Hero background image"
+        />
+      </div>
 
       <SolutionSection
         headline="Investment Banking"

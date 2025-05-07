@@ -31,6 +31,7 @@ import {
   TextSearch,
   UserRoundSearch,
 } from "lucide-react";
+import HeroHeader from "../components/content-blocks/HeroHeader";
 
 interface ImageCaptionProps {
   image: string;
@@ -165,36 +166,20 @@ const TextBlurb: React.FC<TextBlurbProps> = ({
 export default function Product() {
   return (
     <div>
-      <SectionColor
-        textColor="var(--privco-white)"
-        backgroundColor="var(--privco-blue)"
-      >
-        <RowPadding>
-          <div className="grid lg:grid-cols-5 grid-cols-1 gap-10">
-            <div className="col-span-3 flex items-center max-w-[770px]">
-              <MainHeadline
-                overline="Go Deeper"
-                headline="With PrivCo, more data means greater insights into opportunities."
-              >
-                <p className="text-xl font-semibold">
-                  Competitors show you just 20% of the private market—PrivCo
-                  reveals the 80% below the surface. From granular financials to
-                  executive contacts, we give you the tools to act decisively.
-                </p>
-              </MainHeadline>
-            </div>
-            <div className="col-span-2">
-              <Image
-                src={"/images/iceberg.png"}
-                className=""
-                alt={"dd"}
-                width={461}
-                height={501}
-              />
-            </div>
-          </div>
-        </RowPadding>
-      </SectionColor>
+      <div>
+        <HeroHeader
+          imageUrl="/images/product/product-header.png"
+          overline="Go Deeper"
+          title="With PrivCo, more data means greater insights into opportunities. "
+          subtitle="Competitors show you just 20% of the private market—PrivCo reveals the 80% below the surface. From granular financials to executive contacts, we give you the tools to act decisively."
+          ctaText="Start Free"
+          ctaHref="/api"
+          cta2Text="Learn More"
+          cta2Href="/api"
+          altText="Hero background image"
+        />
+      </div>
+
       <SectionColor
         textColor="var(--privco-black)"
         backgroundColor="var(--privco-lightgreen)"
