@@ -14,6 +14,7 @@ export default function Page() {
       <div>
         <HeroHeader
           imageUrl="/images/api/api-header.png"
+          overline="API"
           title="Custom Datasets, On-Demand"
           subtitle="Pull the exact data you need-and nothing you don't-from the most accurate and up-to-date private financial data with our API and data exports."
           ctaText="Start Free"
@@ -23,64 +24,64 @@ export default function Page() {
           altText="Hero background image"
         />
       </div>
-
       <SectionColor
         backgroundColor="var(--privco-lightgreen)"
         textColor="var(--privco-black)"
       >
         <RowPadding>
-          <SecondaryHeadline
-            overline="Managed Data Solutions"
-            headline="Choose from 146MM+ data points across 1,000 verticals"
-          >
-            <p>
-              Directly extract data based on customizable criteria, including
-              revenues, EBITDA, valuations, fundings, deals, and more. Enable
-              your team with easy access to hard-to-find private market data
-              through API or data exports.
-            </p>
-          </SecondaryHeadline>
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
+            <SecondaryHeadline
+              overline="Managed Data Solutions"
+              headline="Choose from 146MM+ data points across 1,000 verticals"
+            >
+              <p>
+                Directly extract data based on customizable criteria, including
+                revenues, EBITDA, valuations, fundings, deals, and more. Enable
+                your team with easy access to hard-to-find private market data
+                through API or data exports.
+              </p>
+            </SecondaryHeadline>
+            <div className="hidden lg:block">
+              <Image
+                src="/images/api/graphic-1.svg"
+                alt="first image"
+                width={625}
+                height={375}
+                className="rounded-t-lg drop-shadow"
+              />
+            </div>
+          </div>
         </RowPadding>
       </SectionColor>
+
       <SectionColor
         backgroundColor="var(--privco-lightblue)"
         textColor="var(--privco-black)"
       >
         <RowPadding>
-          <SecondaryHeadline
-            overline="Custom API Solutions"
-            headline="Gain actionable intelligence in seconds"
-          >
-            <p>
-              Integrate our data with your existing systems to instantly
-              increase your team’s comprehension of the middle market. Extract
-              bulk data via JSON or CSV.
-            </p>
-          </SecondaryHeadline>
-        </RowPadding>
-      </SectionColor>
-
-      <SectionColorLines
-        secondaryColor="var(--privco-blue)"
-        backgroundColor="var(--privco-blue)"
-        textColor="var(--privco-white)"
-      >
-        <RowPadding>
-          <div className="w-fit text-center mx-auto">
-            <SecondaryHeadline headline="Get Started with Managed Solutions Today">
-              <div className="mx-auto w-fit">
-                <BigButton
-                  textColor="var(--privco-white)"
-                  backgroundColor="var(--privco-green)"
-                  border={true}
-                >
-                  Talk to Sales
-                </BigButton>
-              </div>
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
+            <SecondaryHeadline
+              overline="Custom API Solutions"
+              headline="Gain actionable intelligence in seconds"
+            >
+              <p>
+                Integrate our data with your existing systems to instantly
+                increase your team’s comprehension of the middle market. Extract
+                bulk data via JSON or CSV.
+              </p>
             </SecondaryHeadline>
+            <div className="hidden lg:block">
+              <Image
+                src="/images/api/graphic-2.svg"
+                alt="first image"
+                width={625}
+                height={375}
+                className="rounded-t-lg drop-shadow"
+              />
+            </div>
           </div>
         </RowPadding>
-      </SectionColorLines>
+      </SectionColor>
 
       <SectionColor
         backgroundColor="var(--privco-white)"
@@ -142,6 +143,27 @@ export default function Page() {
           </div>
         </RowPadding>
       </SectionColor>
+      <SectionColorLines
+        secondaryColor="var(--privco-blue)"
+        backgroundColor="var(--privco-lightgreen)"
+        textColor="var(--privco-black)"
+      >
+        <RowPadding>
+          <div className="w-fit text-center mx-auto">
+            <SecondaryHeadline headline="Get Started with Managed Solutions Today">
+              <div className="mx-auto w-fit">
+                <BigButton
+                  textColor="var(--privco-white)"
+                  backgroundColor="var(--privco-green)"
+                  border={true}
+                >
+                  Talk to Sales
+                </BigButton>
+              </div>
+            </SecondaryHeadline>
+          </div>
+        </RowPadding>
+      </SectionColorLines>
     </div>
   );
 }
