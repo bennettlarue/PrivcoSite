@@ -37,7 +37,9 @@ export default function HeroHeader({
           fill
           className="object-cover object-center"
           priority
-          quality={90}
+          quality={80} // Reduced from 90
+          placeholder="blur"
+          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAEpgJNMHWMP1AAAABJRU5ErkJggg=="
         />
 
         {/* Gradient Overlay - Left to Right (solid to transparent) */}
