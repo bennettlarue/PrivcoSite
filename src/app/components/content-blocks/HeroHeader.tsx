@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { ArrowRight } from "lucide-react";
 
 interface HeroHeaderProps {
   imageUrl: string;
@@ -30,7 +31,7 @@ export default function HeroHeader({
   const [imageLoaded, setImageLoaded] = useState(false);
 
   return (
-    <div className="relative w-full min-h-[540px] h-[60vh] overflow-hidden flex items-center">
+    <div className="relative w-full min-h-[540px] h-[60vh] overflow-hidden flex items-center pt-10">
       {/* Background Image with loading transition */}
       <div className="absolute inset-0">
         <motion.div
@@ -106,9 +107,12 @@ export default function HeroHeader({
                 <div>
                   <a
                     href={ctaHref}
-                    className="inline-block bg-green-600 border border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-800 hover:border-green-400 transition-colors duration-200"
+                    className="flex bg-green-600 gap-3 border border-white text-white px-6 py-3 rounded-lg font-bold hover:bg-green-800 hover:border-green-400 transition-colors duration-200 group"
                   >
-                    {ctaText}
+                    <div>{ctaText}</div>
+                    <motion.div className="group-hover:translate-x-1 transition-transform duration-200">
+                      <ArrowRight />
+                    </motion.div>
                   </a>
                 </div>
               )}
@@ -117,7 +121,7 @@ export default function HeroHeader({
                 <div>
                   <a
                     href={cta2Href}
-                    className="inline-block text-white border bg-[var(--privco-blue)] border-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-950 hover:border-[var(--privco-lightblue)] transition-colors duration-200"
+                    className="inline-block text-white border bg-[var(--privco-blue)] border-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-950 hover:border-[var(--privco-lightblue)] transition-colors duration-200"
                   >
                     {cta2Text}
                   </a>
