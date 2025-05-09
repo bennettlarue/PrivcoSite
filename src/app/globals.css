@@ -15,3 +15,24 @@
   --privco-lightgreen: #e7fff0;
   font-family: "Roboto", sans-serif;
 }
+
+.mcnFollowBlock {
+  display: none;
+}
+
+.mcnImageBlock {
+  display: none;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.skeleton-shine {
+  animation: shimmer 2.5s infinite;
+}

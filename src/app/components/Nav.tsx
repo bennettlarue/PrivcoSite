@@ -17,6 +17,7 @@ import {
   X,
 } from "lucide-react";
 import { siGooglechrome } from "simple-icons/icons";
+import CtaButton from "./content-blocks/CtaButton";
 
 type NavItem = {
   title: string;
@@ -368,9 +369,7 @@ const Nav: React.FC = () => {
                   />
                 </motion.a>
               </div>
-              <RoundButton backgroundColor="#34C759" textColor="#FFFFFF">
-                Start Free
-              </RoundButton>
+              <CtaButton ctaHref="/api" ctaText="Start Free" />
             </div>
           </div>
 

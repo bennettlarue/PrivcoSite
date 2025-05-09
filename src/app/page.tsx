@@ -25,6 +25,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import HeroHeader from "./components/content-blocks/HeroHeader";
+import MailchimpCampaigns from "./components/MailchimpCampaigns";
 
 // Define a reusable component for the SmallHeadline section
 

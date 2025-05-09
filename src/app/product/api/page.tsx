@@ -1,11 +1,11 @@
-import BigButton from "../components/content-blocks/BigButton";
-import Figure from "../components/content-blocks/Figure";
-import HeroHeader from "../components/content-blocks/HeroHeader";
-import MainHeadline from "../components/content-blocks/MainHeadline";
-import SecondaryHeadline from "../components/content-blocks/SecondaryHeadline";
-import SectionColor from "../components/content-blocks/SectionColor";
-import SectionColorLines from "../components/content-blocks/SectionColorLines";
-import RowPadding from "../components/content-containers/RowPadding";
+import BigButton from "../../components/content-blocks/BigButton";
+import Figure from "../../components/content-blocks/Figure";
+import HeroHeader from "../../components/content-blocks/HeroHeader";
+import MainHeadline from "../../components/content-blocks/MainHeadline";
+import SecondaryHeadline from "../../components/content-blocks/SecondaryHeadline";
+import SectionColor from "../../components/content-blocks/SectionColor";
+import SectionColorLines from "../../components/content-blocks/SectionColorLines";
+import RowPadding from "../../components/content-containers/RowPadding";
 import Image from "next/image";
 
 export default function Page() {

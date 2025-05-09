@@ -1,15 +1,21 @@
 "use client";
+// src/app/daily-stack/page.tsx
+
+import SectionColor from "../components/content-blocks/SectionColor";
+import MailchimpCampaigns from "../components/MailchimpCampaigns";
 
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { ArrowRight } from "lucide-react";
-import CtaButton from "./CtaButton";
+import CtaButton from "../components/content-blocks/CtaButton";
+import DailyStackLogo from "../components/svgs/DailyStackLogo";
+import NewsletterSubscribe from "../components/NewsletterSubscribe";
 
 interface HeroHeaderProps {
   imageUrl: string;
   altText?: string;
-  title: string;
+  title: React.ReactNode;
   subtitle?: string;
   overline?: string;
   ctaText?: string;
@@ -18,7 +24,7 @@ interface HeroHeaderProps {
   cta2Href?: string;
 }
 
-export default function HeroHeader({
+function HeroHeader({
   imageUrl,
   altText = "Hero background image",
   title,
@@ -32,7 +38,7 @@ export default function HeroHeader({
   const [imageLoaded, setImageLoaded] = useState(false);
 
   return (
-    <div className="relative w-full min-h-[540px] h-[60vh] overflow-hidden flex items-center pt-10  bg-gray-100">
+    <div className="relative w-full min-h-[540px] h-[60vh] overflow-hidden flex items-center pt-10">
       {/* Background Image with loading transition */}
       <div className="absolute inset-0">
         <motion.div
@@ -122,6 +128,44 @@ export default function HeroHeader({
           </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+export default function DailyStackPage() {
+  return (
+    <div>
+      <div>
+        <HeroHeader
+          imageUrl="/images/daily-stack/daily-stack-header.png"
+          title={
+            <div className="flex space-x-2 items-baseline">
+              <div className="md:w-16 w-10 inline md:bg-none ">
+                <DailyStackLogo />
+              </div>
+              <h1 className="flex">The Daily Stack</h1>{" "}
+            </div>
+          }
+          subtitle="The Daily Stack is a financial insights newsletter covering the world of private markets by PrivCo.
+"
+          ctaText="Try Privco Free for 7 Days"
+          ctaHref="/api"
+          altText="Hero background image"
+          cta2Text="Learn More"
+          cta2Href="/api"
+        />
+      </div>
+      <SectionColor textColor="black" backgroundColor="white">
+        {" "}
+        <div></div>
+        <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8 space-y-10">
+          <div>
+            <NewsletterSubscribe />
+          </div>
+
+          <MailchimpCampaigns />
+        </div>
+      </SectionColor>
     </div>
   );
 }
