@@ -5,7 +5,7 @@ import { makeMailchimpContentResponsive } from "@/lib/mailchimpHelper";
 export default async function DailystackPage({
   params,
 }: {
-  params: Promise<{ id: string }> | { id: string };
+  params: Promise<{ id: string }>;
 }) {
   // Ensure params is fully resolved
   const resolvedParams = await params;
