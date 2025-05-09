@@ -1,12 +1,11 @@
-// src/app/newsletters/[id]/page.tsx
 import { getCampaign, getCampaignContent } from "@/lib/mailchimp";
 import DOMPurify from "isomorphic-dompurify";
 import { makeMailchimpContentResponsive } from "@/lib/mailchimpHelper";
 
-export default async function NewsletterPage({
+export default async function DailystackPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }> | { id: string };
 }) {
   // Ensure params is fully resolved
   const resolvedParams = await params;
@@ -18,7 +17,7 @@ export default async function NewsletterPage({
     getCampaignContent(id),
   ]);
 
-  const title = campaignDetails?.settings?.subject_line || "Newsletter";
+  const title = campaignDetails?.settings?.subject_line || "Daily Stack";
   const sendDate = campaignDetails?.send_time
     ? new Date(campaignDetails.send_time).toLocaleDateString("en-US", {
         year: "numeric",
@@ -31,9 +30,9 @@ export default async function NewsletterPage({
     return (
       <div className="container mx-auto py-10">
         <div className="text-center">
-          <h1 className="text-2xl font-bold">Newsletter not found</h1>
+          <h1 className="text-2xl font-bold">Daily Stack not found</h1>
           <p className="mt-4">
-            The newsletter you're looking for could not be found.
+            The Daily Stack you're looking for could not be found.
           </p>
         </div>
       </div>
