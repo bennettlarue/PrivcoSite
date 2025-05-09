@@ -1,14 +1,17 @@
 // src/app/api/mailchimp/campaigns/[id]/content/route.ts
 import { getCampaignContent } from "@/lib/mailchimp";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
-export async function GET(
-  request: NextRequest,
-  context: { params: { id: string } }
-) {
+// Use the correct type definitions for App Router API routes
+type RouteContext = {
+  params: {
+    id: string;
+  };
+};
+
+export async function GET(request: Request, { params }: RouteContext) {
   try {
-    // Make sure to await params if needed
-    const id = context.params.id;
+    const id = params.id;
     const content = await getCampaignContent(id);
     return NextResponse.json({ content });
   } catch (error) {
