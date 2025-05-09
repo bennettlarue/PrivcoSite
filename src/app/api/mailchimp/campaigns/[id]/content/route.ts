@@ -2,17 +2,15 @@
 import { getCampaignContent } from "@/lib/mailchimp";
 import { NextResponse } from "next/server";
 
-// Use the correct type definitions for App Router API routes
-type RouteContext = {
+interface Context {
   params: {
     id: string;
   };
-};
+}
 
-export async function GET(request: Request, { params }: RouteContext) {
+export async function GET(request: Request, context: Context) {
   try {
-    const id = params.id;
-    const content = await getCampaignContent(id);
+    const content = await getCampaignContent(context.params.id);
     return NextResponse.json({ content });
   } catch (error) {
     return NextResponse.json(
