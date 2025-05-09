@@ -4,9 +4,9 @@ import { NextResponse } from "next/server";
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  if (!params || !params.id) {
+  if (!params || !(await params).id) {
     return NextResponse.json(
       { error: "Campaign ID is required" },
       { status: 400 }
@@ -15,7 +15,7 @@ export async function GET(
 
   try {
     // Using await to ensure params is resolved
-    const content = await getCampaignContent(params.id);
+    const content = await getCampaignContent((await params).id);
     return NextResponse.json({ content });
   } catch (error) {
     console.error("Error fetching campaign content:", error);
