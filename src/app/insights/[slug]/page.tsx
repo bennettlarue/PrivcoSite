@@ -213,7 +213,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
               {/* Render the markdown content */}
               <div
                 dangerouslySetInnerHTML={{
-                  __html: markdownParser(post.fields.body),
+                  __html: await markdownParser(post.fields.body),
                 }}
               />
             </div>
@@ -259,7 +259,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
                   <div
                     dangerouslySetInnerHTML={{
                       __html: post.fields.author.fields.bio
-                        ? markdownParser(post.fields.author.fields.bio)
+                        ? await markdownParser(post.fields.author.fields.bio)
                         : "",
                     }}
                   />
