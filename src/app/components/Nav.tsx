@@ -5,11 +5,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import RoundButton from "./content-elements/RoundButton";
 import {
+  ArrowRight,
   ArrowUpRight,
   BookOpenText,
   ChevronDown,
   Chrome,
   CircleHelp,
+  LogIn,
   Menu,
   Newspaper,
   Send,
@@ -18,6 +20,8 @@ import {
 } from "lucide-react";
 import { siGooglechrome } from "simple-icons/icons";
 import CtaButton from "./content-blocks/CtaButton";
+import SecondaryCtaButton from "./content-blocks/SecondaryCtaButton";
+import FadeIn from "./transition-wrappers/FadeIn";
 
 type NavItem = {
   title: string;
@@ -127,7 +131,7 @@ const Nav: React.FC = () => {
         },
         {
           title: "The Daily Stack",
-          href: "/daily-stack",
+          href: "/dailystack",
           icon: (
             <div className=" text-orange-500 bg-orange-100 p-1 rounded">
               <Newspaper />
@@ -156,7 +160,7 @@ const Nav: React.FC = () => {
         },
         {
           title: "API",
-          href: "/api",
+          href: "/product/api",
           icon: (
             <div className=" text-blue-500 bg-blue-100 p-1 rounded">
               <TextSearch />
@@ -222,13 +226,16 @@ const Nav: React.FC = () => {
           <div className="flex-shrink-0">
             <a href="/" className="flex items-center">
               <div className="max-w-[160px] w-full h-fit">
-                <Image
-                  src={"/images/logo.svg"}
-                  alt={"privco logo"}
-                  width={160}
-                  height={44}
-                  className="object-cover"
-                />
+                <FadeIn>
+                  <Image
+                    src={"/images/logo.svg"}
+                    alt={"Privco Logo"}
+                    width={160}
+                    height={44}
+                    className="object-cover"
+                    priority
+                  />
+                </FadeIn>
               </div>
             </a>
           </div>
@@ -350,25 +357,8 @@ const Nav: React.FC = () => {
               ))}
             </div>
             {/* Right side buttons */}
-            <div className="hidden lg:flex items-center space-x-6 ml-3">
-              <div>
-                <motion.a
-                  href="/signin"
-                  className="text-white py-1 rounded-md text-lg font-[700] relative group"
-                  whileHover="hover"
-                  initial="initial"
-                >
-                  Sign In
-                  <motion.span
-                    className="absolute bottom-0 left-0 w-0 h-[2px] bg-white"
-                    variants={{
-                      initial: { width: "0%" },
-                      hover: { width: "100%" },
-                    }}
-                    transition={{ duration: 0.17 }}
-                  />
-                </motion.a>
-              </div>
+            <div className="hidden lg:flex items-center space-x-3 ml-4">
+              <SecondaryCtaButton text="Login" href="/api" />
               <CtaButton ctaHref="/api" ctaText="Start Free" />
             </div>
           </div>
@@ -438,6 +428,26 @@ const Nav: React.FC = () => {
               }}
             >
               <div className="py-6 space-y-1 px-4">
+                <motion.div className="pb-6 mt-3 border-b border-white">
+                  <motion.a
+                    href="/get-started"
+                    className="border bg-green-600 hover:bg-green-800 hover:border-green-400 shadow block w-full px-3 py-2 rounded-md text-lg font-medium transition-colors duration-150"
+                  >
+                    <div className="flex justify-between items-center">
+                      <h4>Start Free</h4>
+                      <ArrowRight />
+                    </div>
+                  </motion.a>
+                  <motion.a
+                    href="/signin"
+                    className="border border-white text-center block px-3 py-2 mt-4 rounded-md text-lg font-medium text-white hover:bg-blue-950 hover:border-[var(--privco-lightblue)] transition-colors duration-150"
+                  >
+                    <div className="flex justify-between items-center">
+                      <h4>Login</h4>
+                      <LogIn />
+                    </div>
+                  </motion.a>
+                </motion.div>
                 {navItems.map((item, idx) => (
                   <motion.div key={item.title} className="py-1">
                     {item.dropdown ? (
@@ -505,7 +515,7 @@ const Nav: React.FC = () => {
                       <div className="border-b py-2">
                         <a
                           href={item.href}
-                          className="rounded px-3 py-2 text-lg font-medium text-white hover:bg-white/20 transition-colors duration-150 flex justify-between"
+                          className="rounded px-3 py-2 text-lg font-medium text-white hover:bg-white/20 transition-colors duration-150 flex justify-between items-center"
                         >
                           <div> {item.title}</div>
                           <ArrowUpRight />
@@ -514,21 +524,6 @@ const Nav: React.FC = () => {
                     )}
                   </motion.div>
                 ))}
-
-                <motion.div className="pt-6 mt-6 border-t border-white">
-                  <motion.a
-                    href="/get-started"
-                    className="border text-center bg-green-600 shadow block w-full px-3 py-2 rounded-md text-lg font-medium transition-colors duration-150"
-                  >
-                    Start Free
-                  </motion.a>
-                  <motion.a
-                    href="/signin"
-                    className="border border-white bg-white/10 text-center block px-3 py-2 mt-4 rounded-md text-lg font-medium text-white hover:bg-blue-700 transition-colors duration-150"
-                  >
-                    Login
-                  </motion.a>
-                </motion.div>
               </div>
             </motion.div>
           </div>
