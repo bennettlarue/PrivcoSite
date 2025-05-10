@@ -1,269 +1,363 @@
 "use client";
 
 import React, { useState } from "react";
+import {
+  CheckCircle,
+  X,
+  ChevronDown,
+  ChevronUp,
+  ArrowRight,
+} from "lucide-react";
+
+type PlanTier = "select" | "enterprise";
 
 type PlanFeature = {
   name: string;
+  description?: string;
   selectValue: string | React.ReactNode;
   enterpriseValue: string | React.ReactNode;
-  category?: string;
+};
+
+type FeatureCategory = {
+  title: string;
+  features: PlanFeature[];
 };
 
 const PricingTable: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<"select" | "enterprise">("select");
+  const [activeTab, setActiveTab] = useState<PlanTier>("select");
+  const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
 
-  const features: PlanFeature[] = [
+  // Group features by category for better organization
+  const featureCategories: FeatureCategory[] = [
     {
-      name: "Company/Investor Profile Views",
-      selectValue: "500/Month",
-      enterpriseValue: "Unlimited",
+      title: "Access & Limits",
+      features: [
+        {
+          name: "Company/Investor Profile Views",
+          description: "Number of profiles you can view per month",
+          selectValue: "500/Month",
+          enterpriseValue: "Unlimited",
+        },
+        {
+          name: "Viewable Financial Data",
+          selectValue: "Most Recent Year",
+          enterpriseValue: "All Available",
+        },
+        {
+          name: "Viewable Funding Round Data",
+          selectValue: "Most Recent Year",
+          enterpriseValue: "All Available",
+        },
+      ],
     },
     {
-      name: "Viewable Financial Data",
-      selectValue: "Most Recent Year",
-      enterpriseValue: "All Available",
+      title: "Search Capabilities",
+      features: [
+        {
+          name: "Advanced Search Criteria",
+          description: "Available filters for finding companies and investors",
+          selectValue: (
+            <div className="space-y-1">
+              <ul className="list-disc list-inside text-sm">
+                <li>Location</li>
+                <li>Industry</li>
+                <li>Keyword</li>
+                <li>Year Founded</li>
+                <li>Revenue</li>
+                <li>EBITA</li>
+                <li>VC/PE Status</li>
+                <li>Parent/Subsidiary</li>
+              </ul>
+            </div>
+          ),
+          enterpriseValue: (
+            <div className="space-y-1">
+              <div className="font-medium text-blue-600 mb-1">
+                All in Select Plus:
+              </div>
+              <ul className="list-disc list-inside text-sm">
+                <li>Employee Size</li>
+                <li>Revenue Growth Rate</li>
+                <li>Total Funding Raised</li>
+                <li>Latest Funding Year</li>
+                <li>Latest Valuation</li>
+              </ul>
+            </div>
+          ),
+        },
+        {
+          name: "Viewable Search Results",
+          description:
+            "Search Categories: Companies, Investors, Fundings, Deals, People",
+          selectValue: "100 Per Category",
+          enterpriseValue: "500 Per Category",
+        },
+        {
+          name: "Total Monthly Searches",
+          description:
+            "Search Categories: Companies, Investors, Fundings, Deals, People",
+          selectValue: "50",
+          enterpriseValue: "500",
+        },
+      ],
     },
     {
-      name: "Viewable Funding Round Data",
-      selectValue: "Most Recent Year",
-      enterpriseValue: "All Available",
+      title: "Exports & Downloads",
+      features: [
+        {
+          name: "Monthly Profile PDF Downloads",
+          selectValue: "50",
+          enterpriseValue: (
+            <div>
+              <span className="text-blue-600 font-medium">500</span> (6000
+              annually)
+              <div className="text-sm text-gray-600">Rolls over each month</div>
+            </div>
+          ),
+        },
+        {
+          name: "Company Contact Records",
+          description: "Viewable per month (includes export)",
+          selectValue: "10,000",
+          enterpriseValue: "10,000",
+        },
+        {
+          name: "Investor Contact Records",
+          description: "Viewable per month (includes export)",
+          selectValue: "1,000",
+          enterpriseValue: "1,000",
+        },
+        {
+          name: "Contact Searches and List Builds",
+          description: "First 50 viewable per search",
+          selectValue: "1,000",
+          enterpriseValue: "1,000",
+        },
+      ],
     },
     {
-      name: "Advanced Search Criteria",
-      selectValue: (
-        <div className="text-sm">
-          Location, Industry, Keyword,
-          <br />
-          Year Founded, Revenue, EBITA,
-          <br />
-          VC/PE Status,
-          <br />
-          Parent/Subsidiary
-        </div>
-      ),
-      enterpriseValue: (
-        <div className="text-sm">
-          <div className="font-medium">All in Select Plus:</div>
-          Employee Size, Revenue Growth Rate,
-          <br />
-          Total Funding Raised, Latest Funding
-          <br />
-          Year, Latest Valuation
-        </div>
-      ),
-    },
-    {
-      name: "Viewable Search Results",
-      category:
-        "(Search Categories: Companies, Investors, Fundings, Deals, People)",
-      selectValue: "100 Per Search Category",
-      enterpriseValue: "500 Per Search Category",
-    },
-    {
-      name: "Total Monthly Searches",
-      category:
-        "(Search Categories: Companies, Investors, Fundings, Deals, People)",
-      selectValue: "50",
-      enterpriseValue: "500",
-    },
-    {
-      name: "Monthly Profile PDF Downloads",
-      selectValue: "50",
-      enterpriseValue: (
-        <div>
-          500 (6000 annually)
-          <br />
-          Rolls over each month
-        </div>
-      ),
-    },
-    {
-      name: "Company Contact Records Viewable Per Month",
-      category: "(Includes Export)",
-      selectValue: "10,000",
-      enterpriseValue: "10,000",
-    },
-    {
-      name: "Investor Contact Records Viewable Per Month",
-      category: "(Includes Export)",
-      selectValue: "1,000",
-      enterpriseValue: "1,000",
-    },
-    {
-      name: "Contact Searches and List Builds",
-      category: "(first 50 viewable per search)",
-      selectValue: "1,000",
-      enterpriseValue: "1,000",
-    },
-    {
-      name: "Dedicated Account Manager",
-      selectValue: "",
-      enterpriseValue: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-5 h-5 mx-auto text-blue-800"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-        >
-          <path
-            fillRule="evenodd"
-            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-            clipRule="evenodd"
-          />
-        </svg>
-      ),
-    },
-    {
-      name: "Access to PrivCo Data Team for Custom Requests",
-      selectValue: "",
-      enterpriseValue: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-5 h-5 mx-auto text-blue-800"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-        >
-          <path
-            fillRule="evenodd"
-            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-            clipRule="evenodd"
-          />
-        </svg>
-      ),
+      title: "Support & Services",
+      features: [
+        {
+          name: "Dedicated Account Manager",
+          selectValue: <X className="h-5 w-5 text-gray-400 mx-auto" />,
+          enterpriseValue: (
+            <CheckCircle className="h-5 w-5 text-emerald-500 mx-auto" />
+          ),
+        },
+        {
+          name: "Access to PrivCo Data Team for Custom Requests",
+          selectValue: <X className="h-5 w-5 text-gray-400 mx-auto" />,
+          enterpriseValue: (
+            <CheckCircle className="h-5 w-5 text-emerald-500 mx-auto" />
+          ),
+        },
+      ],
     },
   ];
 
+  // Toggle category expansion for mobile view
+  const toggleCategory = (title: string) => {
+    if (expandedCategory === title) {
+      setExpandedCategory(null);
+    } else {
+      setExpandedCategory(title);
+    }
+  };
+
+  // Gets className for feature row to handle zebra striping
+  const getFeatureRowClass = (categoryIndex: number, featureIndex: number) => {
+    const isEven = (categoryIndex + featureIndex) % 2 === 0;
+    return isEven ? "bg-gray-50" : "bg-white";
+  };
+
   // Desktop view
   const DesktopView = () => (
-    <div className="hidden lg:block relative">
-      {/* Sticky header for desktop */}
-      <div className="grid grid-cols-3 gap-0">
-        <div className="p-6 font-semibold text-4xl border-b flex items-center border-r">
-          <h2>Plan Features</h2>
+    <div className="hidden lg:block overflow-hidden rounded-xl border border-gray-200 shadow-sm">
+      {/* Header */}
+      <div className="grid grid-cols-3 bg-white">
+        <div className="p-8 font-semibold text-3xl border-b flex items-center">
+          <h2 className="text-gray-800">Plan Features</h2>
         </div>
-        <div className="text-center p-4 border-b border-r">
-          <h2 className="text-4xl font-bold mb-3">Select</h2>
-          <button className="bg-[var(--privco-green)] hover:bg-green-600 text-[var(--privco-white)] font-bold text-xl py-2 px-4 w-full rounded-md">
-            Start 7-Day Free Trial
+
+        {/* Select Plan */}
+        <div className="text-center p-8 border-b border-l border-r relative">
+          <div className="absolute -top-1 right-0 left-0 h-1 bg-emerald-500"></div>
+          <h2 className="text-3xl font-bold mb-2 text-gray-800">Select</h2>
+          <p className="text-lg mb-4 text-gray-600">For growing teams</p>
+
+          <button className="w-full border border-gray-200 bg-green-600 hover:bg-green-800 hover:border-green-400 shadow-sm hover:shadow text-white font-bold py-4 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center mb-8 group">
+            <span className="mr-2">Start 7-Day Free Trial</span>
+            <ArrowRight className="transition-transform duration-200 group-hover:translate-x-1" />
           </button>
         </div>
-        <div className="text-center p-4 border-b border-r">
-          <h2 className="text-4xl font-bold mb-3">Enterprise</h2>
-          <button className="bg-[var(--privco-blue)] hover:bg-blue-600 text-[var(--privco-white)] font-bold text-xl py-2 px-4 w-full rounded-md">
-            Choose This Plan
+
+        {/* Enterprise Plan */}
+        <div className="text-center p-8 border-b border-r relative">
+          <div className="absolute -top-1 right-0 left-0 h-1 bg-blue-600"></div>
+          <h2 className="text-3xl font-bold mb-2 text-gray-800">Enterprise</h2>
+          <p className="text-lg mb-4 text-gray-600">For large organizations</p>
+
+          <button className="w-full border border-gray-200 bg-[var(--privco-blue)] hover:bg-blue-950 hover:border-[var(--privco-lightblue)] shadow-sm hover:shadow text-white font-bold py-4 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center mb-8 group">
+            <span className="mr-2">Contact Sales</span>
+            <ArrowRight className="transition-transform duration-200 group-hover:translate-x-1" />
           </button>
         </div>
       </div>
 
-      {/* Features */}
-      <div className="grid grid-cols-3 gap-0">
-        {features.map((feature, index) => (
-          <React.Fragment key={index}>
+      {/* Feature Categories */}
+      {featureCategories.map((category, categoryIndex) => (
+        <div key={category.title}>
+          {/* Category Header */}
+          <div className="grid grid-cols-3 border-b bg-gray-100">
+            <div className="p-4 border-r font-bold text-xl text-gray-700">
+              {category.title}
+            </div>
+            <div className="p-4 border-r"></div>
+            <div className="p-4"></div>
+          </div>
+
+          {/* Features */}
+          {category.features.map((feature, featureIndex) => (
             <div
-              className={`p-4 border-r flex items-center ${
-                index % 2 === 0 ? "bg-gray-100" : "bg-white"
-              }`}
+              key={feature.name}
+              className={`grid grid-cols-3 border-b ${getFeatureRowClass(
+                categoryIndex,
+                featureIndex
+              )}`}
             >
-              <div>
-                {" "}
-                <div className="font-bold text-lg">{feature.name}</div>
-                {feature.category && <div>{feature.category}</div>}
+              <div className="p-5 border-r">
+                <div className="font-medium text-gray-800">{feature.name}</div>
+                {feature.description && (
+                  <div className="text-sm text-gray-500 mt-1">
+                    {feature.description}
+                  </div>
+                )}
+              </div>
+              <div className="p-5 border-r font-medium text-gray-700 flex items-center justify-center">
+                <div className="text-center">{feature.selectValue}</div>
+              </div>
+              <div className="p-5 font-medium text-gray-700 flex items-center justify-center">
+                <div className="text-center">{feature.enterpriseValue}</div>
               </div>
             </div>
-            <div
-              className={`p-4 border-r font-bold text-lg flex items-center justify-center ${
-                index % 2 === 0 ? "bg-gray-100" : "bg-white"
-              }`}
-            >
-              <div className="text-center"> {feature.selectValue}</div>
-            </div>
-            <div
-              className={`p-4 border-r font-bold text-lg flex items-center justify-center ${
-                index % 2 === 0 ? "bg-gray-100" : "bg-white"
-              }`}
-            >
-              <div className="text-center">{feature.enterpriseValue}</div>
-            </div>
-          </React.Fragment>
-        ))}
-      </div>
+          ))}
+        </div>
+      ))}
     </div>
   );
 
   // Mobile view
   const MobileView = () => (
-    <div className="block lg:hidden">
-      <div>
-        <div className="flex border-b transition-all ease-in-out">
-          {/* Select Button */}
-          <div
-            className={`w-1/2 text-center p-4 font-bold text-2xl cursor-pointer border rounded rounded-r-none transition duration-100 ease-in-out ${
-              activeTab === "select"
-                ? "bg-blue-100 text-[var(--privco-blue)] border-[var(--privco-blue)]"
-                : "text-gray-600 border-gray-400 border-r-0 hover:bg-blue-50 hover-border-blue-200"
-            }`}
-            onClick={() => setActiveTab("select")}
-          >
-            Select
-          </div>
+    <div className="block lg:hidden overflow-hidden rounded-xl border border-gray-200 shadow-sm">
+      {/* Plan Selection Tabs */}
+      <div className="flex transition-all duration-300 ease-in-out">
+        <button
+          className={`w-1/2 text-center py-4 px-5 font-bold text-lg transition duration-200 ease-in-out ${
+            activeTab === "select"
+              ? "bg-emerald-50 text-emerald-600 border-b-2 border-emerald-500"
+              : "text-gray-600 hover:bg-gray-50"
+          }`}
+          onClick={() => setActiveTab("select")}
+        >
+          Select
+        </button>
+        <button
+          className={`w-1/2 text-center py-4 px-5 font-bold text-lg transition duration-200 ease-in-out ${
+            activeTab === "enterprise"
+              ? "bg-blue-50 text-blue-600 border-b-2 border-blue-600"
+              : "text-gray-600 hover:bg-gray-50"
+          }`}
+          onClick={() => setActiveTab("enterprise")}
+        >
+          Enterprise
+        </button>
+      </div>
 
-          {/* Enterprise Button */}
-          <div
-            className={`w-1/2 text-center p-4 font-bold text-2xl cursor-pointer border rounded rounded-l-none  ${
-              activeTab === "enterprise"
-                ? "bg-blue-100 text-[var(--privco-blue)] border-[var(--privco-blue)] "
-                : "text-gray-600 border-gray-400 border-l-0 hover:bg-blue-50 hover-border-blue-200"
-            }`}
-            onClick={() => setActiveTab("enterprise")}
-          >
-            Enterprise
+      {/* Plan Details */}
+      <div className="p-6 bg-white border-b">
+        <div className="text-center mb-6">
+          <h2 className="text-2xl font-bold mb-2 text-gray-800">
+            {activeTab === "select" ? "Select Plan" : "Enterprise Plan"}
+          </h2>
+          <p className="text-gray-600 mb-3">
+            {activeTab === "select"
+              ? "For growing teams"
+              : "For large organizations"}
+          </p>
+          <div className="mb-4">
+            <span className="text-3xl font-bold">
+              {activeTab === "select" ? "$299" : "$999"}
+            </span>
+            <span className="text-gray-500">/month</span>
           </div>
         </div>
 
-        {/* Action button */}
-        <div className="p-4 border-b">
-          {activeTab === "select" ? (
-            <button className="bg-[var(--privco-green)] hover:bg-green-600 text-white py-4 text-2xl font-bold px-6 w-full rounded-md">
-              Start 7-Day Free Trial
-            </button>
-          ) : (
-            <button className="bg-[var(--privco-blue)] hover:bg-blue-600 text-white py-4 text-2xl font-bold px-6 w-full rounded-md">
-              Choose This Plan
-            </button>
-          )}
-        </div>
+        {activeTab === "select" ? (
+          <button className="bg-emerald-500 hover:bg-emerald-600 transition-colors text-white py-3 text-lg font-bold px-6 w-full rounded-lg shadow-sm">
+            Start 7-Day Free Trial
+          </button>
+        ) : (
+          <button className="bg-blue-600 hover:bg-blue-700 transition-colors text-white py-3 text-lg font-bold px-6 w-full rounded-lg shadow-sm">
+            Contact Sales
+          </button>
+        )}
       </div>
 
-      {/* Feature list */}
-      <div>
-        {features.map((feature, index) => (
-          <div
-            key={index}
-            className={`${index % 2 === 0 ? "bg-gray-100" : "bg-white"}`}
+      {/* Feature Categories Accordion */}
+      {featureCategories.map((category) => (
+        <div key={category.title} className="border-b">
+          <button
+            className="w-full p-4 text-left font-bold text-lg flex justify-between items-center bg-gray-50"
+            onClick={() => toggleCategory(category.title)}
           >
-            <div className="flex">
-              <div className="w-1/2 border-r p-5">
-                {" "}
-                <div className="font-medium">{feature.name}</div>
-                {/* feature.category && (
-                  <div className="">{feature.category}</div>
-                )*/}{" "}
-              </div>
+            {category.title}
+            {expandedCategory === category.title ? (
+              <ChevronUp className="h-5 w-5 text-gray-600" />
+            ) : (
+              <ChevronDown className="h-5 w-5 text-gray-600" />
+            )}
+          </button>
 
-              <div className="w-1/2 p-5 font-semibold">
-                {activeTab === "select"
-                  ? feature.selectValue
-                  : feature.enterpriseValue}
+          <div
+            className={`transition-all duration-300 ease-in-out overflow-hidden ${
+              expandedCategory === category.title
+                ? "max-h-[2000px] opacity-100"
+                : "max-h-0 opacity-0"
+            }`}
+          >
+            {category.features.map((feature, index) => (
+              <div
+                key={feature.name}
+                className={`border-t ${
+                  index % 2 === 0 ? "bg-white" : "bg-gray-50"
+                }`}
+              >
+                <div className="p-4">
+                  <div className="font-medium text-gray-800">
+                    {feature.name}
+                  </div>
+                  {feature.description && (
+                    <div className="text-sm text-gray-500 mt-1">
+                      {feature.description}
+                    </div>
+                  )}
+                  <div className="mt-3 p-3 bg-gray-100 rounded-lg font-medium">
+                    {activeTab === "select"
+                      ? feature.selectValue
+                      : feature.enterpriseValue}
+                  </div>
+                </div>
               </div>
-            </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   );
 
   return (
-    <div className="">
+    <div className="max-w-6xl mx-auto px-4 py-8">
       <DesktopView />
       <MobileView />
     </div>

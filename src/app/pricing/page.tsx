@@ -8,6 +8,7 @@ import PricingTable from "../components/content-blocks/PricingTable";
 import Accordion from "../components/content-blocks/Accordion";
 import RoundButton from "../components/content-elements/RoundButton";
 import HeroHeader from "../components/content-blocks/HeroHeader";
+import PricingCards from "../components/content-blocks/PricingCards";
 
 export default function Pricing() {
   const accordionItems = [
@@ -71,129 +72,18 @@ export default function Pricing() {
 
       <SectionColor
         textColor="var(--privco-black)"
-        backgroundColor="var(--privco-lightgreen)"
-      >
-        <RowPadding>
-          <div className="mb-2">
-            <ClientLogos
-              images={[
-                "/images/svgs/logos/deloitte.svg",
-                "/images/svgs/logos/amex.svg",
-                "/images/svgs/logos/microsoft.svg",
-                "/images/svgs/logos/stephens.svg",
-                "/images/svgs/logos/wharton.svg",
-              ]}
-            />
-          </div>
-        </RowPadding>
-      </SectionColor>
-
-      <SectionColor
-        textColor="var(--privco-black)"
         backgroundColor="var(--privco-white)"
       >
-        <RowPadding>
-          <div className="grid lg:grid-cols-2 grid-cols-1 md:gap-8 gap-6">
-            <div className="space-y-3 border-2 rounded-xl py-5 px-7 border-[var(--privco-blue)]">
-              <div className="space-y-3">
-                <div className="flex justify-between items-baseline">
-                  <h5 className="text-xl md:text-2xl font-bold text-[var(--privco-blue)]">
-                    PrivCo Select
-                  </h5>
-                  <div className="flex space-x-2 text-[var(--privco-blue)]">
-                    <h5 className="px-3 py-0.5 text-sm rounded border border-[var(--privco-blue)]">
-                      Annual
-                    </h5>
-                    <h5 className="px-3 py-0.5 text-sm rounded border border-[var(--privco-blue)]">
-                      Monthly
-                    </h5>
-                  </div>
-                </div>
-
-                <div className="block md:flex md:space-x-2 items-baseline font-semibold ">
-                  <h3 className="text-3xl md:text-4xl font-bold">$167/month</h3>
-                  <h4 className="space-xl">(paid annually)</h4>
-                </div>
-                <h5 className="text-xl md:text-2xl font-semibold">
-                  Powerful private-company search
-                </h5>
-              </div>
-              <div>
-                <ul className="list-disc pl-4">
-                  <li>500 company/investor profile views per month</li>
-                  <li>Most recent year of financial data</li>
-                  <li>Most recent funding round data</li>
-                  <li>
-                    Search by location, industry, keyword, year founded,
-                    revenue, EBITA, VC/PE status, parent/subsidiary
-                  </li>
-                  <li>100 viewable results per search category</li>
-                  <li>50 total monthly searches across all categories</li>
-                  <li>50 monthly profile PDF downloads</li>
-                  <li>10,000 company contact records per month</li>
-                  <li>1,000 investor contact records per month</li>
-                  <li>1,000 contact searches and list builds</li>
-                </ul>
-              </div>
-              <div className="bg-[var(--privco-green)] text-[var(--privco-white)] font-bold text-center p-5 text-2xl rounded">
-                <button>Start 7-Day Free Trial</button>
-              </div>
-            </div>
-
-            <div className="space-y-3 border border-gray-300 rounded-xl py-5 px-7">
-              <div className="space-y-3">
-                <div className="flex justify-between items-baseline">
-                  <h5 className="text-xl md:text-2xl font-bold text-[var(--privco-blue)]">
-                    PrivCo Enterprise
-                  </h5>
-                </div>
-
-                <div className="block md:flex md:space-x-2 items-baseline font-semibold ">
-                  <h3 className="text-3xl md:text-4xl font-bold">Contact Us</h3>
-                </div>
-                <h5 className="text-xl md:text-2xl font-bold">
-                  Custom Data Solutions for Teams
-                </h5>
-              </div>
-              <div>
-                <h4 className="text-lg font-semibold">
-                  Everything in Select, plus:
-                </h4>
-                <ul className="list-disc pl-4">
-                  <li>Unlimited company/investor profile views</li>
-                  <li>All available years of financial data</li>
-                  <li>All available funding round data</li>
-                  <li>
-                    Additional search criteria: employee size, revenue growth
-                    rate, total funding raised, latest funding year, latest
-                    valuation
-                  </li>
-                  <li>
-                    500 viewable results per search category (5x more than
-                    Select)
-                  </li>
-                  <li>500 total monthly searches (10x more than Select)</li>
-                  <li>
-                    500 monthly profile PDF downloads with rollover (6,000
-                    annually)
-                  </li>
-                  <li>Dedicated account manager</li>
-                  <li>Access to PrivCo Data Team for custom requests</li>
-                </ul>
-              </div>
-              <div className="bg-[var(--privco-blue)] text-[var(--privco-white)] font-bold text-center p-5 text-2xl rounded">
-                <button>Contact Us</button>
-              </div>
-            </div>
+        <div className="mt-8">
+          <PricingCards />
+        </div>
+        <div className="mt-20">
+          <div className="w-fit mx-auto">
+            {" "}
+            <SecondaryHeadline headline="Compare Plans" />
           </div>
-          <div className="mt-20">
-            <div className="text-center">
-              {" "}
-              <SecondaryHeadline headline="Compare Plans" />
-            </div>
-            <PricingTable />
-          </div>
-        </RowPadding>
+          <PricingTable />
+        </div>
       </SectionColor>
       <SectionColor
         backgroundColor="var(--privco-lightgreen)"
