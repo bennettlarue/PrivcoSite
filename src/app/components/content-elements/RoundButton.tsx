@@ -1,6 +1,8 @@
 import React from "react";
+import Link from "next/link";
 
 interface RoundButtonProps {
+  href: string; // Add href prop for the link
   backgroundColor: string;
   textColor: string;
   border?: boolean;
@@ -8,13 +10,15 @@ interface RoundButtonProps {
 }
 
 const RoundButton: React.FC<RoundButtonProps> = ({
+  href = "#", // Default href to "#" if undefined
   backgroundColor,
   textColor,
   border,
-  children, // Destructure children
+  children,
 }) => {
   return (
-    <div
+    <Link
+      href={href}
       style={{
         color: textColor,
         backgroundColor: backgroundColor,
@@ -23,7 +27,7 @@ const RoundButton: React.FC<RoundButtonProps> = ({
       className="rounded px-[24px] py-[12px] text-xl leading-[150%] font-bold shadow"
     >
       {children}
-    </div>
+    </Link>
   );
 };
 

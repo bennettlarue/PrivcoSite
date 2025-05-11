@@ -16,15 +16,15 @@ const companyLinks = [
 ];
 
 const resourceLinks = [
-  { name: "Support", href: "/support" },
-  { name: "Feedback", href: "/feedback" },
-  { name: "Media Inquiries", href: "/media" },
-  { name: "Partnership Inquiries", href: "/partnerships" },
+  { name: "Support", href: "mailto:support@privco.com" },
+  { name: "Feedback", href: "mailto:feedback@privco.com" },
+  { name: "Media Inquiries", href: "mailto:pr@privco.com" },
+  { name: "Partnership Inquiries", href: "mailto:partnership@privco.com" },
   { name: "Job Recruitment Fraud", href: "/recruitment-fraud" },
   { name: "Privacy Policy", href: "/privacy" },
   { name: "CCPA", href: "/ccpa" },
-  { name: "Terms of Use", href: "/terms" },
-  { name: "Help Center", href: "/help" },
+  { name: "Terms of Use", href: "/terms-of-use" },
+  { name: "Help Center", href: "/help-center" },
 ];
 
 const socialLinks = [
@@ -40,7 +40,7 @@ const socialLinks = [
   },
   {
     name: "LinkedIn",
-    href: "https://linkedin.com/company/privco",
+    href: "https://linkedin.com/company/privco-media-llc/",
     icon: "/images/svgs/linkedin.svg",
   },
 ];

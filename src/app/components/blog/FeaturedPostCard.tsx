@@ -31,7 +31,7 @@ export default function FeaturedPostCard({ post }: { post: BlogPost }) {
       >
         {/* Image container with proper aspect ratio */}
         <div className="w-full md:w-2/5 relative">
-          <div className="aspect-video relative overflow-hidden w-full h-[300px]">
+          <div className="aspect-video relative overflow-hidden w-full md:h-[300px] h-[200px]">
             <Image
               src={
                 post.fields.image
@@ -85,19 +85,6 @@ export default function FeaturedPostCard({ post }: { post: BlogPost }) {
             <p className="text-gray-700 mb-4 line-clamp-3">
               {post.fields.description}
             </p>
-          )}
-
-          {post.fields.tags && post.fields.tags.length > 0 && (
-            <div className="flex flex-wrap gap-2 mt-auto">
-              {post.fields.tags.slice(0, 3).map((tag) => (
-                <span
-                  key={tag}
-                  className="text-xs px-2 py-1 bg-gray-100 rounded-full"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
           )}
 
           <div className="mt-4 text-blue-600 font-medium flex items-center group-hover:underline">

@@ -9,6 +9,8 @@ import Accordion from "../components/content-blocks/Accordion";
 import RoundButton from "../components/content-elements/RoundButton";
 import HeroHeader from "../components/content-blocks/HeroHeader";
 import PricingCards from "../components/content-blocks/PricingCards";
+import FadeIn from "../components/transition-wrappers/FadeIn";
+import SecondaryCtaButton from "../components/content-blocks/SecondaryCtaButton";
 
 export default function Pricing() {
   const accordionItems = [
@@ -63,9 +65,9 @@ export default function Pricing() {
           title="More data. More Deals."
           subtitle="146 million data points and 893K+ companies"
           ctaText="7-Day Full-Access Free Trial"
-          ctaHref="/api"
+          ctaHref={"https://system.privco.com/signup"}
           cta2Text="Learn More"
-          cta2Href="/api"
+          cta2Href="/product"
           altText="Hero background image"
         />
       </div>
@@ -74,16 +76,18 @@ export default function Pricing() {
         textColor="var(--privco-black)"
         backgroundColor="var(--privco-white)"
       >
-        <div className="mt-8">
-          <PricingCards />
-        </div>
-        <div className="mt-20">
-          <div className="w-fit mx-auto">
-            {" "}
-            <SecondaryHeadline headline="Compare Plans" />
+        <FadeIn>
+          <div className="mt-8 px-5">
+            <PricingCards />
           </div>
-          <PricingTable />
-        </div>
+          <div className="mt-12 px-5">
+            <div className="w-fit mx-auto">
+              {" "}
+              <SecondaryHeadline headline="Compare Plans" />
+            </div>
+            <PricingTable />
+          </div>
+        </FadeIn>
       </SectionColor>
       <SectionColor
         backgroundColor="var(--privco-lightgreen)"
@@ -97,18 +101,12 @@ export default function Pricing() {
             </SecondaryHeadline>
           </div>
           <Accordion items={accordionItems} />
-          <div className="space-y-5">
+          <div className="space-y-5 mt-12">
             <h3 className="font-bold md:text-2xl text-xl mt-5">
               Still have questions? Get expert help now!
             </h3>
             <div className="w-fit font-bold md:text-3xl text-xl">
-              {" "}
-              <RoundButton
-                backgroundColor="var(--privco-blue)"
-                textColor="var(--privco-white)"
-              >
-                Contact
-              </RoundButton>
+              <SecondaryCtaButton href="/contact" text="Contact Us" />
             </div>
           </div>
         </RowPadding>

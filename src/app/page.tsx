@@ -1,18 +1,14 @@
 import Image from "next/image";
-import MainHeadline from "./components/content-blocks/MainHeadline";
 import SectionColor from "./components/content-blocks/SectionColor";
 import RoundButton from "./components/content-elements/RoundButton";
 import FlexRow from "./components/content-containers/Flexrow";
 import SecondaryHeadline from "./components/content-blocks/SecondaryHeadline";
 import NumberBlock from "./components/content-elements/NumberBock";
 import RowPadding from "./components/content-containers/RowPadding";
-import SmallHeadline from "./components/content-blocks/SmallHeadline";
 import ClientLogos from "./components/content-blocks/ClientLogos";
 import BoxText from "./components/content-blocks/BoxText";
 import Figure from "./components/content-blocks/Figure";
 import BigButton from "./components/content-blocks/BigButton";
-import FadeIn from "./components/transition-wrappers/FadeIn"; // Import FadeIn
-import StarsSVG from "./components/svgs/Stars";
 import QuoteBlock from "./components/content-blocks/QuoteBlock"; // Import QuoteBlock
 import SectionColorLines from "./components/content-blocks/SectionColorLines";
 import SmallHeadlineSection from "./components/content-blocks/SmallHeadlineSection"; // Import SmallHeadlineSection
@@ -25,7 +21,8 @@ import {
   Sparkles,
 } from "lucide-react";
 import HeroHeader from "./components/content-blocks/HeroHeader";
-import MailchimpCampaigns from "./components/MailchimpCampaigns";
+import CtaButton from "./components/content-blocks/CtaButton";
+import SecondaryCtaButton from "./components/content-blocks/SecondaryCtaButton";
 
 // Define a reusable component for the SmallHeadline section
 
@@ -40,9 +37,9 @@ Others Can’t See"
           subtitle="PrivCo is the leading provider of private company financial data, 
           specializing in bootstrapped companies with revenues above $1MM."
           ctaText="Start Free"
-          ctaHref="/api"
+          ctaHref="https://system.privco.com/signup"
           cta2Text="Learn More"
-          cta2Href="/api"
+          cta2Href="/product"
           altText="Hero background image"
         />
       </div>
@@ -144,12 +141,12 @@ Others Can’t See"
                   need before upgrading.
                 </p>
                 <FlexRow>
-                  <RoundButton textColor="#FFFFFF" backgroundColor="#34C759">
-                    Start Free
-                  </RoundButton>
-                  <RoundButton textColor="#FFFFFF" backgroundColor="#043873">
-                    Learn More
-                  </RoundButton>
+                  <CtaButton
+                    ctaHref="https://system.privco.com/signup"
+                    ctaText="Start Free"
+                  />
+
+                  <SecondaryCtaButton text="Learn More" href="/product" />
                 </FlexRow>
               </SecondaryHeadline>
             </div>
@@ -301,6 +298,7 @@ Others Can’t See"
                   textColor="var(--privco-white)"
                   backgroundColor="var(--privco-green)"
                   border={true}
+                  href={"https://system.privco.com/signup"}
                 >
                   Start Your 7-Day, Full-Access Free Trial
                 </BigButton>

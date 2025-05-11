@@ -137,10 +137,10 @@ const SolutionsPage: React.FC = () => {
 unmatched private market insights"
           subtitle="From deal sourcing to research, PrivCo’s actionable intelligence helps you uncover opportunities, make informed decisions, and stay ahead."
           ctaText="Start Free"
-          ctaHref="/api"
+          ctaHref={"https://system.privco.com/signup"}
           cta2Text="Learn More"
-          cta2Href="/api"
-          altText="Hero background image"
+          cta2Href="/product"
+          altText="Privco Solutions Page Hero"
         />
       </div>
 
@@ -326,6 +326,7 @@ automate and expedite this process, and they beat all other options both
             <SecondaryHeadline headline="See beyond the obvious.">
               <div className="mx-auto">
                 <BigButton
+                  href={"https://system.privco.com/signup"}
                   textColor="var(--privco-white)"
                   backgroundColor="var(--privco-green)"
                   border={true}

@@ -474,7 +474,10 @@ const Nav: React.FC = () => {
                             >
                               {item.dropdown.map(
                                 (dropdownItem, dropdownIdx) => (
-                                  <div className="border-b border-white/20 pb-1">
+                                  <div
+                                    key={`${item.title}-${dropdownIdx}`}
+                                    className="border-b border-white/20 pb-1"
+                                  >
                                     <motion.a
                                       key={dropdownItem.title}
                                       href={dropdownItem.href}

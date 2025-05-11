@@ -69,52 +69,55 @@ export default async function InsightsPage() {
             title="Insights"
             subtitle="Exclusive insights into private industry trends derived from millions of data points."
             ctaText="7-Day Full-Access Free Trial"
-            ctaHref="/api"
+            ctaHref={"https://system.privco.com/signup"}
+            cta2Text="Learn More"
+            cta2Href="/product"
             altText="Data visualization representing private market insights"
           />
         </section>
-
-        <SectionColor
-          backgroundColor="var(--privco-white)"
-          textColor="var(--privco-black)"
-        >
-          <div className="max-w-[1300px] mx-auto my-14">
-            {/* Featured Posts Section */}
-            {featuredPosts.length > 0 && (
-              <section
-                aria-labelledby="featured-posts-heading"
-                className="mb-16"
-              >
-                <h2
-                  id="featured-posts-heading"
-                  className="text-sm font-semibold text-green-600 uppercase tracking-wider mb-8"
+        <div className="md:px-10 px-5">
+          <SectionColor
+            backgroundColor="var(--privco-white)"
+            textColor="var(--privco-black)"
+          >
+            <div className="max-w-[1300px] mx-auto my-14">
+              {/* Featured Posts Section */}
+              {featuredPosts.length > 0 && (
+                <section
+                  aria-labelledby="featured-posts-heading"
+                  className="mb-16"
                 >
-                  Featured Insights
+                  <h2
+                    id="featured-posts-heading"
+                    className="text-sm font-semibold text-green-600 uppercase tracking-wider mb-8"
+                  >
+                    Featured Insights
+                  </h2>
+                  <div className="space-y-8">
+                    {featuredPosts.map((post) => (
+                      <FeaturedPostCard key={post.sys.id} post={post} />
+                    ))}
+                  </div>
+                </section>
+              )}
+
+              {/* Regular Posts Grid */}
+              <section aria-labelledby="all-posts-heading">
+                <h2
+                  id="all-posts-heading"
+                  className="text-sm font-semibold text-gray-800 uppercase tracking-wider mb-8"
+                >
+                  Latest Insights
                 </h2>
-                <div className="space-y-8">
-                  {featuredPosts.map((post) => (
-                    <FeaturedPostCard key={post.sys.id} post={post} />
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {regularPosts.map((post) => (
+                    <RegularPostCard key={post.sys.id} post={post} />
                   ))}
                 </div>
               </section>
-            )}
-
-            {/* Regular Posts Grid */}
-            <section aria-labelledby="all-posts-heading">
-              <h2
-                id="all-posts-heading"
-                className="text-sm font-semibold text-gray-800 uppercase tracking-wider mb-8"
-              >
-                Latest Insights
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {regularPosts.map((post) => (
-                  <RegularPostCard key={post.sys.id} post={post} />
-                ))}
-              </div>
-            </section>
-          </div>
-        </SectionColor>
+            </div>
+          </SectionColor>
+        </div>
       </main>
     </>
   );

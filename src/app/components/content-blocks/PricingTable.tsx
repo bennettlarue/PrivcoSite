@@ -8,6 +8,7 @@ import {
   ChevronUp,
   ArrowRight,
 } from "lucide-react";
+import Link from "next/link";
 
 type PlanTier = "select" | "enterprise";
 
@@ -183,11 +184,11 @@ const PricingTable: React.FC = () => {
         {/* Select Plan */}
         <div className="text-center p-8 border-b border-l border-r relative">
           <div className="absolute -top-1 right-0 left-0 h-1 bg-emerald-500"></div>
-          <h2 className="text-3xl font-bold mb-2 text-gray-800">Select</h2>
+          <h2 className="md:text-3xl font-bold mb-2 text-gray-800">Select</h2>
           <p className="text-lg mb-4 text-gray-600">For growing teams</p>
 
           <button className="w-full border border-gray-200 bg-green-600 hover:bg-green-800 hover:border-green-400 shadow-sm hover:shadow text-white font-bold py-4 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center mb-8 group">
-            <span className="mr-2">Start 7-Day Free Trial</span>
+            <span className="mr-2 text-xl">Start 7-Day Free Trial</span>
             <ArrowRight className="transition-transform duration-200 group-hover:translate-x-1" />
           </button>
         </div>
@@ -199,7 +200,7 @@ const PricingTable: React.FC = () => {
           <p className="text-lg mb-4 text-gray-600">For large organizations</p>
 
           <button className="w-full border border-gray-200 bg-[var(--privco-blue)] hover:bg-blue-950 hover:border-[var(--privco-lightblue)] shadow-sm hover:shadow text-white font-bold py-4 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center mb-8 group">
-            <span className="mr-2">Contact Sales</span>
+            <span className="mr-2 text-xl">Contact Sales</span>
             <ArrowRight className="transition-transform duration-200 group-hover:translate-x-1" />
           </button>
         </div>
@@ -285,22 +286,20 @@ const PricingTable: React.FC = () => {
               ? "For growing teams"
               : "For large organizations"}
           </p>
-          <div className="mb-4">
-            <span className="text-3xl font-bold">
-              {activeTab === "select" ? "$299" : "$999"}
-            </span>
-            <span className="text-gray-500">/month</span>
-          </div>
         </div>
 
         {activeTab === "select" ? (
-          <button className="bg-emerald-500 hover:bg-emerald-600 transition-colors text-white py-3 text-lg font-bold px-6 w-full rounded-lg shadow-sm">
-            Start 7-Day Free Trial
-          </button>
+          <Link href={"https://system.privco.com/signup"}>
+            <button className="bg-green-600 border hover:bg-green-800 transition-colors text-white py-3 text-lg font-bold px-6 w-full rounded-lg shadow-sm">
+              Start 7-Day Free Trial
+            </button>
+          </Link>
         ) : (
-          <button className="bg-blue-600 hover:bg-blue-700 transition-colors text-white py-3 text-lg font-bold px-6 w-full rounded-lg shadow-sm">
-            Contact Sales
-          </button>
+          <Link href={"/contact"}>
+            <button className="bg-[var(--privco-blue)] hover:bg-blue-950 transition-colors text-white py-3 text-lg font-bold px-6 w-full rounded-lg shadow-sm">
+              Contact Sales
+            </button>
+          </Link>
         )}
       </div>
 

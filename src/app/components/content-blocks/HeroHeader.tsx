@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import CtaButton from "./CtaButton";
+import SecondaryCtaButton from "./SecondaryCtaButton";
 
 interface HeroHeaderProps {
   imageUrl: string;
@@ -109,14 +110,7 @@ export default function HeroHeader({
               )}
 
               {cta2Text && cta2Href && (
-                <div>
-                  <a
-                    href={cta2Href}
-                    className="inline-block text-white border bg-[var(--privco-blue)] border-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-950 hover:border-[var(--privco-lightblue)] transition-colors duration-200"
-                  >
-                    {cta2Text}
-                  </a>
-                </div>
+                <SecondaryCtaButton href={cta2Href} text={cta2Text} />
               )}
             </motion.div>
           </div>

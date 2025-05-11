@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { CheckCircle, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 type BillingCycle = "monthly" | "annual";
 
@@ -50,13 +51,13 @@ const PricingCards: React.FC = () => {
           <div className="p-8">
             {/* Card Header */}
             <div className="mb-8">
-              <div className="flex justify-between items-center mb-4">
+              <div className="md:flex justify-between items-center mb-4">
                 <h3 className="text-2xl font-bold text-gray-800">
                   <span className="text-green-600">PrivCo</span> Select
                 </h3>
 
                 {/* Billing Toggle */}
-                <div className="flex p-1 rounded-lg bg-gray-100">
+                <div className="flex p-1 rounded-lg bg-gray-100 w-fit md:mt-0 mt-3">
                   <button
                     className={`px-4 py-1.5 text-sm font-medium rounded-md transition-all ${
                       billingCycle === "annual"
@@ -83,7 +84,7 @@ const PricingCards: React.FC = () => {
               {/* Price */}
               <div className="mb-3">
                 <div className="flex items-baseline">
-                  <span className="text-5xl font-bold text-gray-900">
+                  <span className="text-4xl font-bold text-gray-900">
                     {selectPricing[billingCycle]}
                   </span>
                   <span className="ml-2 text-xl text-gray-500">/month</span>
@@ -100,10 +101,12 @@ const PricingCards: React.FC = () => {
               </p>
             </div>
             {/* CTA Button */}
-            <button className="w-full border border-gray-200 bg-green-600 hover:bg-green-800 hover:border-green-400 shadow-sm hover:shadow text-white font-bold py-4 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center mb-8 group">
-              <span className="mr-2">Start 7-Day Free Trial</span>
-              <ArrowRight className="transition-transform duration-200 group-hover:translate-x-1" />
-            </button>
+            <Link href={"https://system.privco.com/signup"}>
+              <button className="w-full border border-gray-200 bg-green-600 hover:bg-green-800 hover:border-green-400 shadow-sm hover:shadow text-white font-bold py-4 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center mb-8 group">
+                <span className="mr-2 text-xl">Start 7-Day Free Trial</span>
+                <ArrowRight className="transition-transform duration-200 group-hover:translate-x-1" />
+              </button>
+            </Link>
             {/* Feature List */}
             <div className="">
               <ul className="space-y-3">
@@ -134,7 +137,7 @@ const PricingCards: React.FC = () => {
               {/* Price */}
               <div className="mb-3">
                 <div className="flex items-baseline">
-                  <span className="text-5xl font-bold text-gray-900">
+                  <span className="text-3xl font-bold text-gray-900">
                     Custom
                   </span>
                 </div>
@@ -146,10 +149,12 @@ const PricingCards: React.FC = () => {
             </div>
 
             {/* CTA Button */}
-            <button className="w-full border border-gray-200 bg-[var(--privco-blue)] hover:bg-blue-950 hover:border-[var(--privco-lightblue)] shadow-sm hover:shadow text-white font-bold py-4 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center mb-8 group">
-              <span className="mr-2">Contact Sales</span>
-              <ArrowRight className="transition-transform duration-200 group-hover:translate-x-1" />
-            </button>
+            <Link href={"/contact"}>
+              <button className="w-full border border-gray-200 bg-[var(--privco-blue)] hover:bg-blue-950 hover:border-[var(--privco-lightblue)] shadow-sm hover:shadow text-white font-bold py-4 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center mb-8 group">
+                <span className="mr-2 text-xl">Contact Sales</span>
+                <ArrowRight className="transition-transform duration-200 group-hover:translate-x-1" />
+              </button>
+            </Link>
 
             {/* Feature List */}
             <div className="">

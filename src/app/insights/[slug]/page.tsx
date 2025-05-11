@@ -6,6 +6,7 @@ import Link from "next/link";
 import { marked } from "marked";
 import Image from "next/image";
 import { Metadata, ResolvingMetadata } from "next";
+import PurchaseForm from "@/app/components/blog/PurchaceForm";
 
 // Define your TypeScript interfaces here
 interface Author {
@@ -432,23 +433,7 @@ export default async function BlogPostPage({
               */}
 
               {/* Call to Action - only shown if shouldHideSalesForm is false or undefined */}
-              {!post.fields.shouldHideSalesForm && (
-                <div className="mt-12 p-8 bg-gradient-to-br from-indigo-50 to-blue-50 rounded-lg text-center shadow-sm border border-indigo-100">
-                  <h3 className="text-xl font-bold text-indigo-900 mb-3">
-                    Stay updated with PrivCo
-                  </h3>
-                  <p className="mb-6 text-indigo-700 max-w-xl mx-auto">
-                    Subscribe to our newsletter for the latest insights on
-                    private companies and market trends.
-                  </p>
-                  <Link
-                    href="/subscribe"
-                    className="inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 px-8 rounded-md transition-colors shadow-sm"
-                  >
-                    Subscribe Now
-                  </Link>
-                </div>
-              )}
+              {!post.fields.shouldHideSalesForm && <PurchaseForm />}
 
               {/* Pagination - Navigate between posts */}
               <nav className="mt-12 border-t border-gray-200 pt-6 flex justify-between items-center">

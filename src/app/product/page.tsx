@@ -173,10 +173,8 @@ export default function Product() {
           title="With PrivCo, more data means greater insights into opportunities. "
           subtitle="Competitors show you just 20% of the private market—PrivCo reveals the 80% below the surface. From granular financials to executive contacts, we give you the tools to act decisively."
           ctaText="Start Free"
-          ctaHref="/api"
-          cta2Text="Learn More"
-          cta2Href="/api"
-          altText="Hero background image"
+          ctaHref={"https://system.privco.com/signup"}
+          altText="Privco Product Page Hero"
         />
       </div>
 
@@ -507,6 +505,7 @@ of the hardest-to-find information, financial data, and contacts for the private
               </p>
               <div className="mx-auto">
                 <BigButton
+                  href={"https://system.privco.com/signup"}
                   textColor="var(--privco-white)"
                   backgroundColor="var(--privco-green)"
                   border={true}

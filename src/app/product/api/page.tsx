@@ -1,7 +1,6 @@
 import BigButton from "../../components/content-blocks/BigButton";
 import Figure from "../../components/content-blocks/Figure";
 import HeroHeader from "../../components/content-blocks/HeroHeader";
-import MainHeadline from "../../components/content-blocks/MainHeadline";
 import SecondaryHeadline from "../../components/content-blocks/SecondaryHeadline";
 import SectionColor from "../../components/content-blocks/SectionColor";
 import SectionColorLines from "../../components/content-blocks/SectionColorLines";
@@ -18,10 +17,10 @@ export default function Page() {
           title="Custom Datasets, On-Demand"
           subtitle="Pull the exact data you need-and nothing you don't-from the most accurate and up-to-date private financial data with our API and data exports."
           ctaText="Start Free"
-          ctaHref="/api"
+          ctaHref={"https://system.privco.com/signup"}
           cta2Text="Learn More"
-          cta2Href="/api"
-          altText="Hero background image"
+          cta2Href="/product"
+          altText="Privco API Hero Image"
         />
       </div>
       <SectionColor
@@ -153,6 +152,7 @@ export default function Page() {
             <SecondaryHeadline headline="Get Started with Managed Solutions Today">
               <div className="mx-auto w-fit">
                 <BigButton
+                  href={"https://system.privco.com/signup"}
                   textColor="var(--privco-white)"
                   backgroundColor="var(--privco-green)"
                   border={true}

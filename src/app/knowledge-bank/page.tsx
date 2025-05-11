@@ -51,8 +51,10 @@ export default async function KnowledgeBank() {
 
 "
           ctaText="7-Day Full-Access Free Trial"
-          ctaHref="/api"
-          altText="Hero background image"
+          ctaHref={"https://system.privco.com/signup"}
+          cta2Href="/product"
+          cta2Text="Learn More"
+          altText="Privco Dictionary Hero Image"
         />
       </div>
       <SectionColor backgroundColor="white">
