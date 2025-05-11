@@ -5,15 +5,12 @@ interface FigureProps {
   header: string;
   subtext: string;
   image: React.ReactNode;
-  alt: string;
 }
 
-const Figure: React.FC<FigureProps> = ({ header, subtext, image, alt }) => {
+const Figure: React.FC<FigureProps> = ({ header, subtext, image }) => {
   return (
     <div className="space-y-3.5 max-w-[400px] border border-gray-500 shadow mx-auto rounded">
-      <div className="rounded-t-lg border-b" aria-label={alt}>
-        {image}
-      </div>
+      <div className="rounded-t-lg border-b">{image}</div>
       <div className="space-y-0.5 p-5">
         <h4 className="font-semibold text-xl">{header}</h4>
         <p className="font-light text-xl">{subtext}</p>

@@ -5,9 +5,10 @@ import FadeIn from "../transition-wrappers/FadeIn"; // Use your existing FadeIn 
 // Props for the ClientLogos component
 interface ClientLogosProps {
   images: string[];
+  alts: string[];
 }
 
-const ClientLogos: React.FC<ClientLogosProps> = ({ images }) => {
+const ClientLogos: React.FC<ClientLogosProps> = ({ images, alts }) => {
   return (
     <FadeIn>
       <div className="grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 md:gap-16 gap-12 items-center w-fit mx-auto md:px-0 px-5">
@@ -20,7 +21,7 @@ const ClientLogos: React.FC<ClientLogosProps> = ({ images }) => {
               <Image
                 src={item}
                 className="mx-auto"
-                alt={"Client logo"}
+                alt={alts[index] || "Client logo"} // Use corresponding alt or fallback
                 width={180} // Uniform width
                 height={200} // Uniform height
               />
