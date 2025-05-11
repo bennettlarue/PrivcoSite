@@ -27,7 +27,7 @@ const client = createClient({
 });
 
 // Generate metadata for the page
-export async function generateMetadata(): Promise<Metadata> {
+async function generateMetadata(): Promise<Metadata> {
   try {
     const privacyPolicy = await client.getEntry("11To8LuleVFbG2aDMicKsK");
     const policyData = privacyPolicy as unknown as PrivacyPolicyEntry;

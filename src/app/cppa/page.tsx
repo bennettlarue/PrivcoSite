@@ -27,7 +27,7 @@ const client = createClient({
 });
 
 // Generate metadata for the page
-export async function generateMetadata(): Promise<Metadata> {
+async function generateMetadata(): Promise<Metadata> {
   try {
     const ccpaData = await client.getEntry("4qxU5VOyOk3D60UZsk9dFe");
     const ccpaEntry = ccpaData as unknown as CCPAEntry;

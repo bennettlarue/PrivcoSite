@@ -154,5 +154,3 @@ export default async function TermsOfUsePage() {
     </main>
   );
 }
-
-export const metadata = await generateMetadata();
