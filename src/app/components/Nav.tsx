@@ -22,6 +22,7 @@ import { siGooglechrome } from "simple-icons/icons";
 import CtaButton from "./content-blocks/CtaButton";
 import SecondaryCtaButton from "./content-blocks/SecondaryCtaButton";
 import FadeIn from "./transition-wrappers/FadeIn";
+import Link from "next/link";
 
 type NavItem = {
   title: string;
@@ -358,8 +359,16 @@ const Nav: React.FC = () => {
             </div>
             {/* Right side buttons */}
             <div className="hidden lg:flex items-center space-x-3 ml-4">
-              <SecondaryCtaButton text="Login" href="/api" />
-              <CtaButton ctaHref="/api" ctaText="Start Free" />
+              <SecondaryCtaButton
+                text="Login"
+                href="https://system.privco.com/signin
+"
+              />
+              <CtaButton
+                ctaHref="https://system.privco.com/signup
+"
+                ctaText="Start Free"
+              />
             </div>
           </div>
 
@@ -429,24 +438,25 @@ const Nav: React.FC = () => {
             >
               <div className="py-6 space-y-1 px-4">
                 <motion.div className="pb-6 mt-3 border-b border-white">
-                  <motion.a
-                    href="/get-started"
+                  <Link
+                    href="https://system.privco.com/signup
+"
                     className="border bg-green-600 hover:bg-green-800 hover:border-green-400 shadow block w-full px-3 py-2 rounded-md text-lg font-medium transition-colors duration-150"
                   >
                     <div className="flex justify-between items-center">
                       <h4>Start Free</h4>
                       <ArrowRight />
                     </div>
-                  </motion.a>
-                  <motion.a
-                    href="/signin"
+                  </Link>
+                  <Link
+                    href="/https://system.privco.com/signin"
                     className="border border-white text-center block px-3 py-2 mt-4 rounded-md text-lg font-medium text-white hover:bg-blue-950 hover:border-[var(--privco-lightblue)] transition-colors duration-150"
                   >
                     <div className="flex justify-between items-center">
                       <h4>Login</h4>
                       <LogIn />
                     </div>
-                  </motion.a>
+                  </Link>
                 </motion.div>
                 {navItems.map((item, idx) => (
                   <motion.div key={item.title} className="py-1">
