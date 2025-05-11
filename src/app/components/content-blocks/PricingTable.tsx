@@ -187,10 +187,12 @@ const PricingTable: React.FC = () => {
           <h2 className="md:text-3xl font-bold mb-2 text-gray-800">Select</h2>
           <p className="text-lg mb-4 text-gray-600">For growing teams</p>
 
-          <button className="w-full border border-gray-200 bg-green-600 hover:bg-green-800 hover:border-green-400 shadow-sm hover:shadow text-white font-bold py-4 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center mb-8 group">
-            <span className="mr-2 text-xl">Start 7-Day Free Trial</span>
-            <ArrowRight className="transition-transform duration-200 group-hover:translate-x-1" />
-          </button>
+          <Link href={"https://system.privco.com/signup"}>
+            <button className="w-full border border-gray-200 bg-green-600 hover:bg-green-800 hover:border-green-400 shadow-sm hover:shadow text-white font-bold py-4 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center mb-8 group">
+              <span className="mr-2 text-xl">Start 7-Day Free Trial</span>
+              <ArrowRight className="transition-transform duration-200 group-hover:translate-x-1" />
+            </button>
+          </Link>
         </div>
 
         {/* Enterprise Plan */}
@@ -199,10 +201,12 @@ const PricingTable: React.FC = () => {
           <h2 className="text-3xl font-bold mb-2 text-gray-800">Enterprise</h2>
           <p className="text-lg mb-4 text-gray-600">For large organizations</p>
 
-          <button className="w-full border border-gray-200 bg-[var(--privco-blue)] hover:bg-blue-950 hover:border-[var(--privco-lightblue)] shadow-sm hover:shadow text-white font-bold py-4 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center mb-8 group">
-            <span className="mr-2 text-xl">Contact Sales</span>
-            <ArrowRight className="transition-transform duration-200 group-hover:translate-x-1" />
-          </button>
+          <Link href={"/contact"}>
+            <button className="w-full border border-gray-200 bg-[var(--privco-blue)] hover:bg-blue-950 hover:border-[var(--privco-lightblue)] shadow-sm hover:shadow text-white font-bold py-4 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center mb-8 group">
+              <span className="mr-2 text-xl">Contact Sales</span>
+              <ArrowRight className="transition-transform duration-200 group-hover:translate-x-1" />
+            </button>
+          </Link>
         </div>
       </div>
 
