@@ -1,171 +1,148 @@
-"use client";
-// src/app/daily-stack/page.tsx
-
+// app/daily-stack/page.tsx
+import { Metadata } from "next";
 import SectionColor from "../components/content-blocks/SectionColor";
-import MailchimpCampaigns from "../components/MailchimpCampaigns";
-
+import { JsonLd } from "../components/JsonLd";
+import DailyStackClient from "./DailyStackClient";
+import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { useState } from "react";
-import { ArrowRight } from "lucide-react";
-import CtaButton from "../components/content-blocks/CtaButton";
 import DailyStackLogo from "../components/svgs/DailyStackLogo";
-import NewsletterSubscribe from "../components/NewsletterSubscribe";
 
-interface HeroHeaderProps {
-  imageUrl: string;
-  altText?: string;
-  title: React.ReactNode;
-  subtitle?: string;
-  overline?: string;
-  ctaText?: string;
-  ctaHref?: string;
-  cta2Text?: string;
-  cta2Href?: string;
-}
-
-function HeroHeader({
-  imageUrl,
-  altText = "Hero background image",
-  title,
-  subtitle,
-  overline,
-  ctaText,
-  ctaHref,
-  cta2Text,
-  cta2Href,
-}: HeroHeaderProps) {
-  const [imageLoaded, setImageLoaded] = useState(false);
-
-  return (
-    <div className="relative w-full min-h-[540px] h-[60vh] overflow-hidden flex items-center pt-10">
-      {/* Background Image with loading transition */}
-      <div className="absolute inset-0">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: imageLoaded ? 1 : 0 }}
-          transition={{ duration: 0.5 }}
-          className="w-full h-full"
-        >
-          <Image
-            src={imageUrl}
-            alt={altText}
-            fill
-            className="object-cover object-center"
-            priority
-            quality={90}
-            placeholder="blur"
-            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAEpgJNMHWMP1AAAABJRU5ErkJggg=="
-            onLoadingComplete={() => setImageLoaded(true)}
-          />
-        </motion.div>
-      </div>
-
-      {/* Gradient Overlay - with optional animation */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.3, delay: 0.2 }}
-        className="absolute inset-0 bg-gradient-to-r from-[var(--privco-blue)] md:via-blue-950/80 via-blue-950/90 to-blue-950/70"
-      />
-
-      {/* Content Container */}
-      <div className="relative flex items-center w-full md:max-w-[1350px] max-w-[600px] mx-auto lg:my-0 my-10">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            {overline && (
-              <motion.p
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: 0.3 }}
-                className="text-xl font-semibold text-white mb-2 tracking-wide"
-              >
-                {overline}
-              </motion.p>
-            )}
-
-            <motion.h1
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: 0.4 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 drop-shadow-lg"
-            >
-              {title}
-            </motion.h1>
-
-            {subtitle && (
-              <motion.p
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: 0.5 }}
-                className="text-xl sm:text-2xl mb-8 font-medium text-white"
-              >
-                {subtitle}
-              </motion.p>
-            )}
-
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: 0.6 }}
-              className="flex flex-wrap gap-4"
-            >
-              {ctaText && ctaHref && (
-                <CtaButton ctaHref={ctaHref} ctaText={ctaText} />
-              )}
-
-              {cta2Text && cta2Href && (
-                <div>
-                  <a
-                    href={cta2Href}
-                    className="inline-block text-white border bg-[var(--privco-blue)] border-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-950 hover:border-[var(--privco-lightblue)] transition-colors duration-200"
-                  >
-                    {cta2Text}
-                  </a>
-                </div>
-              )}
-            </motion.div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+// Define metadata for the page
+export const metadata: Metadata = {
+  title:
+    "The Daily Stack | Private Market Financial Insights Newsletter | PrivCo",
+  description:
+    "Subscribe to The Daily Stack, a daily financial insights newsletter covering private markets, venture capital, and private equity from PrivCo.",
+  keywords: [
+    "private market newsletter",
+    "financial insights",
+    "daily investment newsletter",
+    "private company news",
+    "venture capital insights",
+    "private equity newsletter",
+  ],
+  openGraph: {
+    title: "The Daily Stack | Private Market Financial Insights Newsletter",
+    description:
+      "Get daily insights on private markets delivered to your inbox. Expert analysis of private companies, venture capital, and emerging trends.",
+    url: "https://privco.com/daily-stack",
+    type: "website",
+    images: [
+      {
+        url: "https://privco.com/images/daily-stack/daily-stack-header.png",
+        width: 1200,
+        height: 630,
+        alt: "The Daily Stack - PrivCo's Private Market Financial Insights Newsletter",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "The Daily Stack | Private Market Financial Insights",
+    description:
+      "Subscribe to The Daily Stack, a daily financial insights newsletter covering private markets, venture capital, and private equity.",
+    images: ["https://privco.com/images/daily-stack/daily-stack-header.png"],
+    site: "@PrivCo",
+    creator: "@PrivCo",
+  },
+  alternates: {
+    canonical: "https://privco.com/daily-stack",
+  },
+};
 
 export default function DailyStackPage() {
-  return (
-    <div>
-      <div>
-        <HeroHeader
-          imageUrl="/images/daily-stack/daily-stack-header.png"
-          title={
-            <div className="flex space-x-2 items-baseline">
-              <div className="md:w-16 w-10 inline md:bg-none ">
-                <DailyStackLogo />
-              </div>
-              <h1 className="flex">The Daily Stack</h1>{" "}
-            </div>
-          }
-          subtitle="The Daily Stack is a financial insights newsletter covering the world of private markets by PrivCo.
-"
-          ctaText="Try Privco Free for 7 Days"
-          ctaHref="/api"
-          altText="Hero background image"
-          cta2Text="Learn More"
-          cta2Href="/api"
-        />
-      </div>
-      <SectionColor textColor="black" backgroundColor="white">
-        {" "}
-        <div></div>
-        <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8 space-y-10">
-          <div>
-            <NewsletterSubscribe />
-          </div>
+  // Base URL for structured data
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://privco.com";
 
-          <MailchimpCampaigns />
-        </div>
-      </SectionColor>
-    </div>
+  // Create structured data for the newsletter
+  const newsletterData = {
+    "@context": "https://schema.org",
+    "@type": "NewsletterService",
+    name: "The Daily Stack",
+    provider: {
+      "@type": "Organization",
+      name: "PrivCo",
+      url: baseUrl,
+    },
+    description:
+      "The Daily Stack is a financial insights newsletter covering the world of private markets by PrivCo.",
+    frequency: "Daily",
+    free: true,
+    category: ["Business", "Finance", "Investments", "Private Markets"],
+  };
+
+  // Recent newsletter examples - this should ideally come from your actual data
+  const recentNewsletters = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        item: {
+          "@type": "EmailMessage",
+          name: "Weekly Markets Update: Venture Funding Rebounds",
+          datePublished: "2024-05-05T09:00:00+00:00",
+          description:
+            "Analysis of the latest venture capital trends and major funding rounds.",
+        },
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        item: {
+          "@type": "EmailMessage",
+          name: "Private Equity Spotlight: Middle Market Acquisitions",
+          datePublished: "2024-05-04T09:00:00+00:00",
+          description:
+            "A deep dive into recent middle market acquisitions and PE strategy.",
+        },
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        item: {
+          "@type": "EmailMessage",
+          name: "Emerging Sectors: Climate Tech Investments Surge",
+          datePublished: "2024-05-03T09:00:00+00:00",
+          description:
+            "Tracking the influx of capital to climate technology startups and scaleups.",
+        },
+      },
+    ],
+  };
+
+  return (
+    <>
+      {/* Add structured data */}
+      <JsonLd>{newsletterData}</JsonLd>
+      <JsonLd>{recentNewsletters}</JsonLd>
+
+      {/* Static content for SEO */}
+      <div className="sr-only">
+        <h1>The Daily Stack - Private Market Financial Insights Newsletter</h1>
+        <p>
+          The Daily Stack is a financial insights newsletter covering the world
+          of private markets by PrivCo.
+        </p>
+        <p>
+          Subscribe to receive daily updates on private company news, venture
+          capital trends, private equity deals, and emerging market insights.
+        </p>
+        <h2>What You'll Receive</h2>
+        <ul>
+          <li>Daily market insights and analysis</li>
+          <li>Breaking news on private companies</li>
+          <li>Funding rounds and acquisition updates</li>
+          <li>Expert commentary on market trends</li>
+          <li>Exclusive data from PrivCo's comprehensive database</li>
+        </ul>
+      </div>
+
+      {/* Breadcrumb navigation */}
+
+      {/* Client-side component with interactive elements */}
+      <DailyStackClient />
+    </>
   );
 }

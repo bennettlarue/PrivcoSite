@@ -19,6 +19,177 @@ import {
 import QuoteBlock from "../components/content-blocks/QuoteBlock";
 import SectionColorLines from "../components/content-blocks/SectionColorLines";
 import HeroHeader from "../components/content-blocks/HeroHeader";
+import { Metadata } from "next";
+import Script from "next/script";
+
+export const metadata: Metadata = {
+  title: "Industry Solutions - PrivCo Data for Investment Banking, PE & More",
+  description:
+    "PrivCo offers tailored private company intelligence solutions for investment banking, private equity, executive search, sales teams, and academic institutions.",
+  keywords: [
+    "investment banking solutions",
+    "private equity data",
+    "executive search intelligence",
+    "venture capital intelligence",
+    "business broker solutions",
+    "sales team intelligence",
+    "academic research data",
+    "private company data",
+    "financial intelligence platform",
+    "deal sourcing tool",
+    "M&A data provider",
+    "private market insights",
+  ],
+
+  // Open Graph metadata for social sharing
+  openGraph: {
+    type: "website",
+    url: "https://privco.com/solutions",
+    title: "Industry Solutions | PrivCo Private Company Intelligence",
+    description:
+      "Dominate competitors with unmatched private market insights. Solutions for investment banking, PE/VC, business brokers, sales teams, and academics.",
+    siteName: "PrivCo",
+    images: [
+      {
+        url: "https://privco.com/images/solutions/solutions-header.png",
+        width: 1200,
+        height: 630,
+        alt: "PrivCo industry solutions dashboard showing private company data",
+      },
+    ],
+  },
+
+  // Twitter card metadata
+  twitter: {
+    card: "summary_large_image",
+    title: "Industry Solutions | PrivCo",
+    description:
+      "Tailored private company intelligence solutions for investment banking, PE/VC, executive search, sales, and academics.",
+    images: ["https://privco.com/images/solutions/solutions-header.png"],
+    creator: "@PrivCo",
+  },
+
+  // Canonical URL
+  alternates: {
+    canonical: "https://privco.com/solutions",
+  },
+
+  // Robots metadata
+  robots: {
+    index: true,
+    follow: true,
+    "max-image-preview": "large",
+    "max-snippet": -1,
+    "max-video-preview": -1,
+  },
+};
+
+// Service-Oriented Structured Data
+const solutionsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "PrivCo Industry Solutions",
+  description:
+    "Tailored private company data solutions for specific industries and use cases",
+  provider: {
+    "@type": "Organization",
+    name: "PrivCo",
+    url: "https://privco.com",
+    logo: "https://privco.com/logo.png",
+  },
+  serviceType: "Financial Data",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+    availability: "https://schema.org/InStock",
+    description:
+      "Start with a free trial to access PrivCo's private company intelligence",
+  },
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Industry Solutions",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Investment Banking Solutions",
+          description:
+            "PrivCo empowers investment bankers to source deals and deliver winning pitches with unparalleled private company insights. Access financials, M&A histories, and growth signals to identify high-potential targets and streamline due diligence.",
+          url: "https://privco.com/solutions#investment-banking",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Business Brokers & Advisors Solutions",
+          description:
+            "For business brokers and advisors, PrivCo provides the financial clarity needed to close deals faster. With historical financials and industry filters, you can value businesses accurately and match buyers with sellers efficiently.",
+          url: "https://privco.com/solutions#business-brokers",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Private Equity & Venture Capital Solutions",
+          description:
+            "PrivCo helps PE and VC firms spot high-potential investments and maximize returns. With funding data, multi-year financials, and company signals, you can identify prospects, track growth, and plan profitable exits.",
+          url: "https://privco.com/solutions#private-equity",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Executive Search Solutions",
+          description:
+            "PrivCo streamlines executive search by revealing high-growth private companies in need of top talent. With 65 million+ executive contacts and detailed company profiles, you can place leaders where they'll thrive.",
+          url: "https://privco.com/solutions#executive-search",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Sales Teams Solutions",
+          description:
+            "PrivCo supercharges sales teams by identifying high-value private company leads. Filter by revenue and growth to target prospects ready to buy, tailoring your pitches with financial insights to close deals faster.",
+          url: "https://privco.com/solutions#sales-teams",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Academic Solutions",
+          description:
+            "PrivCo brings private market insights to students and researchers. With 900,000+ profiles, academic users can explore financials, industries, and trends, bridging classroom learning with real-world applications.",
+          url: "https://privco.com/solutions#academics",
+        },
+      },
+    ],
+  },
+  areaServed: {
+    "@type": "Country",
+    name: "United States",
+  },
+  audience: {
+    "@type": "Audience",
+    audienceType:
+      "Investment Professionals, Business Brokers, Sales Teams, Academic Researchers",
+  },
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: "https://privco.com/search?q={search_term_string}",
+    },
+    "query-input": "required name=search_term_string",
+  },
+};
 
 interface ParagraphBlockProps {
   header: string;
@@ -66,6 +237,11 @@ const SolutionSection: React.FC<SolutionSectionProps> = ({
 }) => {
   return (
     <SectionColor backgroundColor={backgroundColor} textColor={textColor}>
+      <Script
+        id="solutions-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(solutionsJsonLd) }}
+      />
       <div className="lg:block hidden">
         <RowPadding>
           <div className="flex gap-10 items-center ">
@@ -264,6 +440,13 @@ automate and expedite this process, and they beat all other options both
                 "/images/client-logos/cnbc.png",
                 "/images/svgs/logos/inc.svg",
                 "/images/svgs/logos/forbes.svg",
+              ]}
+              alts={[
+                "Deloitte Logo",
+                "Bloomberg Logo",
+                "CNBC Logo",
+                "Inc Logo",
+                "Forbes Logo",
               ]}
             />
           </div>

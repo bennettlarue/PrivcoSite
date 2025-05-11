@@ -7,7 +7,7 @@ import { marked } from "marked";
 import Image from "next/image";
 import { Metadata, ResolvingMetadata } from "next";
 import PurchaseForm from "@/app/components/blog/PurchaceForm";
-
+import { JsonLd } from "@/app/components/JsonLd";
 // Define your TypeScript interfaces here
 interface Author {
   fields: {
@@ -71,6 +71,9 @@ export async function generateMetadata(
   try {
     const { slug } = await params;
 
+    // Base URL for proper canonical and structured data
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://privco.com";
+
     // Fetch the specific blog post by slug
     const entries = (await contentfulClient.getEntries({
       content_type: "blogPost",
@@ -91,26 +94,55 @@ export async function generateMetadata(
     const parentMetadata = await parent;
     const previousImages = parentMetadata.openGraph?.images || [];
 
+    // Format publish and modified dates for metadata
+    const publishDate = post.fields.publishDate || post.sys.createdAt;
+    const modifiedDate = post.sys.updatedAt;
+
+    // Determine most relevant keywords from post tags and title
+    const titleKeywords = post.fields.title
+      .toLowerCase()
+      .split(/\s+/)
+      .filter((word) => word.length > 3)
+      .slice(0, 3);
+
+    const keywords = [
+      ...post.fields.tags,
+      ...titleKeywords,
+      "private markets",
+      "market analysis",
+      "industry insights",
+    ];
+
     return {
       title: `${post.fields.title} | PrivCo Blog`,
       description:
         post.fields.description ||
-        `Read ${post.fields.title} on the PrivCo blog`,
+        `Read ${post.fields.title} on the PrivCo blog for insights on private markets and industry trends.`,
       authors: post.fields.author
         ? [{ name: post.fields.author.fields.name }]
         : undefined,
-      keywords: post.fields.tags,
+      keywords: keywords,
       openGraph: {
         title: post.fields.title,
-        description: post.fields.description,
+        description:
+          post.fields.description ||
+          `Read ${post.fields.title} on the PrivCo blog`,
         type: "article",
-        publishedTime: post.fields.publishDate || post.sys.createdAt,
-        modifiedTime: post.sys.updatedAt,
+        url: `${baseUrl}/blog/${slug}`,
+        publishedTime: publishDate,
+        modifiedTime: modifiedDate,
+        authors: post.fields.author
+          ? [post.fields.author.fields.name]
+          : undefined,
         tags: post.fields.tags,
         images: post.fields.image
           ? [
               {
                 url: `https:${post.fields.image.fields.file.url}`,
+                width:
+                  post.fields.image.fields.file.details?.image?.width || 1200,
+                height:
+                  post.fields.image.fields.file.details?.image?.height || 630,
                 alt: post.fields.image.fields.title || post.fields.title,
               },
               ...previousImages,
@@ -120,10 +152,24 @@ export async function generateMetadata(
       twitter: {
         card: "summary_large_image",
         title: post.fields.title,
-        description: post.fields.description,
+        description:
+          post.fields.description ||
+          `Read ${post.fields.title} on the PrivCo blog`,
         images: post.fields.image
           ? [`https:${post.fields.image.fields.file.url}`]
           : undefined,
+        creator: "@PrivCo",
+        site: "@PrivCo",
+      },
+      alternates: {
+        canonical: `${baseUrl}/blog/${slug}`,
+      },
+      robots: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
       },
     };
   } catch (error) {
@@ -174,6 +220,9 @@ export default async function BlogPostPage({
   try {
     const { slug } = await params;
 
+    // Base URL for proper canonical and structured data
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://privco.com";
+
     // Fetch the specific blog post by slug
     const entries = (await contentfulClient.getEntries({
       content_type: "blogPost",
@@ -220,6 +269,9 @@ export default async function BlogPostPage({
         ? {
             "@type": "Person",
             name: post.fields.author.fields.name,
+            url: `${baseUrl}/authors/${post.fields.author.fields.name
+              .toLowerCase()
+              .replace(/\s+/g, "-")}`,
           }
         : undefined,
       publisher: {
@@ -227,16 +279,62 @@ export default async function BlogPostPage({
         name: "PrivCo",
         logo: {
           "@type": "ImageObject",
-          url: "https://yourdomain.com/logo.png", // Replace with your actual logo URL
+          url: `${baseUrl}/images/logo.png`, // Update with your actual logo URL
         },
       },
       mainEntityOfPage: {
         "@type": "WebPage",
-        "@id": `https://yourdomain.com/blog/${slug}`, // Replace with your actual domain
+        "@id": `${baseUrl}/blog/${slug}`,
       },
       keywords: post.fields.tags.join(", "),
       wordCount: wordCount,
     };
+
+    // Breadcrumb structured data
+    const breadcrumbData = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: baseUrl,
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Blog",
+          item: `${baseUrl}/blog`,
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: post.fields.title,
+          item: `${baseUrl}/blog/${slug}`,
+        },
+      ],
+    };
+
+    // Author structured data (if author exists)
+    const authorData = post.fields.author
+      ? {
+          "@context": "https://schema.org",
+          "@type": "Person",
+          name: post.fields.author.fields.name,
+          url: `${baseUrl}/authors/${post.fields.author.fields.name
+            .toLowerCase()
+            .replace(/\s+/g, "-")}`,
+          image: post.fields.author.fields.image
+            ? `https:${post.fields.author.fields.image.fields.file.url}`
+            : undefined,
+          jobTitle: "Author",
+          worksFor: {
+            "@type": "Organization",
+            name: "PrivCo",
+          },
+        }
+      : null;
 
     // Parse the body content
     const bodyContent = await markdownParser(post.fields.body);
@@ -244,17 +342,45 @@ export default async function BlogPostPage({
       ? await markdownParser(post.fields.author.fields.bio)
       : "";
 
+    // Get first paragraph for meta description if needed
+    const firstParagraph =
+      post.fields.body.split("\n").find((p) => p.trim().length > 100) || "";
+
     return (
       <>
-        {/* Add structured data */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(structuredData),
-          }}
-        />
+        {/* Structured data components */}
+
+        {/* Breadcrumb structured data */}
+        <JsonLd>{breadcrumbData}</JsonLd>
+        {/* Author structured data (if available) */}
+        {authorData && <JsonLd>{authorData}</JsonLd>}
 
         <main className="min-h-screen py-8 mt-14 bg-white">
+          {/* Breadcrumb navigation */}
+          <nav aria-label="Breadcrumb" className="max-w-4xl mx-auto mb-4 px-4">
+            <ol className="flex text-sm text-gray-500 flex-wrap">
+              <li>
+                <Link href="/" className="hover:text-indigo-600">
+                  Home
+                </Link>
+                <span className="mx-2" aria-hidden="true">
+                  /
+                </span>
+              </li>
+              <li>
+                <Link href="/blog" className="hover:text-indigo-600">
+                  Blog
+                </Link>
+                <span className="mx-2" aria-hidden="true">
+                  /
+                </span>
+              </li>
+              <li className="text-gray-700 font-medium" aria-current="page">
+                {post.fields.title}
+              </li>
+            </ol>
+          </nav>
+
           <article className="max-w-4xl mx-auto overflow-hidden bg-white shadow-sm rounded-lg">
             {/* Featured Image (Full Width) */}
             {post.fields.image && (
@@ -283,12 +409,15 @@ export default async function BlogPostPage({
 
                   {post.fields.tags &&
                     post.fields.tags.slice(0, 3).map((tag) => (
-                      <span
+                      <Link
                         key={tag}
-                        className="bg-slate-100 text-slate-800 text-xs font-medium px-2.5 py-1 rounded-full"
+                        href={`/blog/tags/${encodeURIComponent(
+                          tag.toLowerCase()
+                        )}`}
+                        className="bg-slate-100 text-slate-800 text-xs font-medium px-2.5 py-1 rounded-full hover:bg-slate-200"
                       >
                         {tag}
-                      </span>
+                      </Link>
                     ))}
                 </div>
 
@@ -317,9 +446,14 @@ export default async function BlogPostPage({
                           </span>
                         </div>
                       )}
-                      <span className="font-medium">
+                      <Link
+                        href={`/authors/${post.fields.author.fields.name
+                          .toLowerCase()
+                          .replace(/\s+/g, "-")}`}
+                        className="font-medium hover:text-indigo-600"
+                      >
                         {post.fields.author.fields.name}
-                      </span>
+                      </Link>
                     </div>
                   )}
 
@@ -340,6 +474,7 @@ export default async function BlogPostPage({
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
+                      aria-hidden="true"
                     >
                       <path
                         strokeLinecap="round"
@@ -370,8 +505,7 @@ export default async function BlogPostPage({
                 />
               </div>
 
-              {/* 
-
+              {/* Related topics/tags section - important for internal linking */}
               {post.fields.tags && post.fields.tags.length > 0 && (
                 <div className="mt-12 pt-6 border-t border-gray-200">
                   <h2 className="text-sm font-semibold uppercase tracking-wider text-gray-500 mb-4">
@@ -393,6 +527,7 @@ export default async function BlogPostPage({
                 </div>
               )}
 
+              {/* Author bio section - good for E-E-A-T signals */}
               {post.fields.author && post.fields.author.fields.bio && (
                 <div className="mt-12 p-6 bg-slate-50 rounded-lg border border-slate-100">
                   <div className="flex items-center mb-4">
@@ -430,16 +565,30 @@ export default async function BlogPostPage({
                 </div>
               )}
 
-              */}
-
               {/* Call to Action - only shown if shouldHideSalesForm is false or undefined */}
               {!post.fields.shouldHideSalesForm && <PurchaseForm />}
+
+              {/* Related Posts Section - Static, but would be better if dynamic */}
+              <section className="mt-12 pt-6 border-t border-gray-200">
+                <h2 className="text-xl font-bold mb-6">You may also like</h2>
+                <p className="text-gray-500 mb-4">
+                  Explore more insights on private market trends and analysis.
+                </p>
+                <div className="flex justify-center">
+                  <Link
+                    href="/blog"
+                    className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  >
+                    View All Posts
+                  </Link>
+                </div>
+              </section>
 
               {/* Pagination - Navigate between posts */}
               <nav className="mt-12 border-t border-gray-200 pt-6 flex justify-between items-center">
                 <div>
                   <Link
-                    href="/insights"
+                    href="/blog"
                     className="inline-flex items-center text-indigo-600 hover:text-indigo-800"
                   >
                     <svg
@@ -448,6 +597,7 @@ export default async function BlogPostPage({
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
+                      aria-hidden="true"
                     >
                       <path
                         strokeLinecap="round"
@@ -456,7 +606,7 @@ export default async function BlogPostPage({
                         d="M7 16l-4-4m0 0l4-4m-4 4h18"
                       />
                     </svg>
-                    Back to Insights
+                    Back to Blog
                   </Link>
                 </div>
 

@@ -32,20 +32,130 @@ import {
   UserRoundSearch,
 } from "lucide-react";
 import HeroHeader from "../components/content-blocks/HeroHeader";
+import Script from "next/script";
+
+export const metadata = {
+  title: "PrivCo Platform - Private Company Financial Data and Intelligence",
+  description:
+    "PrivCo provides unmatched data on 893,000+ private companies with comprehensive financials and executive contacts. Discover the 80% of the market competitors miss.",
+  keywords: [
+    "private company data",
+    "financial intelligence",
+    "bootstrapped companies",
+    "private equity data",
+    "company search",
+  ],
+
+  openGraph: {
+    title: "PrivCo Platform - Private Company Financial Intelligence",
+    description:
+      "Access detailed financial data on 893,000+ private companies that other sources miss. Find companies with $1M-$100M revenue across all industries.",
+    images: [
+      {
+        url: "/images/product/product-header.png",
+        width: 1200,
+        height: 630,
+        alt: "PrivCo platform interface showing private company search capabilities",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "PrivCo Platform - Private Company Intelligence",
+    description:
+      "Access detailed financial data on 893,000+ private companies that other sources miss.",
+    images: ["/images/product/product-header.png"],
+  },
+
+  alternates: {
+    canonical: "https://privco.com/product",
+  },
+};
+
+const productJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "PrivCo Platform",
+  applicationCategory: "BusinessApplication",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+    availability: "https://schema.org/InStock",
+  },
+  description:
+    "PrivCo is the leading provider of private company financial data, specializing in bootstrapped companies with revenues above $1MM.",
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.8",
+    ratingCount: "90000",
+  },
+  featureList:
+    "Comprehensive private company data, Executive contacts, Financial insights, Advanced search",
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "What makes PrivCo's data unique?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Unlike competitors focusing on public data, PrivCo dedicates all resources to the private sphere—delivering in-depth data on bootstrapped companies with revenues above $1MM that other sources miss. We combine AI with expert oversight to ensure data accuracy.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What types of companies does PrivCo cover?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "PrivCo specializes in 'bootstrapped' companies above $1MM that aren't covered by other data sources because they haven't raised private equity or venture capital. We have profiles on 893,000+ U.S. private companies.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What information does PrivCo provide about private companies?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "PrivCo provides detailed revenue, EBITDA, valuations, and growth metrics for private companies. We also offer 65M+ verified executive contacts with emails, mobile numbers, and LinkedIn URLs, along with industry classifications and keyword tagging for niche discovery.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How does PrivCo collect and verify its data?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "We use a combination of curated sources (filings, publications, and credible news outlets), AI and machine learning to model revenues and valuations, and expert data scientists who verify and update profiles daily for accuracy.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Can I try PrivCo before purchasing?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes, PrivCo offers a 7-day, full-access free trial that allows you to explore our complete platform and data offerings.",
+      },
+    },
+  ],
+};
 
 interface ImageCaptionProps {
   image: string;
   text: string;
+  alt: string;
 }
 
-const ImageCaption: React.FC<ImageCaptionProps> = ({ image, text }) => {
+const ImageCaption: React.FC<ImageCaptionProps> = ({ image, text, alt }) => {
   return (
     <div className="max-w-[405px] mx-auto border border-b-2 border-[var(--privco-blue)] shadow">
       <div className="max-w-[405px] max-h-[230px] overflow-hidden flex items-center justify-center">
         <Image
           src={image}
           className="object-cover"
-          alt={"dd"}
+          alt={alt}
           width={405}
           height={405}
         />
@@ -166,6 +276,11 @@ const TextBlurb: React.FC<TextBlurbProps> = ({
 export default function Product() {
   return (
     <div>
+      <Script
+        id="product-faq-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <div>
         <HeroHeader
           imageUrl="/images/product/product-header.png"
@@ -174,7 +289,7 @@ export default function Product() {
           subtitle="Competitors show you just 20% of the private market—PrivCo reveals the 80% below the surface. From granular financials to executive contacts, we give you the tools to act decisively."
           ctaText="Start Free"
           ctaHref={"https://system.privco.com/signup"}
-          altText="Privco Product Page Hero"
+          altText="PrivCo platform interface showing private company search capabilities"
         />
       </div>
 
@@ -218,14 +333,18 @@ export default function Product() {
                 image="/images/product/search-manu.png"
                 text="“Midwest private manufacturing
 with $10-50M revenue & 15%+ growth rate.”"
+                alt="PrivCo search results for Midwest private manufacturing
+with $10-50M revenue & 15%+ growth rate."
               />
               <ImageCaption
                 image="/images/product/search-solar.png"
                 text="“California private companies in the renewable energy sector with $5-20M EBITDA.”"
+                alt="PrivCo search results for California private companies in the renewable energy sector with $5-20M EBITDA."
               />
               <ImageCaption
                 image="/images/product/search-ecom.png"
                 text="“Profitable e-commerce businesses near Boston operating for 5+ years.”"
+                alt="PrivCo search results for Profitable e-commerce businesses near Boston operating for 5+ years."
               />
             </div>
           </SecondaryHeadline>
@@ -440,6 +559,13 @@ of the hardest-to-find information, financial data, and contacts for the private
                 "/images/client-logos/cnbc.png",
                 "/images/svgs/logos/inc.svg",
                 "/images/svgs/logos/forbes.svg",
+              ]}
+              alts={[
+                "Deloitte logo",
+                "Bloomberg logo",
+                "CNBC logo",
+                "Inc logo",
+                "Forbes logo",
               ]}
             />
           </div>

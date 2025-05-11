@@ -103,6 +103,8 @@ function MarkdownLegalTextRenderer({ text }: { text: string }) {
   );
 }
 
+export const metadata = await generateMetadata();
+
 export default async function CCPAPage() {
   const ccpaData = await getCCPAData();
 

@@ -97,8 +97,6 @@ function MarkdownRenderer({ text }: { text: string }) {
       </blockquote>
     ),
 
-    // Style code blocks
-
     // Style links
     a: ({ href, children }) => (
       <a

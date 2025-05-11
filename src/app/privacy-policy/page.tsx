@@ -137,3 +137,5 @@ export default async function PrivacyPolicyPage() {
     </main>
   );
 }
+
+export const metadata = await generateMetadata();
