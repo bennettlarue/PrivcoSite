@@ -106,7 +106,7 @@ const Nav: React.FC = () => {
 
   const navItems: NavItem[] = [
     {
-      title: "Platform",
+      title: "Product",
       href: "/product",
     },
     {

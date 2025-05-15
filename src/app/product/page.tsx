@@ -22,6 +22,7 @@ import {
   GraduationCap,
   Handshake,
   Landmark,
+  Pin,
   Rocket,
   ScanSearch,
   Search,
@@ -33,6 +34,9 @@ import {
 } from "lucide-react";
 import HeroHeader from "../components/content-blocks/HeroHeader";
 import Script from "next/script";
+import MainFeatures from "../components/reuseSections/MainFeatures";
+import UseCases from "../components/reuseSections/UseCases";
+import CtaButton from "../components/content-blocks/CtaButton";
 
 export const metadata = {
   title: "PrivCo Platform - Private Company Financial Data and Intelligence",
@@ -160,7 +164,7 @@ const ImageCaption: React.FC<ImageCaptionProps> = ({ image, text, alt }) => {
           height={405}
         />
       </div>
-      <div className="text-lg lg:text-xl font-medium mx-auto p-6 w-full">
+      <div className="text-lg lg:text-xl font-medium mx-auto p-6 w-full bg-white/50">
         <Search className="text-[var(--privco-blue)] inline-block size-5 mr-1" />
         {text}
       </div>
@@ -196,10 +200,7 @@ const ParagraphBlock: React.FC<ParagraphBlockProps> = ({
   svg,
 }) => {
   return (
-    <div
-      className="relative w-fit border border-[var(--privco-blue)] border-b-2 shadow p-8 space-y-3 mx-auto"
-      style={{ backgroundColor: color || "transparent" }}
-    >
+    <div className="relative w-fit border border-[var(--privco-blue)] border-b-2 shadow p-8 space-y-3 mx-auto bg-blue-100/20">
       <div className="flex items-center gap-3">
         {svg && <div>{svg}</div>}
         <h4 className="font-bold text-2xl">{header}</h4>
@@ -256,7 +257,7 @@ const BulletList: React.FC<BulletListProps> = ({ items }) => {
 // Define the TextBlurb component
 interface TextBlurbProps {
   headline: string;
-  description: string;
+  description: React.ReactNode;
   svg?: React.ReactNode;
 }
 
@@ -266,7 +267,7 @@ const TextBlurb: React.FC<TextBlurbProps> = ({
   svg,
 }) => {
   return (
-    <div className="border-b md:p-7 p-5 border-[var(--privco-green)] shadow space-y-2">
+    <div className="border-b md:p-7 p-5 border-[var(--privco-blue)] shadow space-y-2">
       {svg && <div className=" ">{svg}</div>}
       <SmallHeadline headline={headline}>{description}</SmallHeadline>
     </div>
@@ -286,44 +287,105 @@ export default function Product() {
           imageUrl="/images/product/product-header.png"
           overline="Go Deeper"
           title="With PrivCo, more data means greater insights into opportunities. "
-          subtitle="Competitors show you just 20% of the private market—PrivCo reveals the 80% below the surface. From granular financials to executive contacts, we give you the tools to act decisively."
+          subtitle=" "
           ctaText="Start Free"
           ctaHref={"https://system.privco.com/signup"}
           altText="PrivCo platform interface showing private company search capabilities"
         />
       </div>
 
+      <SectionColor backgroundColor="var(--privco-blue)">
+        <RowPadding>
+          <div className="border border-white rounded shadow flex md:flex-row flex-col text-white">
+            <div className="w-full h-fit my-auto lg:px-16 px-6 py-6">
+              <div className="lg:space-y-4 md:space-y-1 space-y-4">
+                <h2 className="lg:text-4xl md:text-2xl text-2xl font-bold">
+                  Competitors show you just 20% of the private market— PrivCo
+                  reveals the 80% below the surface.
+                </h2>
+                <p className="lg:text-2xl text-lg">
+                  From granular financials to 70MM+ executive contacts, we give
+                  you the tools to act decisively.
+                </p>
+                <div>
+                  <CtaButton />
+                </div>
+              </div>
+            </div>
+            <div className="w-full md:max-w-[400px]">
+              <Image
+                src="/images/iceberg.png"
+                alt="PrivCo Coverage vs. Competitors - Go Deeper"
+                width={461}
+                height={501}
+                className="mx-auto shadow object-cover w-full md:max-w-[400px] max-w-[500px] md:rounded-r md:border-l border-white"
+                priority
+              />
+            </div>
+          </div>
+        </RowPadding>
+      </SectionColor>
+
       <SectionColor
         textColor="var(--privco-black)"
-        backgroundColor="var(--privco-lightgreen)"
+        backgroundColor="var(--privco-white)"
       >
         <RowPadding>
           <div className="grid md:grid-cols-2 grid-cols-1 lg:gap-16 gap-10">
             <TextBlurb
-              svg={<Handshake color="var(--privco-green)" className="size-7" />}
-              headline="100% Private Focus"
-              description="Unlike competitors chasing public data, we dedicate all our resources to the private sphere—delivering depth where others fall short."
+              svg={<Handshake color="var(--privco-blue)" className="size-7" />}
+              headline="The Private Market Authority"
+              description={
+                <p>
+                  We specialize in U.S. private company intelligence—
+                  <span className="font-semibold">
+                    {" "}
+                    financials, growth, and contacts
+                  </span>
+                  — with a depth no other platform delivers.
+                </p>
+              }
             />
             <TextBlurb
-              svg={<Brain color="var(--privco-green)" className="size-7" />}
+              svg={<Brain color="var(--privco-blue)" className="size-7" />}
               headline="AI + Human Expertise"
-              description="We combine cutting-edge AI with expert oversight and proprietary search algorithms, ensuring millions of data points are accurate and actionable—not just scraped and guessed."
+              description={
+                <p>
+                  Our proprietary AI is paired with human QA to ensure{" "}
+                  <span className="font-medium">146M+ data points</span> are
+                  accurate, current, and never blindly scraped.
+                </p>
+              }
             />
             <TextBlurb
-              svg={<Tag color="var(--privco-green)" className="size-7" />}
-              headline="Best-In-Class Classification"
-              description="PrivCo’s keyword tagging system outshines broad industry categories, letting you discover niche verticals with precision."
+              svg={<Pin color="var(--privco-blue)" className="size-7" />}
+              headline="Pinpoint Niche Markets"
+              description={
+                <p>
+                  PrivCo’s unique tagging system surfaces companies other
+                  platforms miss—{" "}
+                  <span className="font-semibold">
+                    target by true business activity, not just broad sectors.
+                  </span>
+                </p>
+              }
             />
             <TextBlurb
-              svg={<ChartLine color="var(--privco-green)" className="size-7" />}
-              headline="Integrated Financials & Contacts"
-              description="No other platform blends robust financial data with verified contact details in one seamless experience."
+              svg={<ChartLine color="var(--privco-blue)" className="size-7" />}
+              headline=" Financials + Contacts, Seamlessly Connected"
+              description={
+                <p>
+                  See a company’s financial health and its decision-makers—{" "}
+                  <span className="font-semibold">70M+ verified contacts</span>{" "}
+                  directly linked to private firm profiles.
+                </p>
+              }
             />
           </div>
         </RowPadding>
       </SectionColor>
       <SectionColor
-        backgroundColor="var(--privco-white)"
+        backgroundColor="var(--privco-lightblue)"
         textColor="var(--privco-black)"
       >
         <RowPadding>
@@ -347,9 +409,14 @@ with $10-50M revenue & 15%+ growth rate."
                 alt="PrivCo search results for Profitable e-commerce businesses near Boston operating for 5+ years."
               />
             </div>
+            <div>
+              <CtaButton />
+            </div>
           </SecondaryHeadline>
         </RowPadding>
       </SectionColor>
+
+      <MainFeatures />
       <SectionColor
         backgroundColor="var(--privco-blue)"
         textColor="var(--privco-white)"
@@ -366,53 +433,7 @@ of the hardest-to-find information, financial data, and contacts for the private
         </RowPadding>
       </SectionColor>
       <SectionColor
-        backgroundColor="var(--privco-lightgreen)"
-        textColor="var(--privco-black)"
-      >
-        <RowPadding>
-          <div>
-            <SecondaryHeadline
-              headline="PrivCo's private market intelligence database takes the guesswork out of your private company search."
-              color="var(--privco-blue)"
-            >
-              <div className="mt-4 grid xl:grid-cols-9 grid-cols-1 md:gap-16 md:space-y-0 space-y-10">
-                <div className="space-y-6 text-lg col-span-4">
-                  <p>
-                    Unlike the public markets, where data providers can readily
-                    access financial information from a company's earnings
-                    reports, private company data is much harder to track down.
-                    PrivCo specializes in “bootstrapped” companies above $1MM
-                    that are not covered by other data sources because they
-                    haven’t raised private equity or venture capital.{" "}
-                  </p>
-                  <p>
-                    PrivCo helps investors, private equity, analysts, and
-                    institutions make better strategic decisions and gain a
-                    competitive edge with our precision, quality, and breadth of
-                    data.
-                  </p>
-                </div>
-                <div className="grid md:grid-cols-3 gap-4 col-span-5 grid-cols-2">
-                  <BoxText
-                    text="Competitive Intelligence"
-                    color="var(--privco-blue)"
-                  />
-                  <BoxText text="Market Research" color="var(--privco-blue)" />
-                  <BoxText text="Business Dev" color="var(--privco-blue)" />
-                  <BoxText text="Due Diligence" color="var(--privco-blue)" />
-                  <BoxText
-                    text="Sourcing / Origination"
-                    color="var(--privco-blue)"
-                  />
-                  <BoxText text="Deal Comps" color="var(--privco-blue)" />
-                </div>
-              </div>
-            </SecondaryHeadline>
-          </div>
-        </RowPadding>
-      </SectionColor>
-      <SectionColor
-        backgroundColor="var(--privco-lightblue)"
+        backgroundColor="var(--privco-white)"
         textColor="var(--privco-black)"
       >
         <RowPadding>
@@ -421,6 +442,9 @@ of the hardest-to-find information, financial data, and contacts for the private
               headline="Why PrivCo's Stands Out
 "
             >
+              <div>
+                <CtaButton />
+              </div>
               <div className="grid lg:grid-cols-3 grid-cols-1 ld:gap-10 gap-5">
                 <ParagraphBlock
                   svg={<TextSearch className="size-8" />}
@@ -484,142 +508,65 @@ of the hardest-to-find information, financial data, and contacts for the private
       >
         <RowPadding>
           <SecondaryHeadline headline="How We Deliver Quality Data">
-            <div className="grid xl:grid-cols-2 grid-cols-1 gap-10">
-              <div className="space-y-8">
-                <MiniHeadline svg={<Rocket />} headline="Proven Methodology">
-                  <p>
-                    Finding private company data is tough—fragmented and opaque.
-                    With over a decade of expertise, we’ve mastered it. Our
-                    proprietary system of company identification, industry
-                    mapping, and keyword tagging drives unparalleled market
-                    visibility.
-                  </p>
-                </MiniHeadline>
+            <div className="space-y-8">
+              <MiniHeadline svg={<Rocket />} headline="Proven Methodology">
+                <p>
+                  Finding private company data is tough—fragmented and opaque.
+                  With over a decade of expertise, we’ve mastered it. Our
+                  proprietary system of company identification, industry
+                  mapping, and keyword tagging drives unparalleled market
+                  visibility.
+                </p>
+              </MiniHeadline>
+              <BulletList
+                items={[
+                  {
+                    title: "Curated Sources",
+                    body: "We start with filings, publications, and credible news outlets.",
+                  },
+                  {
+                    title: "Smart Technology",
+                    body: "AI and machine learning model revenues, valuations, and growth signals.",
+                  },
+                  {
+                    title: "Expert Validation",
+                    body: "Our data scientists verify and update profiles daily for accuracy.",
+                  },
+                ]}
+              />
+              <MiniHeadline headline="Quality Over Quantity" svg={<Gem />}>
                 <BulletList
                   items={[
                     {
-                      title: "Curated Sources",
-                      body: "We start with filings, publications, and credible news outlets.",
+                      title: "Rigorous Standards",
+                      body: "Enterprise-grade data from day one, eliminating outdated or irrelevant info.",
                     },
                     {
-                      title: "Smart Technology",
-                      body: "AI and machine learning model revenues, valuations, and growth signals.",
-                    },
-                    {
-                      title: "Expert Validation",
-                      body: "Our data scientists verify and update profiles daily for accuracy.",
+                      title: "Impactful Insights",
+                      body: "We prioritize actionable intelligence over bloated datasets.",
                     },
                   ]}
                 />
-                <MiniHeadline headline="Quality Over Quantity" svg={<Gem />}>
-                  <BulletList
-                    items={[
-                      {
-                        title: "Rigorous Standards",
-                        body: "Enterprise-grade data from day one, eliminating outdated or irrelevant info.",
-                      },
-                      {
-                        title: "Impactful Insights",
-                        body: "We prioritize actionable intelligence over bloated datasets.",
-                      },
-                    ]}
-                  />
-                </MiniHeadline>
-                <MiniHeadline headline="Deep Technology" svg={<CircuitBoard />}>
-                  <p>
-                    Our proprietary system of company identification, industry
-                    mapping, and keyword tagging drives unparalleled market
-                    visibility.
-                  </p>
-                </MiniHeadline>
-              </div>
-              <div className="items-center justify-center max-w-[616px] max-h-[677px] hidden xl:flex">
-                <Image
-                  src={"/images/header-image.png"}
-                  className="object-cover w-full h-full"
-                  alt={"dd"}
-                  width={616}
-                  height={677}
-                />
-              </div>
+              </MiniHeadline>
+              <MiniHeadline headline="Deep Technology" svg={<CircuitBoard />}>
+                <p>
+                  Our proprietary system of company identification, industry
+                  mapping, and keyword tagging drives unparalleled market
+                  visibility.
+                </p>
+              </MiniHeadline>
+            </div>
+            <div>
+              <CtaButton />
             </div>
           </SecondaryHeadline>
         </RowPadding>
       </SectionColor>
-      <SectionColor
-        textColor="var(--privco-black)"
-        backgroundColor="var(--privco-white)"
-      >
-        <RowPadding>
-          <div>
-            <ClientLogos
-              images={[
-                "/images/svgs/logos/deloitte.svg",
-                "/images/svgs/logos/bloomberg.svg",
-                "/images/client-logos/cnbc.png",
-                "/images/svgs/logos/inc.svg",
-                "/images/svgs/logos/forbes.svg",
-              ]}
-              alts={[
-                "Deloitte logo",
-                "Bloomberg logo",
-                "CNBC logo",
-                "Inc logo",
-                "Forbes logo",
-              ]}
-            />
-          </div>
-        </RowPadding>
-      </SectionColor>
-      <SectionColor
-        textColor="var(--privco-blue)"
-        backgroundColor="var(--privco-lightgreen)"
-      >
-        <RowPadding>
-          <div>
-            <SecondaryHeadline
-              color="var(--privco-black)"
-              headline="Insights for Deal Makers"
-            >
-              <div className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 md:gap-x-10 gap-x-10 lg:gap-y-16 gap-y-8">
-                <SmallHeadlineSection
-                  headline="Private Equity"
-                  svg={<Sparkles />}
-                  description="Find independently owned private companies with historical revenue in your target demographic."
-                />
-                <SmallHeadlineSection
-                  headline="Venture Capital"
-                  svg={<BadgeDollarSign />}
-                  description="Discover the Next Big Thing with actionable insights from pre-revenue and late-stage companies alike."
-                />
-                <SmallHeadlineSection
-                  headline="Investment Banking"
-                  svg={<Landmark />}
-                  description="Get accurate industry and private company financials. Gain actionable insights related to VC, M&A, debt, EBITDA, and equity financing."
-                />
-                <SmallHeadlineSection
-                  headline="Academics"
-                  svg={<GraduationCap />}
-                  description="Provide faculty and students with comprehensive financial intelligence."
-                />
-                <SmallHeadlineSection
-                  headline="Executive Search"
-                  svg={<ScanSearch />}
-                  description="Uncover hard-to-find private companies in need of top talent."
-                />
-                <SmallHeadlineSection
-                  headline="Sales Teams"
-                  svg={<ChartNoAxesCombined />}
-                  description="Find and connect with the right prospects quickly and efficiently."
-                />
-              </div>
-            </SecondaryHeadline>
-          </div>
-        </RowPadding>
-      </SectionColor>
+
+      <UseCases />
       <SectionColorLines
-        secondaryColor="var(--privco-blue)"
-        backgroundColor="var(--privco-white)"
+        secondaryColor="var(--privco-white)"
+        backgroundColor="var(--privco-lightgreen)"
         textColor="var(--privco-black)"
       >
         <RowPadding>
@@ -630,14 +577,10 @@ of the hardest-to-find information, financial data, and contacts for the private
                 private company data not found in other sources.
               </p>
               <div className="mx-auto">
-                <BigButton
-                  href={"https://system.privco.com/signup"}
-                  textColor="var(--privco-white)"
-                  backgroundColor="var(--privco-green)"
-                  border={true}
-                >
-                  Start Your 7-Day, Full-Access Free Trial
-                </BigButton>
+                <CtaButton
+                  ctaHref="https://system.privco.com/signup"
+                  ctaText="Start Free"
+                />
               </div>
             </SecondaryHeadline>
           </div>

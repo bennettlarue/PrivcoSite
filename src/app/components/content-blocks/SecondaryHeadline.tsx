@@ -3,7 +3,7 @@ import FadeIn from "../transition-wrappers/FadeIn";
 
 // Define the props type
 interface SecondaryHeadlineProps {
-  headline: string;
+  headline: React.ReactNode; // Changed from string to React.ReactNode
   overline?: React.ReactNode; // Optional overline
   paragraph?: string; // Optional paragraph text
   className?: string;
@@ -15,19 +15,15 @@ const SecondaryHeadline: React.FC<SecondaryHeadlineProps> = ({
   headline,
   overline,
   children,
-  color, // Destructure children
+  color,
 }) => {
-  // If children is an array, we map over it to add the fade-in effect with dynamic delays.
-
-  const computedStyles = "";
-
   return (
     <div className="flex flex-col gap-5 max-w-[1200px] text-lg">
       {overline && (
         <p className="md:text-2xl text-xl font-medium">{overline}</p>
       )}
       <h2
-        className="md:text-4xl text-3xl font-bold mb-2"
+        className="md:text-5xl text-3xl font-bold mb-2"
         style={{ color: color ? color : "auto" }}
       >
         {headline}

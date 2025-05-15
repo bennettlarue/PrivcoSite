@@ -213,7 +213,7 @@ export default function Pricing() {
       <div>
         <HeroHeader
           imageUrl="/images/pricing/pricing-header.png"
-          title="More data. More Deals."
+          title="146 million data points, 70 million contacts, 900,000+ companies"
           subtitle="146 million data points and 893K+ companies"
           ctaText="7-Day Full-Access Free Trial"
           ctaHref={"https://system.privco.com/signup"}

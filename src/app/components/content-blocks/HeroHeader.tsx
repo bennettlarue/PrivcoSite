@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, ReactNode } from "react";
 import { ArrowRight } from "lucide-react";
 import CtaButton from "./CtaButton";
 import SecondaryCtaButton from "./SecondaryCtaButton";
@@ -10,7 +10,7 @@ import SecondaryCtaButton from "./SecondaryCtaButton";
 interface HeroHeaderProps {
   imageUrl: string;
   altText?: string;
-  title: string;
+  title: string | ReactNode;
   subtitle?: string;
   overline?: string;
   ctaText?: string;
@@ -33,7 +33,7 @@ export default function HeroHeader({
   const [imageLoaded, setImageLoaded] = useState(false);
 
   return (
-    <div className="relative w-full min-h-[540px] h-[60vh] overflow-hidden flex items-center pt-10  bg-gray-100">
+    <div className="relative w-full min-h-[540px] h-[60vh] overflow-hidden flex items-center lg:pt-20 pt-10  bg-gray-100">
       {/* Background Image with loading transition */}
       <div className="absolute inset-0">
         <motion.div
@@ -61,7 +61,7 @@ export default function HeroHeader({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3, delay: 0.2 }}
-        className="absolute inset-0 bg-gradient-to-r from-[var(--privco-blue)] md:via-blue-950/80 via-blue-950/90 to-blue-950/70"
+        className="absolute inset-0 bg-gradient-to-r from-white md:via-white/90 via-white/90 md:to-white/30 to-white/80"
       />
 
       {/* Content Container */}
@@ -73,27 +73,33 @@ export default function HeroHeader({
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.3 }}
-                className="text-xl font-semibold text-white mb-2 tracking-wide"
+                className="text-xl font-semibold text-[var(--privco-blue)] mb-2 tracking-wide"
               >
                 {overline}
               </motion.p>
             )}
 
-            <motion.h1
+            <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.4 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 drop-shadow-lg"
+              className="mb-4 drop-shadow-sm"
             >
-              {title}
-            </motion.h1>
+              {typeof title === "string" ? (
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--privco-blue)]">
+                  {title}
+                </h1>
+              ) : (
+                title
+              )}
+            </motion.div>
 
             {subtitle && (
               <motion.p
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.5 }}
-                className="text-xl sm:text-2xl mb-8 font-medium text-white"
+                className="text-xl sm:text-2xl mb-8 font-semibold text-[var(--privco-blue)]"
               >
                 {subtitle}
               </motion.p>

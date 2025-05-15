@@ -3,22 +3,26 @@ import React from "react";
 // Define the props type
 interface SmallHeadlineProps {
   headline: string;
-  overline?: React.ReactNode; // Allow React child for overline
-  paragraph?: string; // Optional paragraph text
-  children?: React.ReactNode; // Optional children
+  overline?: React.ReactNode;
+  paragraph?: string;
+  children?: React.ReactNode;
+  center?: boolean; // Add center prop
 }
 
 const SmallHeadline: React.FC<SmallHeadlineProps> = ({
   headline,
   overline,
-  children, // Destructure children
+  children,
+  center = false, // Default to false
 }) => {
   return (
-    <div className="flex flex-col gap-4 ">
-      {/* Render the overline if provided */}
+    <div
+      className={`flex flex-col gap-4 ${
+        center ? "items-center text-center" : ""
+      }`}
+    >
       {overline && <div className="font-[700]">{overline}</div>}
 
-      {/* Render the headline */}
       <h2 className="lg:text-3xl text-2xl font-[700] leading-[140%]">
         {headline}
       </h2>

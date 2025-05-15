@@ -25,6 +25,10 @@ import {
 import HeroHeader from "./components/content-blocks/HeroHeader";
 import CtaButton from "./components/content-blocks/CtaButton";
 import SecondaryCtaButton from "./components/content-blocks/SecondaryCtaButton";
+import TertiaryHeadline from "./components/content-blocks/TertiaryHeadline";
+import LineBreak from "./components/content-blocks/LineBreak";
+import UseCases from "./components/reuseSections/UseCases";
+import MainFeatures from "./components/reuseSections/MainFeatures";
 
 // SEO Metadata for App Router
 export const metadata = {
@@ -45,7 +49,8 @@ export const metadata = {
   openGraph: {
     type: "website",
     url: "https://privco.com",
-    title: "PrivCo - Uncover Opportunities Others Can't See",
+    title:
+      "PrivCo - Uncover Private Company Opportunities Before Your Competitors Do",
     description:
       "Access financial data on 893K+ U.S. private companies. PrivCo specializes in bootstrapped companies with revenues above $1MM that other data sources miss.",
     siteName: "PrivCo",
@@ -129,8 +134,8 @@ export default function Home() {
       <div>
         <HeroHeader
           imageUrl="/images/header-image.png"
-          title="Uncover Opportunities Others Can't See"
-          subtitle="PrivCo is the leading provider of private company financial data, specializing in bootstrapped companies with revenues above $1MM."
+          title="Uncover Private Company Opportunities Before Your Competitors Do"
+          subtitle="PrivCo is the leading provider of private company data, giving you access to 900K+ private companies and 70M executive contacts."
           ctaText="Start Free"
           ctaHref="https://system.privco.com/signup"
           cta2Text="Learn More"
@@ -142,7 +147,7 @@ export default function Home() {
       {/* Client Logos Section */}
       <SectionColor
         textColor="var(--privco-black)"
-        backgroundColor="var(--privco-white)"
+        backgroundColor="var(--privco-lightgreen)"
       >
         <RowPadding>
           <ClientLogos
@@ -165,52 +170,7 @@ export default function Home() {
       </SectionColor>
 
       {/* Main Features Section - H2 */}
-      <SectionColor
-        textColor="var(--privco-black)"
-        backgroundColor="var(--privco-lightgreen)"
-      >
-        <RowPadding>
-          <div>
-            <SecondaryHeadline
-              headline="PrivCo's private market intelligence database takes the guesswork out of your private company search."
-              color="var(--privco-blue)"
-            >
-              <div className="mt-4 grid xl:grid-cols-9 grid-cols-1 md:gap-16 md:space-y-0 space-y-10">
-                <div className="space-y-6 text-xl col-span-4">
-                  <p>
-                    Unlike the public markets, where data providers can readily
-                    access financial information from a company's earnings
-                    reports, private company data is much harder to track down.
-                    PrivCo specializes in "bootstrapped" companies above $1MM
-                    that are not covered by other data sources because they
-                    haven't raised private equity or venture capital.
-                  </p>
-                  <p>
-                    PrivCo helps investors, private equity, analysts, and
-                    institutions make better strategic decisions and gain a
-                    competitive edge with our precision, quality, and breadth of
-                    data.
-                  </p>
-                </div>
-                <div className="grid md:grid-cols-3 gap-4 col-span-5 grid-cols-2">
-                  <BoxText
-                    text="Competitive Intelligence"
-                    color="var(--privco-blue)"
-                  />
-                  <BoxText text="Market Research" color="var(--privco-blue)" />
-                  <BoxText text="Business Dev" color="var(--privco-blue)" />
-                  <BoxText text="Due Diligence" color="var(--privco-blue)" />
-                  <BoxText
-                    text="Sourcing / Origination"
-                    color="var(--privco-blue)"
-                  />
-                  <BoxText text="Deal Comps" color="var(--privco-blue)" />
-                </div>
-              </div>
-            </SecondaryHeadline>
-          </div>
-        </RowPadding>
-      </SectionColor>
+      <MainFeatures />
 
       {/* Testimonial Section */}
       <SectionColor
@@ -230,20 +190,25 @@ export default function Home() {
       {/* Key Stats Section - H2 */}
       <SectionColor
         textColor="var(--privco-black)"
-        backgroundColor="var(--privco-lightblue)"
+        backgroundColor="var(--privco-white)"
       >
         <RowPadding>
-          <div className="grid lg:grid-cols-5 grid-cols-1 gap-8">
-            <div className="col-span-2">
+          <div className="grid lg:grid-cols-2 grid-cols-1 gap-8">
+            <div>
               <SecondaryHeadline
                 overline="Join over 90,000 PrivCo users . . ."
-                headline="Complete financial data on U.S. private companies"
+                headline="Complete financial and contact data on U.S. private companies"
               >
                 <p>
-                  Start your journey with our free plan, designed to give you
-                  essential insights into private companies. Experience basic
-                  firmographics and limited profile access to discover what you
-                  need before upgrading.
+                  Start your journey with a{" "}
+                  <span className="font-semibold">free trial</span>— get
+                  <span className="font-semibold"> extensive access</span> to
+                  PrivCo’s database, including detailed financials, executive
+                  contacts, and firmographics on 893K+ private companies.
+                </p>
+                <p>
+                  {" "}
+                  Explore real data. See the value. Decide when you're ready.
                 </p>
                 <FlexRow>
                   <CtaButton
@@ -255,7 +220,7 @@ export default function Home() {
                 </FlexRow>
               </SecondaryHeadline>
             </div>
-            <div className="col-span-3 grid md:grid-cols-2 grid-cols-1 gap-4">
+            <div className=" grid md:grid-cols-2 grid-cols-1 gap-4">
               <NumberBlock number="893K+" text="U.S. Private Companies" />
               <NumberBlock number="146M+" text="Data Points" />
               <NumberBlock number="1,000+" text="Industry Verticals " />
@@ -273,6 +238,13 @@ export default function Home() {
         <RowPadding>
           <div>
             <SecondaryHeadline headline="Get Granular-Level Advanced Search using Revenue, EBITDA, Valuation, Funding, Growth Rates, Location & Ownership"></SecondaryHeadline>
+            <div className="flex space-x-4 mb-8">
+              <CtaButton
+                ctaHref="https://system.privco.com/signup"
+                ctaText="Start Free"
+              />
+              <SecondaryCtaButton href="/product" text="Learn More" />
+            </div>
             <div className="md:space-y-0 space-y-3 grid grid-cols-1 lg:grid-cols-3 gap-6 md:mx-0 mx-auto mt-3">
               <Figure
                 image={
@@ -324,7 +296,7 @@ export default function Home() {
       {/* Press Logos Section */}
       <SectionColor
         textColor="var(--privco-black)"
-        backgroundColor="var(--privco-white)"
+        backgroundColor="var(--privco-lightgreen)"
       >
         <RowPadding>
           <div>
@@ -349,58 +321,12 @@ export default function Home() {
       </SectionColor>
 
       {/* Use Cases Section - H2 */}
-      <SectionColor
-        textColor="var(--privco-blue)"
-        backgroundColor="var(--privco-lightgreen)"
-      >
-        <RowPadding>
-          <div>
-            <div className="w-fit mx-auto mb-8">
-              <SecondaryHeadline
-                color="var(--privco-black)"
-                headline="Insights for Deal Makers"
-              />
-            </div>
-            <div className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 md:gap-x-10 gap-x-10 lg:gap-y-16 gap-y-8">
-              <SmallHeadlineSection
-                headline="Private Equity"
-                svg={<Sparkles aria-hidden="true" />}
-                description="Find independently owned private companies with historical revenue in your target demographic."
-              />
-              <SmallHeadlineSection
-                headline="Venture Capital"
-                svg={<BadgeDollarSign aria-hidden="true" />}
-                description="Discover the Next Big Thing with actionable insights from pre-revenue and late-stage companies alike."
-              />
-              <SmallHeadlineSection
-                headline="Investment Banking"
-                svg={<Landmark aria-hidden="true" />}
-                description="Get accurate industry and private company financials. Gain actionable insights related to VC, M&A, debt, EBITDA, and equity financing."
-              />
-              <SmallHeadlineSection
-                headline="Academics"
-                svg={<GraduationCap aria-hidden="true" />}
-                description="Provide faculty and students with comprehensive financial intelligence."
-              />
-              <SmallHeadlineSection
-                headline="Executive Search"
-                svg={<ScanSearch aria-hidden="true" />}
-                description="Uncover hard-to-find private companies in need of top talent."
-              />
-              <SmallHeadlineSection
-                headline="Sales Teams"
-                svg={<ChartNoAxesCombined aria-hidden="true" />}
-                description="Find and connect with the right prospects quickly and efficiently."
-              />
-            </div>
-          </div>
-        </RowPadding>
-      </SectionColor>
+      <UseCases />
 
       {/* CTA Section */}
       <SectionColorLines
         secondaryColor="var(--privco-blue)"
-        backgroundColor="var(--privco-white)"
+        backgroundColor="var(--privco-lightgreen)"
         textColor="var(--privco-black)"
       >
         <RowPadding>
@@ -411,14 +337,10 @@ export default function Home() {
                 private company data not found in other sources.
               </p>
               <div className="mx-auto">
-                <BigButton
-                  textColor="var(--privco-white)"
-                  backgroundColor="var(--privco-green)"
-                  border={true}
-                  href={"https://system.privco.com/signup"}
-                >
-                  Start Your 7-Day, Full-Access Free Trial
-                </BigButton>
+                <CtaButton
+                  ctaHref="https://system.privco.com/signup"
+                  ctaText="Start Free"
+                />
               </div>
             </SecondaryHeadline>
           </div>

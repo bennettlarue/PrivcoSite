@@ -146,7 +146,7 @@ const Footer: React.FC = () => {
             </div>
           </div>
           {/* Copyright section */}
-          <div className="border-t border-blue-700 py-6 mt-4">
+          <div className="border-t border-white py-6 mt-8">
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
               <div>
                 <p className="font-semibold text-sm">
